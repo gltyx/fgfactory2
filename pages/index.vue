@@ -253,6 +253,7 @@
                         <TopMenuTab tabId="machines" icon="fa-industry" />
                         <TopMenuTab tabId="items" icon="fa-boxes" />
                         <TopMenuTab tabId="techs" icon="fa-flask" />
+                        <TopMenuTab tabId="aliens" icon="fa-spider" />
                         <TopMenuTab tabId="settings" icon="fa-cogs" class="ms-auto" />
                     </div>
                 </div>
@@ -321,6 +322,53 @@
                         <div class="col-12">
                             <div class="mb-1 small"><span class="text-muted text-uppercase">Boosts</span></div>
                             <div class="row gx-2 align-items-center">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div v-if="currentTabId == 'aliens'" class="row g-3">
+                        <div class="col-3">
+                            <div class="mb-1 small"><span class="text-muted text-uppercase">Eggs</span></div>
+                            <div class="row gx-2 align-items-center">
+                                <div class="h-100 card card-body d-flex align-items-center justify-content-center">
+                                    <div class="row gx-2 align-items-center">
+                                        <div class="col-auto">
+                                            <img :src="require(`~/assets/alienEgg.png`)" width="24px" height="24px" :alt="$t('label_alienEgg')" />
+                                        </div>
+                                        <div class="col-auto">
+                                            <small class="text-muted">x</small>
+                                            <span><FormatNumber :value="game.alienEggCount" /></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-9">
+                            <div class="mb-1 small"><span class="text-muted text-uppercase">Aliens</span></div>
+                            <div class="row gx-2 align-items-center">
+                                <div class="card card-body">
+                                    <div v-if="game.getAlienCount() < 1" class="row align-items-center">
+                                        <div class="col-auto">
+                                            <span class="text-muted">Generate a new Alien wave to collect Alien Eggs</span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <button type="button" class="btn btn-light border" @click="game.generateAliens()">
+                                                <span>Generate</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div v-if="game.getAlienCount() > 0" class="row align-items-center">
+                                        <div class="row g-2 align-items-center justify-content-center">
+                                            <BlockAlien v-for="alien in game.aliens" :key="alien.id" :alien="alien" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mb-1 small"><span class="text-muted text-uppercase">Arsenal</span></div>
+                            <div class="row gx-2 align-items-center">
+                                <RowWeapon :weapon="gameItem('pistol')" />                                    
                             </div>
                         </div>
                     </div>
@@ -475,6 +523,14 @@ var itemData = [
     { id:'ironGearWheel', type:'item', icon:'ironGearWheel', name:'ironGearWheel', },
 
     { id:'stone', type:'item', icon:'stone', name:'stone', },
+]
+
+var alienData = [
+    
+    {   id:'biter1',    health:15,      shield:{ physical:0,  explosion:0  },  armor:{ physical:0,   explosion:0  },  eggCoeff:.9,  },
+    {   id:'biter2',    health:75,      shield:{ physical:4,  explosion:0  },  armor:{ physical:.1,  explosion:.1 },  eggCoeff:.8,  },
+    {   id:'biter3',    health:375,     shield:{ physical:8,  explosion:0  },  armor:{ physical:.1,  explosion:.1 },  eggCoeff:.7,  },
+    {   id:'biter4',    health:3000,    shield:{ physical:12, explosion:12 },  armor:{ physical:.1,  explosion:.1 },  eggCoeff:.6,  },
 ]
 
 //------------------------------------------------------------------------------
@@ -949,6 +1005,220 @@ class Lab extends Item {
 
 //------------------------------------------------------------------------------
 
+class Alien {
+
+    constructor(game, data) {
+    
+        this.id = data.id
+        this.armor = data.armor
+        this.shield = data.shield
+        this.health = data.health
+        this.eggCoeff = data.eggCoeff
+        
+        this.count = 0
+        this.totalHealth = 0
+    }
+    
+    //---
+    
+    setCount(count) {
+        
+        if (count == null) count = 0
+        
+        this.count = count
+        this.totalHealth = count * this.health
+    }
+    
+    doDamage(damage) {
+        
+        let gap = 0
+        
+        this.totalHealth -= damage
+        if (this.totalHealth < 0) this.totalHealth = 0
+        
+        let newCount = Math.ceil(this.totalHealth / this.health)
+        if (newCount != this.count) {
+            
+            gap = this.count - newCount
+            this.count = newCount
+        }
+        
+        return gap
+    }
+}
+
+//------------------------------------------------------------------------------
+
+class Weapon extends Item {
+
+    constructor(game, data) {
+        super(game, data)
+    }
+    
+    init(data) {
+        super.init(data)
+        
+        this.auto = data.auto
+        this.fireTime = data.fireTime
+            
+        this.fireState = 'paused'
+        this.fireRemainingSeconds = this.getFireTime()
+        
+        this.ammunitions = []
+    }
+    
+    //---
+    
+    getFireTime() {
+    
+        let ret = this.fireTime
+        return ret
+    }
+    
+    getRemainingShotCount() {
+    
+        let ret = 0
+        
+        for (let id in this.ammunitions) {
+            let ammunition = this.ammunitions[id]
+            
+            ret += ammunition.count
+        }
+        
+        return ret
+    }
+    
+    canFire() {
+        
+        if (this.count < 1) return false
+        if (this.getRemainingShotCount() < 1) return false        
+        if (this.game.getAlienCount() < 1) return false
+        
+        return true
+    }    
+    
+    getAlienTarget() {
+    
+        let ret = null
+        
+        for (let id in this.game.aliens) {
+            let alien = this.game.aliens[id]
+            
+            if (alien.totalHealth > 0) {
+            
+                ret = alien
+                break
+            }
+        }
+        
+        return ret
+    }
+    
+    getFireAmmunition() {
+
+        let ret = null
+        
+        for (let id in this.ammunitions) {
+            let ammunition = this.ammunitions[id]
+            
+            if (ammunition.count > 0) {
+            
+                ret = ammunition
+                break
+            }
+        }
+        
+        return ret
+    }
+    
+    //---
+    
+    startFiring() {
+        
+        let kill = 0
+        
+        if (this.canFire() == true) {
+            
+            for (let id in this.game.weapons) {
+            
+                let weapon = this.game.weapons[id]
+                weapon.cancelFiring()
+            }
+            
+            this.fireState = 'running'
+            this.fireRemainingSeconds = this.getFireTime()
+            
+            let alien = this.getAlienTarget()
+            let ammunition = this.getFireAmmunition()
+            
+            if (alien && ammunition) {
+            
+                let totalDamage = 0
+                for (let id in ammunition.damages) {
+                
+                    let armor = alien.armor[id]
+                    let shield = alien.shield[id]
+                    let damage = ammunition.damages[id]
+                    
+                    if (shield + 1 < damage) {
+                        totalDamage += damage - shield
+                    }
+                    else if (damage > 1) {
+                        totalDamage += 1 / (shield - damage + 2)
+                    }
+                    else {
+                        totalDamage += 1 / (shield + 1)
+                    }
+                    
+                    totalDamage = totalDamage * (1 - armor)
+                }
+                
+                ammunition.count -= 1
+                
+                kill = alien.doDamage(totalDamage)
+                if (kill > 0) {
+                
+                    let dice = Math.random()
+                    if (dice > alien.eggCoeff) {
+                        this.game.items['alienEgg'].count += 1
+                    }
+                }                
+            }
+            else {
+            
+                this.cancelFiring()
+            }
+        }
+        else {
+        
+            this.cancelFiring()
+        }
+        
+        return kill
+    }
+    
+    cancelFiring() {
+    
+        this.fireState = 'paused'
+        this.fireRemainingSeconds = this.getFireTime()        
+    }
+    
+    fire(delta) {
+    
+        if (this.fireState == 'running') {
+        
+            this.fireRemainingSeconds -= delta            
+            if (this.fireRemainingSeconds <= 0) {
+                                
+                if (this.auto) this.startFiring()
+                else this.cancelFiring()
+            }
+        }
+    }
+}
+
+//------------------------------------------------------------------------------
+
 class Game {
 
     constructor() {
@@ -956,12 +1226,20 @@ class Game {
         this.paused = false
         this.timePlayed = 0
         
+        this.weapons = []
+        
         this.items = {}
         itemData.forEach(data => { 
             
             if (data.type == 'fuel') this.items[data.id] = new Fuel(this, data)
             else if (data.type == 'lab') this.items[data.id] = new Lab(this, data)
             else if (data.type == 'module') this.items[data.id] = new Module(this, data)
+            else if (data.type == 'weapon') {
+            
+                let weapon = new Weapon(this, data)
+                this.items[data.id] = weapon
+                this.weapons.push(weapon)
+            }
             else this.items[data.id] = new Item(this, data)
         })
         
@@ -971,6 +1249,26 @@ class Game {
         this.machines = []
         
         this.lab = this.items['lab']
+        
+        this.alienEggCount = 0
+        
+        this.aliens = {}
+        alienData.forEach(data => { this.aliens[data.id] = new Alien(this, data) })
+    }
+    
+    //---
+    
+    getAlienCount() {
+    
+        let ret = 0
+        
+        for (let id in this.aliens) {
+            let alien = this.aliens[id]
+            
+            ret += alien.count
+        }
+        
+        return ret
     }
     
     //---
@@ -990,6 +1288,15 @@ class Game {
         this.machines.push(machine)
         
         return machine
+    }
+    
+    generateAliens() {
+    
+        for (let id in this.aliens) {
+            let alien = this.aliens[id]
+            
+            alien.setCount(Math.random() * 100)
+        }
     }
     
     //---
@@ -1124,6 +1431,11 @@ class Game {
                 })
                 
                 this.lab.doResearch(cycleDelta)
+                
+                this.weapons.forEach(weapon => {
+                    
+                    weapon.fire(cycleDelta)
+                })
             }
         }
     }    
@@ -1147,7 +1459,7 @@ export default {
             autoSaveDelay: 30000,
             resetInProgress: false,
             lastFrameTimeMs: new Date().getTime(),
-            localStorageName: 'fgfactory',
+            localStorageName: 'fgbuilding',
             importExportData: null,
             minLoadingTimerMS: 1000,
             rewardDelay: 0,

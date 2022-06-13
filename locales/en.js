@@ -2,6 +2,9 @@ export default {
     
     'abbr_day': 'd',
     
+    'label_alienEgg': 'Alien Egg',
+    
+    'menuTab_aliens': 'Aliens',
     'menuTab_items': 'Items',
     'menuTab_machines': 'Machines',
     'menuTab_settings': 'Settings',
@@ -15,6 +18,7 @@ export default {
     'itemName_iron': 'Iron',
     'itemName_ironGearWheel': 'Iron Gear Wheel',
     'itemName_ironPlate': 'Iron Plate',
+    'itemName_lab': 'Lab',
     'itemName_speedModule1': 'Speed Module 1',
     'itemName_stone': 'Stone',
     'itemName_time': 'Time',
