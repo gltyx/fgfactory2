@@ -7,12 +7,12 @@ export default {
     target: 'static',
     
     router: {
-        base: '/fgbuilding/'
+        base: '/fgfactory2/'
     },
 
     // Global page headers
     head: {
-        title: 'FG Building',
+        title: 'FG Factory 2',
         meta: [
             { charset: 'utf-8' },
             { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -20,7 +20,7 @@ export default {
             { name: 'format-detection', content: 'telephone=no' },
         ],
         link: [
-            { rel: 'icon', href: '/fgbuilding/icon.png?v=2' },
+            { rel: 'icon', href: '/fgfactory2/icon.png?v=2' },
             { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700;800;900&display=swap' },
         ],
         script: [

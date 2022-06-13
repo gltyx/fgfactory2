@@ -7,7 +7,7 @@
                     <div class="col-12 text-center">
                         <img :src="require(`~/assets/icon.png`)" width="48px" class="rounded" />
                         <div class="mt-2 text-center">
-                            <span class="text-normal h5">FG Building</span>
+                            <span class="text-white h5">FG Factory 2</span>
                         </div>
                     </div>
                     <div class="col-12 text-center">
@@ -17,7 +17,7 @@
                         <span class="text-normal">To be informed when your device will be supported and new features will be ready, please join Discord server.</span>
                     </div>
                     <div class="col-12 text-center">
-                        <a href="https://discord.gg/3UkgeeT9CV" target="_blank" class="btn btn-light border">
+                        <a href="https://discord.gg/3UkgeeT9CV" target="_blank" class="btn btn-dark">
                             <div class="row gx-1 align-items-center">
                                 <img class="col-auto" :src="require(`~/assets/ui/discord.png`)" width="16px" height="16px" alt="Discord" />
                                 <span class="col-auto">Discord</span>
@@ -32,12 +32,12 @@
             <div class="modal fade show d-block">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header bg-light align-items-center">
+                        <div class="modal-header align-items-center">
                             <div class="col">
-                                <span class="modal-title h5">Wipe Local Data</span>
+                                <span class="modal-title fw-bold">Wipe Local Data</span>
                             </div>
                             <div class="col-auto">
-                                <button type="button" class="btn btn-light border" @click="popupWipe = false;">
+                                <button type="button" class="btn btn-sm btn-dark" @click="popupWipe = false;">
                                     <span><i class="fas fa-fw fa-times"></i></span>
                                 </button>
                             </div>
@@ -62,10 +62,10 @@
                     <div class="modal-content">
                         <div class="modal-header align-items-center">
                             <div class="col">
-                                <span class="modal-title h5">Support</span>
+                                <span class="modal-title fw-bold">Support</span>
                             </div>
                             <div class="col-auto">
-                                <button type="button" class="col-auto btn btn-light border" @click="popupSupport = null">
+                                <button type="button" class="col-auto btn btn-sm btn-dark" @click="popupSupport = null">
                                     <span><i class="fas fa-fw fa-times"></i></span>
                                 </button>
                             </div>
@@ -76,28 +76,28 @@
                                     <span>I like the donation system because there is nothing forcing you to donate other than out of the goodness of people's hearts. If you like the game and want more content faster, I would be happy to put more time towards this game if I felt that it is paying off.</span>
                                 </div>
                                 <div class="col-3 text-center">
-                                    <a href="https://www.patreon.com/bePatron?u=61283131" target="_blank" class="w-100 btn btn-light border" style="width:100px;">
-                                        <div class="col-12"><img :src="require(`~/assets/ui/patreon.png`)" width="24px" height="24px" /></div>
+                                    <a href="https://www.patreon.com/bePatron?u=61283131" target="_blank" class="w-100 btn btn-dark" style="width:100px;">
+                                        <div class="col-12"><img :src="require(`~/assets/ui/patreon.png`)" width="36px" height="36px" /></div>
                                         <div class="mt-2">Become a supporter</div>
                                     </a>
                                 </div>
                                 <div class="col-3 text-center">
-                                    <a href="https://ko-fi.com/freddecgames" target="_blank" class="w-100 btn btn-light border" style="width:100px;">
-                                        <div class="col-12"><img :src="require(`~/assets/ui/kofi.png`)" width="24px" height="24px" /></div>
+                                    <a href="https://ko-fi.com/freddecgames" target="_blank" class="w-100 btn btn-dark" style="width:100px;">
+                                        <div class="col-12"><img :src="require(`~/assets/ui/kofi.png`)" width="36px" height="36px" /></div>
                                         <div class="mt-2">Buy me<br>a Ko-fi</div>
                                     </a>
                                 </div>
                                 <form class="col-3 text-center" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
                                     <input type="hidden" name="cmd" value="_s-xclick">
                                     <input type="hidden" name="hosted_button_id" value="7XYD7SJFKQ8M4">
-                                    <button type="submit" class="w-100 btn btn-light border">
-                                        <div class="col-12"><img :src="require(`~/assets/ui/paypal.png`)" width="24px" height="24px" /></div>
+                                    <button type="submit" class="w-100 btn btn-dark">
+                                        <div class="col-12"><img :src="require(`~/assets/ui/paypal.png`)" width="36px" height="36px" /></div>
                                         <div class="mt-2">Make a donation</div>
                                     </button>
                                 </form>
                                 <div class="col-3 text-center">
-                                    <a href="https://discord.gg/3UkgeeT9CV" target="_blank" class="w-100 btn btn-light border">
-                                        <div class="col-12"><img :src="require(`~/assets/ui/discord.png`)" width="24px" height="24px" alt="Discord" /></div>
+                                    <a href="https://discord.gg/3UkgeeT9CV" target="_blank" class="w-100 btn btn-dark">
+                                        <div class="col-12"><img :src="require(`~/assets/ui/discord.png`)" width="36px" height="36px" alt="Discord" /></div>
                                         <div class="mt-2">News and information</div>
                                     </a>
                                 </div>
@@ -115,10 +115,10 @@
                     <div class="modal-content">
                         <div v-if="popupTutorial.id == 'tut0'" class="modal-header align-items-center">
                             <div class="col">
-                                <span class="modal-title h5">Welcome</span>
+                                <span class="modal-title fw-bold">Welcome</span>
                             </div>
                             <div class="col-auto">
-                                <button type="button" class="btn btn-light" @click="popupTutorial = null; disableTutorial();">
+                                <button type="button" class="btn btn-sm btn-dark" @click="popupTutorial = null; disableTutorial();">
                                     <span><i class="fas fa-fw fa-times"></i></span>
                                 </button>
                             </div>
@@ -144,10 +144,10 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" @click="popupTutorial = null; disableTutorial();">
+                            <button type="button" class="btn btn-dark" @click="popupTutorial = null; disableTutorial();">
                                 <span>Disable</span>
                             </button>
-                            <button type="button" class="btn btn-primary" @click="popupTutorial.done = true; popupTutorial = null; disableTutorial();">
+                            <button type="button" class="btn btn-dark" @click="popupTutorial.done = true; popupTutorial = null; disableTutorial();">
                                 <span>Continue</span>
                             </button>
                         </div>
@@ -163,7 +163,7 @@
                     <div class="col-12 text-center">
                         <img :src="require(`~/assets/icon.png`)" width="48px" class="rounded" />
                         <div class="mt-2 text-center">
-                            <span class="text-normal h5">FG Building</span>
+                            <span class="text-normal h5">FG Factory 2</span>
                         </div>
                     </div>
                     <div v-if="error == null" class="col-12 text-center">
@@ -179,7 +179,7 @@
                                 <span class="text-normal">To ask for help, you could contact <span class="text-primary">Freddec</span> on Discord with following exported data</span>
                             </div>
                             <div class="col-12 text-center">
-                                <a href="https://discord.gg/3UkgeeT9CV" target="_blank" class="btn btn-light border">
+                                <a href="https://discord.gg/3UkgeeT9CV" target="_blank" class="btn btn-dark">
                                     <div class="row gx-1 align-items-center">
                                         <img class="col-auto" :src="require(`~/assets/ui/discord.png`)" width="16px" height="16px" alt="Discord" />
                                         <span class="col-auto">Discord</span>
@@ -208,7 +208,7 @@
         
         <div v-if="isMobile == false && started == true" class="w-100 h-100 position-relative">
             
-            <div class="navbar fixed-top bg-light">
+            <div class="navbar fixed-top bg-dark">
                 <div class="container">
                     <div class="w-100 row align-items-center">
                         <div class="col-auto">
@@ -217,7 +217,7 @@
                                     <img :src="require(`~/assets/icon.png`)" width="20px" />
                                 </div>
                                 <div class="col-auto">
-                                    <span class="h5">FG Building</span>
+                                    <span class="h5">FG Factory 2</span>
                                 </div>
                             </div>
                         </div>
@@ -228,7 +228,7 @@
                 </div>
             </div>
             
-            <div class="navbar fixed-bottom bg-light">
+            <div class="navbar fixed-bottom bg-dark">
                 <div class="container">
                     <div class="w-100 row align-items-center">
                         <BottomButton label="Save" icon="fa-save" :click="manualSave" />
@@ -244,27 +244,144 @@
                 </div>
             </div>
             
-            <div class="nav nav-tabs fixed-top bg-light">
+            <div class="nav nav-tabs fixed-top bg-dark">
                 <div class="container">
                     <div class="row gx-0 align-items-center">
-                        <TopMenuTab tabId="production" icon="fa-industry" />
+                        <TopMenuTab tabId="machines" icon="fa-industry" />
                         <TopMenuTab tabId="settings" icon="fa-cogs" class="ms-auto" />
                     </div>
                 </div>
             </div>
             
-            <div class="position-fixed top-0 bottom-0 start-0 end-0 py-3" style="margin-top:95px; margin-bottom:50px;">
+            <div class="position-fixed top-0 bottom-0 start-0 end-0 py-3" style="margin-top:75px; margin-bottom:50px;">
                 <div class="h-100 position-relative container scrollbar">
                     
-                    <div v-if="currentTabId == 'production'" class="row g-3">
+                    <div v-if="currentTabId == 'machines'" class="row g-3">
                         <div class="col-12">
                             <div class="mb-1 small"><span class="text-muted text-uppercase">Machines</span></div>
                             <div class="row g-1 align-items-center">
-                                <MachineAssigned id="furnace1" assignedCount="4" totalCount="10" />
+                                <Machine id="furnace1" assignedCount="4" totalCount="10" />
+                                <Machine id="furnace2" assignedCount="4" totalCount="10" />
+                                <Machine id="furnace3" assignedCount="4" totalCount="10" />
+                                <div class="col-12"></div>
+                                <Machine id="drill1" assignedCount="4" totalCount="10" />
+                                <Machine id="drill2" assignedCount="4" totalCount="10" />
+                                <div class="col-12"></div>
+                                <Machine id="assembler1" assignedCount="4" totalCount="10" />
+                                <Machine id="assembler2" assignedCount="4" totalCount="10" />
+                                <Machine id="assembler3" assignedCount="4" totalCount="10" />
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mb-1 small"><span class="text-muted text-uppercase">Recipes</span></div>
+                            <div class="row g-1 align-items-center">
+                                <Recipe />
                             </div>
                         </div>
                     </div>
                     
+                    <div v-if="currentTabId == 'settings'" class="row g-3">
+                        <div class="col-12">
+                            <div class="h-100 card">
+                                <div class="card-header">
+                                    <span class="fw-bold">About</span>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row g-3">
+                                        <div class="col-6">
+                                            <div class="row g-3">
+                                                <div class="col-12 text-center text-normal">This game has been designed and developed by <span class="text-white">Freddec Games</span>. To be kept informed about other games and the future of this one, join Discord server and visit our official website.</div>
+                                                <div class="col-12">
+                                                    <div class="row align-items-center justify-content-center">
+                                                        <div class="col-auto">
+                                                            <a href="https://discord.gg/3UkgeeT9CV" target="_blank" class="btn btn-dark">
+                                                                <div class="row gx-1 align-items-center">
+                                                                    <img class="col-auto" :src="require(`~/assets/ui/discord.png`)" width="16px" height="16px" alt="Discord" />
+                                                                    <span class="col-auto">Discord</span>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-auto">
+                                                            <a href="https://freddecgames.com/" target="_blank" class="btn btn-dark">
+                                                                <div class="row gx-1 align-items-center">
+                                                                    <img class="col-auto rounded-circle" :src="require(`~/assets/ui/freddec.png`)" width="16px" height="16px" alt="Freddec Games" />
+                                                                    <span class="col-auto">Freddec Games</span>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="row g-3">
+                                                <div class="col-12 text-center text-normal">This game is largely inspired by the game <span class="text-white">Factorio</span> (productions, buildings, recipes, techs and etc ...)</div>
+                                                <div class="col-12 text-center d-flex justify-content-center">
+                                                    <a href="https://www.factorio.com/" target="_blank" class="btn btn-dark">
+                                                        <div class="row gx-1 align-items-center">
+                                                            <img class="col-auto" :src="require(`~/assets/ui/factorio.png`)" width="16px" height="16px" alt="Factorio" />
+                                                            <span class="col-auto">Factorio Offical Site</span>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="col-12 text-center text-normal">Icons are provided by <a href="https://www.flaticon.com/" target="_blank">Flaticon</a> and <a href="https://fontawesome.com/" target="_blank">Fontawesome</a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6">
+                            <div class="h-100 card">
+                                <div class="card-header">
+                                    <span class="fw-bold">Options</span>
+                                </div>
+                                <div class="card-body">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6">
+                            <div class="h-100 card">
+                                <div class="card-header">
+                                    <span class="fw-bold">Hard Reset</span>
+                                </div>
+                                <div class="card-body d-flex align-items-center justify-content-center">
+                                    <button type="button" class="btn btn-danger" @click="showWipeDataPopup()">
+                                        <div class="row gx-1 align-items-center">
+                                            <span class="col-auto"><i class="fas fa-fw fa-skull"></i></span>
+                                            <span class="col-auto">Wipe Local Data</span>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-6">
+                            <div class="h-100 card">
+                                <div class="card-header">
+                                    <span class="fw-bold">Export Save</span>
+                                </div>
+                                <div class="card-body">
+                                    <textarea spellcheck="false" rows="5" class="w-100 form-control">{{ exportGameData }}</textarea>                                        
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-6">
+                            <div class="h-100 card">
+                                <div class="card-header">
+                                    <span class="fw-bold">Import Save</span>
+                                </div>
+                                <div class="card-body">
+                                    <textarea spellcheck="false" rows="5" class="w-100 form-control" v-model="importExportData"></textarea>
+                                    <div class="mt-2 text-end">
+                                        <button type="button" class="btn btn-dark" @click="importGameData()">
+                                            <span>Import</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="position-absolute bottom-0 end-0 p-3" style="z-index:100;">
                         <div v-if="toastText" class="toast fade show text-white border-0" :class="{ 'bg-info':toastType == 'info', 'bg-danger':toastType == 'error', 'bg-success':toastType == 'success' }" role="alert" aria-live="assertive" aria-atomic="true">
                             <div class="toast-body">
@@ -355,7 +472,7 @@ export default {
             autoSaveDelay: 30000,
             resetInProgress: false,
             lastFrameTimeMs: new Date().getTime(),
-            localStorageName: 'fgbuilding',
+            localStorageName: 'fgfactory2',
             importExportData: null,
             minLoadingTimerMS: 1000,
             rewardDelay: 0,
@@ -378,7 +495,7 @@ export default {
             
             //---
             
-            currentTabId: 'production',
+            currentTabId: 'machines',
             
             //---
             
