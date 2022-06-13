@@ -310,6 +310,7 @@
                         <div class="col-12">
                             <div class="mb-1 small"><span class="text-muted text-uppercase">Labs</span></div>
                             <div class="row gx-2 align-items-center">
+                                <LineLab :data="gameItem('lab')" />
                             </div>
                         </div>
                         <div class="col-12">
