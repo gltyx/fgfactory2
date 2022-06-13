@@ -59,26 +59,26 @@ $modal-content-bg:              $white !default;
 $modal-content-border-color:    $border-color !default;
 $modal-content-border-radius:   $border-radius !default;
 
-$modal-header-padding-y:        $spacer / 2 !default;
+$modal-header-padding-y:        calc($spacer / 2) !default;
 $modal-header-padding-x:        $spacer !default;
 $modal-header-border-color:     $border-color !default;
 
 // Toast
 
 $toast-max-width:               null !default;
-$toast-padding-y:               $spacer / 2 !default;
+$toast-padding-y:               calc($spacer / 2) !default;
 $toast-padding-x:               $spacer !default;
 $toast-font-size:               $font-size-base !default;
 
 // Alert
 
-$alert-padding-y:               $spacer / 2 !default;
+$alert-padding-y:               calc($spacer / 2) !default;
 $alert-padding-x:               $spacer !default;
 $alert-margin-bottom:           0 !default;
 
 // Nav
 
-$nav-link-padding-y:            $spacer / 2 !default;
+$nav-link-padding-y:            calc($spacer / 2) !default;
 $nav-link-padding-x:            $spacer !default;
 
 $nav-tabs-border-color:         $border-color !default;
@@ -87,13 +87,13 @@ $nav-tabs-border-radius:        $border-radius !default;
 
 // Card
 
-$card-spacer-y:                 $spacer / 2 !default;
+$card-spacer-y:                 calc($spacer / 2) !default;
 $card-spacer-x:                 $spacer !default;
-$card-title-spacer-y:           $spacer / 2 !default;
+$card-title-spacer-y:           calc($spacer / 2) !default;
 $card-border-width:             $border-width !default;
 $card-border-color:             $border-color !default;
 $card-border-radius:            $border-radius !default;
-$card-cap-padding-y:            $spacer / 2 !default;
+$card-cap-padding-y:            calc($spacer / 2) !default;
 $card-cap-padding-x:            $spacer !default;
 
 // Dropdown
@@ -103,7 +103,7 @@ $dropdown-padding-y:            0 !default;
 $dropdown-border-color:         $border-color !default;
 $dropdown-border-radius:        $border-radius !default;
 $dropdown-border-width:         $border-width !default;
-$dropdown-item-padding-y:       $spacer / 4 !default;
+$dropdown-item-padding-y:       calc($spacer / 4) !default;
 $dropdown-item-padding-x:       $spacer !default;
 $dropdown-link-hover-bg:        $light !default;
 
