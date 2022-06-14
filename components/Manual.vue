@@ -6,10 +6,10 @@
                     <div class="col">
                         <div class="row gx-2 align-item-center">
                             <div class="col-auto">
-                                <img :src="require(`~/assets/machines/manual.png`)" width="18px" height="18px" :title="$t('machineName_manual')" :alt="$t('machineName_manual')" />
+                                <img :src="require(`~/assets/vignets/manual.png`)" width="18px" height="18px" :title="$t('name_manual')" :alt="$t('name_manual')" />
                             </div>
                             <div class="col-auto">
-                                <span class="fw-bold">{{ $t('machineName_manual') }}</span>
+                                <span class="fw-bold">{{ $t('name_manual') }}</span>
                             </div>
                         </div>
                     </div>

@@ -6,10 +6,10 @@
                     <div class="col">
                         <div class="row gx-2 align-item-center">
                             <div class="col-auto">
-                                <img :src="require(`~/assets/machines/${data.id}.png`)" width="18px" height="18px" :title="$t('machineName_' + data.id)" :alt="$t('machineName_' + data.id)" />
+                                <img :src="require(`~/assets/vignets/${data.id}.png`)" width="18px" height="18px" :title="$t('name_' + data.id)" :alt="$t('name_' + data.id)" />
                             </div>
                             <div class="col-auto">
-                                <span class="fw-bold">{{ $t('machineName_' + data.id) }}</span>
+                                <span class="fw-bold">{{ $t('name_' + data.id) }}</span>
                             </div>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                         <div class="small text-muted mb-1">Energy Consumed</div>
                         <div class="row gx-2 align-items-center">
                             <div class="col-auto">
-                                <img :src="require(`~/assets/items/${data.energy.id}.png`)" width="18px" height="18px" :title="$t('itemName_' + data.energy.id)" :alt="$t('itemName_' + data.energy.id)" />
+                                <img :src="require(`~/assets/vignets/${data.energy.id}.png`)" width="18px" height="18px" :title="$t('name_' + data.energy.id)" :alt="$t('name_' + data.energy.id)" />
                             </div>
                             <div class="col-auto" style="line-height:24px;">
                                 <span><FormatNumber :value="data.getEnergyConsumed()" /></span>
@@ -38,7 +38,7 @@
                         </div>
                     </div>
                 </div>
-                <MachineGroup v-for="(group, index) in data.groups" :key="index" :data="group" />
+                <MachineGroup v-for="(group, index) in data.groups" :key="index" :data="group" :index="index" />
                 <div class="pt-3 border-top">
                     <button type="button" class="btn btn-sm btn-dark" @click="data.createGroup()">
                         <i class="fas fa-fw fa-plus-circle"></i>

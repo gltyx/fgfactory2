@@ -248,7 +248,6 @@
                 <div class="container">
                     <div class="row gx-0 align-items-center">
                         <TopMenuTab tabId="machines" icon="fa-industry" />
-                        <TopMenuTab tabId="items" icon="fa-boxes" />
                         <TopMenuTab tabId="settings" icon="fa-cogs" class="ms-auto" />
                     </div>
                 </div>
@@ -258,18 +257,7 @@
                 <div class="h-100 position-relative container scrollbar">
                     
                     <div v-if="currentTabId == 'machines'" class="row g-3">
-                        <div class="col-12">
-                            <div class="nav nav-pills">
-                                <MachineSubTab :data="game.machines['manual']" />
-                                <MachineSubTab :data="game.machines['furnace1']" />
-                            </div>
-                        </div>
-                        <Manual :data="game.machines['manual']" />
-                        <Machine :data="game.machines['furnace1']" />
-                    </div>
-
-                    <div v-if="currentTabId == 'items'" class="row g-3">
-                        <div class="col-12">
+                        <div class="col-3">
                             <div class="row g-2 align-items-center">
                                 <ItemSubTab :data="game.items['coal']" />
                                 <ItemSubTab :data="game.items['stone']" />
@@ -277,10 +265,20 @@
                                 <ItemSubTab :data="game.items['ironPlate']" />
                             </div>
                         </div>
-                        <div class="col-12">
+                        <div class="col-9">
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <div class="nav nav-pills">
+                                        <MachineSubTab :data="game.machines['manual']" />
+                                        <MachineSubTab :data="game.machines['furnace1']" />
+                                    </div>
+                                </div>
+                                <Manual :data="game.machines['manual']" />
+                                <Machine :data="game.machines['furnace1']" />
+                            </div>
                         </div>
                     </div>
-                    
+
                     <div v-if="currentTabId == 'settings'" class="row g-3">
                         <div class="col-12">
                             <div class="h-100 card">
@@ -693,6 +691,11 @@ class Machine extends Base {
         return group
     }
     
+    deleteGroup(index) {
+    
+        if (index > -1) this.groups.splice(index, 1)
+    }
+    
     doProduce(delta) {
     
         this.groups.forEach(group => { group.doProduce(delta) })
@@ -735,6 +738,45 @@ class Game {
             data.machines.forEach(machineId => this.machines[machineId].availableRecipes.push(recipe) )
         })
         
+    }
+        
+    //---
+    
+    getItemProd(itemId) {
+    
+        let ret = 0
+        
+        for (let id in this.machines) {
+            let machine = this.machines[id]
+            machine.groups.forEach(group => {
+                if (group.state == 'running') {
+                    
+                    if (machine.energy && machine.energy.id == itemId) {
+                        ret -= group.getEnergyConsumed().count
+                    }
+                    
+                    let inputs = group.getInputs(group.recipe)
+                    if (inputs) {
+                        for (let inputId in inputs) {
+                            let inputCount = inputs[inputId]
+                            if (inputId == itemId) {
+                                ret -= inputCount / group.getTime(group.recipe)
+                            }
+                        }
+                    }
+                    
+                    let outputs = group.getOutputs(group.recipe)
+                    for (let outputId in outputs) {
+                        let outputCount = outputs[outputId]
+                        if (outputId == itemId) {
+                            ret += outputCount / group.getTime(group.recipe)
+                        }
+                    }
+                }            
+            })
+        }
+        
+        return ret
     }
         
     //---
@@ -795,8 +837,6 @@ class Game {
                     machine.count = dataMachine.count
                     
                     dataMachine.groups.forEach(dataGroup => {
-                        
-                        console.log(dataGroup)
                         
                         let group = machine.createGroup()
                         group.count = dataGroup.count

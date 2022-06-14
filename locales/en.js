@@ -2,17 +2,15 @@ export default {
     
     'abbr_day': 'd',
     
-    'menuTab_items': 'Items',
-    'menuTab_machines': 'Machines',
+    'menuTab_machines': 'Production',
     'menuTab_settings': 'Settings',
     
-    'machineName_drill1': 'Mining Drill',
-    'machineName_furnace1': 'Stone Furnace',
-    'itemName_furnace1': 'Stone Furnace',
-    'machineName_manual': 'Manual',
+    'name_drill1': 'Mining Drill',
+    'name_furnace1': 'Stone Furnace',
+    'name_manual': 'Manual',
     
-    'itemName_coal': 'Coal',
-    'itemName_iron': 'Iron',
-    'itemName_ironPlate': 'Iron Plate',
-    'itemName_stone': 'Stone',
+    'name_coal': 'Coal',
+    'name_iron': 'Iron',
+    'name_ironPlate': 'Iron Plate',
+    'name_stone': 'Stone',
 }

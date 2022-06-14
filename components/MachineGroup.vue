@@ -4,7 +4,7 @@
             <div class="col-auto">
                 <div class="row gx-2 align-items-center">
                     <div class="col-auto">
-                        <button type="button" class="btn p-2 small" style="width:32px; height:32px;">
+                        <button type="button" class="btn p-2 small" style="width:32px; height:32px;" @click="data.machine.deleteGroup(index)">
                             <i class="fas fa-fw fa-trash small"></i>
                         </button>
                     </div>
@@ -76,7 +76,7 @@
 <script>
 export default {
 
-    props: [ 'data' ],
+    props: [ 'data', 'index' ],
     
     computed: {
         
