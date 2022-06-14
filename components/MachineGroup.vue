@@ -9,12 +9,12 @@
                         </button>
                     </div>
                     <div class="col-auto">
-                        <button type="button" class="btn btn-dark p-2 small" :class="{ 'disabled opacity-25':data.machine.getAssignedCount() >= data.machine.count }" style="width:32px; height:32px;" @click="data.count += 1">
+                        <button type="button" class="btn btn-dark p-2 small" :class="{ 'disabled opacity-25':data.state != 'paused' || data.machine.getAssignedCount() >= data.machine.count }" style="width:32px; height:32px;" @click="data.count += 1">
                             <i class="fas fa-fw fa-plus small"></i>
                         </button>
                     </div>
                     <div class="col-auto">
-                        <button type="button" class="btn btn-dark p-2 small" :class="{ 'disabled opacity-25':data.count <= 0 }" style="width:32px; height:32px;" @click="data.count -= 1">
+                        <button type="button" class="btn btn-dark p-2 small" :class="{ 'disabled opacity-25':data.state != 'paused' || data.count <= 0 }" style="width:32px; height:32px;" @click="data.count -= 1">
                             <i class="fas fa-fw fa-minus small"></i>
                         </button>
                     </div>
@@ -33,16 +33,16 @@
                                     <div class="col-auto"><div class="small" style="line-height:24px;">Empty</div></div>
                                 </div>
                                 <div v-if="data.recipe != null" class="col row gx-1 align-items-center me-2">
-                                    <div v-if="data.recipe.inputs" v-for="(count, id) in data.getInputs(data.recipe)" class="col-auto"><Item :id="id" :count="count" :class="{ 'text-danger':count > data.machine.game.bases[id].count }" /></div>
-                                    <div class="col-auto"><i class="fas fa-fw fa-long-arrow-alt-right"></i></div>
+                                    <div v-if="data.recipe.inputs" v-for="(count, id) in data.getInputs(data.recipe)" class="col-auto"><Item :id="id" :count="count" :class="{ 'text-danger':count > data.machine.game.getAvailableCount(id) }" /></div>
+                                    <div v-if="data.recipe.inputs" class="col-auto"><i class="fas fa-fw fa-long-arrow-alt-right"></i></div>
                                     <div v-for="(count, id) in data.getOutputs(data.recipe)" class="col-auto"><Item :id="id" :count="count" /></div>
                                 </div>
                             </button>
                             <div class="w-100 dropdown-menu">
                                 <button v-for="recipe in data.machine.availableRecipes" type="button" class="dropdown-item py-1 px-2" @click="data.assignRecipe(recipe)">
                                     <div class="row gx-1 align-items-center">
-                                        <div v-if="recipe.inputs" v-for="(count, id) in data.getInputs(recipe)" class="col-auto"><Item :id="id" :count="count" /></div>
-                                        <div class="col-auto"><i class="fas fa-fw fa-long-arrow-alt-right"></i></div>
+                                        <div v-if="recipe.inputs" v-for="(count, id) in data.getInputs(recipe)" class="col-auto"><Item :id="id" :count="count" :class="{ 'text-danger':count > data.machine.game.getAvailableCount(id) }" /></div>
+                                        <div v-if="recipe.inputs" class="col-auto"><i class="fas fa-fw fa-long-arrow-alt-right"></i></div>
                                         <div v-for="(count, id) in data.getOutputs(recipe)" class="col-auto"><Item :id="id" :count="count" /></div>
                                         <div class="col text-end small"><FormatTime :value="data.getTime(recipe)" /></div>
                                     </div>

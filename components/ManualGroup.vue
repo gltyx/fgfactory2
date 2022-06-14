@@ -4,7 +4,7 @@
             <div class="row align-items-center">
                 <div class="col-auto">
                     <div class="row gx-1 align-items-center">
-                        <div v-if="data.recipe.inputs" v-for="(count, id) in data.getInputs(data.recipe)" class="col-auto"><Item :id="id" :count="count" :class="{ 'text-danger':count > data.machine.game.bases[id].count }" /></div>
+                        <div v-if="data.recipe.inputs" v-for="(count, id) in data.getInputs(data.recipe)" class="col-auto"><Item :id="id" :count="count" :class="{ 'text-danger':count > data.machine.game.getAvailableCount(id) }" /></div>
                         <div v-if="data.recipe.inputs" class="col-auto"><i class="fas fa-fw fa-long-arrow-alt-right"></i></div>
                         <div v-for="(count, id) in data.getOutputs(data.recipe)" class="col-auto"><Item :id="id" :count="count" /></div>
                     </div>

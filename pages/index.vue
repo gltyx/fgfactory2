@@ -264,6 +264,8 @@
                                 <ItemSubTab :data="game.items['iron']" />
                                 <ItemSubTab :data="game.items['copper']" />
                                 <ItemSubTab :data="game.items['ironPlate']" />
+                                <ItemSubTab :data="game.items['ironGearWheel']" />
+                                <ItemSubTab :data="game.items['pipe']" />
                             </div>
                         </div>
                         <div class="col-9">
@@ -272,10 +274,12 @@
                                     <div class="nav nav-pills">
                                         <MachineSubTab :data="game.machines['manual']" />
                                         <MachineSubTab :data="game.machines['furnace1']" />
+                                        <MachineSubTab :data="game.machines['drill1']" />
                                     </div>
                                 </div>
                                 <Manual :data="game.machines['manual']" />
                                 <Machine :data="game.machines['furnace1']" />
+                                <Machine :data="game.machines['drill1']" />
                             </div>
                         </div>
                     </div>
@@ -423,14 +427,16 @@ class Base {
 
 var recipeData = [
 
-    {   id:'coal',          type:'recipe',        machines:[ 'manual' ],          time:4,       outputs:{ coal:1 },     },
-    {   id:'copper',        type:'recipe',        machines:[ 'manual' ],          time:4,       outputs:{ copper:1 },   },
-    {   id:'stone',         type:'recipe',        machines:[ 'manual' ],          time:4,       outputs:{ stone:1 },    },
-    {   id:'iron',          type:'recipe',        machines:[ 'manual' ],          time:4,       outputs:{ iron:1 },     },
+    {   id:'coal',          type:'recipe',        machines:[ 'manual', 'drill1' ],          time:4,       outputs:{ coal:1 },     },
+    {   id:'copper',        type:'recipe',        machines:[ 'manual', 'drill1' ],          time:4,       outputs:{ copper:1 },   },
+    {   id:'stone',         type:'recipe',        machines:[ 'manual', 'drill1' ],          time:4,       outputs:{ stone:1 },    },
+    {   id:'iron',          type:'recipe',        machines:[ 'manual', 'drill1' ],          time:4,       outputs:{ iron:1 },     },
+    {   id:'pipe',          type:'recipe',        machines:[ 'manual' ],                    time:.5,      inputs:{ ironPlate:1 }, outputs:{ pipe:1 },     },
+    {   id:'ironGearWheel', type:'recipe',        machines:[ 'manual' ],                    time:.5,      inputs:{ ironPlate:2 }, outputs:{ ironGearWheel:1 },     },
+    {   id:'furnace1',      type:'recipe',        machines:[ 'manual' ],                    time:.5,      inputs:{ stone:5 }, outputs:{ furnace1:1 },     },
+    {   id:'drill1',        type:'recipe',        machines:[ 'manual' ],                    time:2,       inputs:{ ironGearWheel:3, ironPlate:3, furnace1:1 }, outputs:{ drill1:1 },     },    
     
-    {   id:'ironPlate',     type:'recipe',        machines:[ 'furnace1' ],        time:3.2,     inputs:{ iron:1 }, outputs:{ ironPlate:1 },     },
-    
-    {   id:'furnace1',      type:'recipe',        machines:[ 'manual' ],          time:.5,      inputs:{ stone:5 }, outputs:{ furnace1:1 },     },
+    {   id:'ironPlate',     type:'recipe',        machines:[ 'furnace1' ],                  time:3.2,     inputs:{ iron:1 }, outputs:{ ironPlate:1 },     },
 ]
 
 class Recipe extends Base {
@@ -450,10 +456,11 @@ var itemData = [
 
     {   id:'coal',          type:'item',        },
     {   id:'copper',        type:'item',        },
-    {   id:'stone',         type:'item',        },
     {   id:'iron',          type:'item',        },
-
+    {   id:'ironGearWheel', type:'item',        },
     {   id:'ironPlate',     type:'item',        },
+    {   id:'pipe',          type:'item',        },
+    {   id:'stone',         type:'item',        },
 ]
 
 class Item extends Base {
@@ -468,7 +475,8 @@ class Item extends Base {
 var machineData = [
 
     {   id:'manual',        type:'machine',     auto:false,     speed:1,    },
-    {   id:'furnace1',      type:'machine',     auto:true,      speed:1,    energy:{ id:'coal', count:0.02 },    moduleSlots:4, },
+    {   id:'furnace1',      type:'machine',     auto:true,      speed:1,    energy:{ id:'coal', count:0.02 },    },
+    {   id:'drill1',        type:'machine',     auto:true,      speed:1,    energy:{ id:'coal', count:0.14 },    },
 ]
 
 class MachineGroup {
@@ -542,7 +550,8 @@ class MachineGroup {
         
         for (let id in inputs) {
             let input = inputs[id]            
-            if (input > this.machine.game.bases[id].count) return false
+            if (this.machine.game.bases[id].type == 'item' && input > this.machine.game.bases[id].count) return false
+            else if (this.machine.game.bases[id].type == 'machine' && input > (this.machine.game.bases[id].count - this.machine.game.bases[id].getAssignedCount())) { return false; }
         }
         
         return true
@@ -573,14 +582,15 @@ class MachineGroup {
         if (this.canProduce() == true) {
                     
             this.state = 'running'
-            this.remainingTime = this.getTime(this.recipe)
+            if (this.remainingTime == this.getTime(this.recipe)) {
             
-            let inputs = this.getInputs(this.recipe)
-            if (inputs != null) {
-                for (let id in inputs) {
-                    let input = inputs[id]
-                    
-                    this.machine.game.bases[id].count -= input
+                let inputs = this.getInputs(this.recipe)
+                if (inputs != null) {
+                    for (let id in inputs) {
+                        let input = inputs[id]
+                        
+                        this.machine.game.bases[id].count -= input
+                    }
                 }
             }
         }
@@ -617,12 +627,18 @@ class MachineGroup {
         
         if (this.state == 'running') {
             
+            this.remainingTime -= delta
+            
             let energyConsumed = this.getEnergyConsumed()
-            if (energyConsumed) {            
+            if (energyConsumed) {
                 this.machine.game.bases[energyConsumed.id].count -= energyConsumed.count * delta
+                if (this.machine.game.bases[energyConsumed.id].count <= 0) {
+                    this.machine.game.bases[energyConsumed.id].count = 0
+                    this.state = 'waiting'
+                    return
+                }                
             }
             
-            this.remainingTime -= delta            
             if (this.remainingTime <= 0) {
                                 
                 let outputs = this.getOutputs(this.recipe)
@@ -634,6 +650,8 @@ class MachineGroup {
                 }
                 
                 if (this.machine.auto == true) {                
+                
+                    this.remainingTime = this.getTime(this.recipe)
                     this.startProducing()
                 }
                 else {
@@ -745,6 +763,19 @@ class Game {
         
     //---
     
+    getAvailableCount(baseId) {
+    
+        let ret = 0
+        
+        let base = this.bases[baseId]
+        if (base == null) return ret
+        
+        if (base.type == 'item') ret = base.count
+        else if (base.type == 'machine') ret = base.count - base.getAssignedCount()
+        
+        return ret
+    }
+    
     getItemProd(itemId) {
     
         let ret = 0
@@ -790,35 +821,17 @@ class Game {
             let machine = this.machines[id]
             if (machine.id == 'manual') {
                 
-                if (machine.groups[0] == null || (machine.groups[0].recipe && machine.groups[0].recipe.id != 'coal')) {
-                    machine.groups[0] = new MachineGroup(machine)
-                    machine.groups[0].count = 1
-                    machine.groups[0].assignRecipe(this.recipes['coal'])
-                }
-                
-                if (machine.groups[1] == null || (machine.groups[1].recipe && machine.groups[1].recipe.id != 'iron')) {
-                    machine.groups[1] = new MachineGroup(machine)
-                    machine.groups[1].count = 1
-                    machine.groups[1].assignRecipe(this.recipes['iron'])
-                }
+                let index = 0
+                machine.availableRecipes.forEach(recipe => {
                     
-                if (machine.groups[2] == null || (machine.groups[2].recipe && machine.groups[2].recipe.id != 'copper')) {
-                    machine.groups[2] = new MachineGroup(machine)
-                    machine.groups[2].count = 1
-                    machine.groups[2].assignRecipe(this.recipes['copper'])
-                }
+                    if (machine.groups[index] == null || (machine.groups[index].recipe && machine.groups[index].recipe.id != recipe.id)) {
+                        machine.groups[index] = new MachineGroup(machine)
+                        machine.groups[index].count = 1
+                        machine.groups[index].assignRecipe(this.recipes[recipe.id])
+                    }
                     
-                if (machine.groups[3] == null || (machine.groups[3].recipe && machine.groups[3].recipe.id != 'stone')) {
-                    machine.groups[3] = new MachineGroup(machine)
-                    machine.groups[3].count = 1
-                    machine.groups[3].assignRecipe(this.recipes['stone'])
-                }
-                    
-                if (machine.groups[4] == null || (machine.groups[4].recipe && machine.groups[4].recipe.id != 'furnace1')) {
-                    machine.groups[4] = new MachineGroup(machine)
-                    machine.groups[4].count = 1
-                    machine.groups[4].assignRecipe(this.recipes['furnace1'])
-                }
+                    index++
+                })
             }
             else {
             
