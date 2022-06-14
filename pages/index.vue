@@ -424,7 +424,7 @@ class Base {
 var recipeData = [
 
     {   id:'coal',          type:'recipe',        machines:[ 'manual' ],          time:4,       outputs:{ coal:1 },     },
-    {   id:'c',        type:'recipe',        machines:[ 'manual' ],          time:4,       outputs:{ copper:1 },   },
+    {   id:'copper',        type:'recipe',        machines:[ 'manual' ],          time:4,       outputs:{ copper:1 },   },
     {   id:'stone',         type:'recipe',        machines:[ 'manual' ],          time:4,       outputs:{ stone:1 },    },
     {   id:'iron',          type:'recipe',        machines:[ 'manual' ],          time:4,       outputs:{ iron:1 },     },
     
@@ -790,39 +790,39 @@ class Game {
             let machine = this.machines[id]
             if (machine.id == 'manual') {
                 
-                if (machine.groups[0] == null) {
-                    let group = machine.createGroup()
-                    group.count = 1
-                    group.assignRecipe(this.recipes['coal'])
+                if (machine.groups[0] == null || (machine.groups[0].recipe && machine.groups[0].recipe.id != 'coal')) {
+                    machine.groups[0] = new MachineGroup(machine)
+                    machine.groups[0].count = 1
+                    machine.groups[0].assignRecipe(this.recipes['coal'])
                 }
                 
-                if (machine.groups[1] == null) {
-                    let group = machine.createGroup()
-                    group.count = 1
-                    group.assignRecipe(this.recipes['iron'])
+                if (machine.groups[1] == null || (machine.groups[1].recipe && machine.groups[1].recipe.id != 'iron')) {
+                    machine.groups[1] = new MachineGroup(machine)
+                    machine.groups[1].count = 1
+                    machine.groups[1].assignRecipe(this.recipes['iron'])
                 }
                     
-                if (machine.groups[2] == null) {
-                    let group = machine.createGroup()
-                    group.count = 1
-                    group.assignRecipe(this.recipes['copper'])
+                if (machine.groups[2] == null || (machine.groups[2].recipe && machine.groups[2].recipe.id != 'copper')) {
+                    machine.groups[2] = new MachineGroup(machine)
+                    machine.groups[2].count = 1
+                    machine.groups[2].assignRecipe(this.recipes['copper'])
                 }
                     
-                if (machine.groups[3] == null) {
-                    let group = machine.createGroup()
-                    group.count = 1
-                    group.assignRecipe(this.recipes['stone'])
+                if (machine.groups[3] == null || (machine.groups[3].recipe && machine.groups[3].recipe.id != 'stone')) {
+                    machine.groups[3] = new MachineGroup(machine)
+                    machine.groups[3].count = 1
+                    machine.groups[3].assignRecipe(this.recipes['stone'])
                 }
                     
-                if (machine.groups[4] == null) {
-                    let group = machine.createGroup()
-                    group.count = 1
-                    group.assignRecipe(this.recipes['furnace1'])
+                if (machine.groups[4] == null || (machine.groups[4].recipe && machine.groups[4].recipe.id != 'furnace1')) {
+                    machine.groups[4] = new MachineGroup(machine)
+                    machine.groups[4].count = 1
+                    machine.groups[4].assignRecipe(this.recipes['furnace1'])
                 }
             }
             else {
             
-                if (machine.groups[0] == null) machine.createGroup()
+                if (machine.groups[0] == null) machine.groups[0] = new MachineGroup(machine)
             }
         }
     }
