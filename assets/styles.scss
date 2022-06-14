@@ -58,6 +58,10 @@ $link-hover-decoration:         null !default;
 $input-border-color:            $border-color !default;
 $input-border-width:            0 !default;
 
+$input-btn-focus-box-shadow:    none !default;
+
+$btn-focus-box-shadow:          none !default;
+
 // Modal
 
 $modal-content-bg:              #333333 !default;
@@ -90,6 +94,8 @@ $alert-margin-bottom:           0 !default;
 $nav-link-padding-y:            calc($spacer / 1.5) !default;
 $nav-link-padding-x:            $spacer !default;
 
+$nav-pills-link-active-bg:      $dark !default;
+
 $nav-tabs-border-color:         $border-color !default;
 $nav-tabs-border-width:         0 !default;
 $nav-tabs-border-radius:        $border-radius !default;
@@ -114,6 +120,7 @@ $card-cap-padding-x:            $spacer !default;
 
 // Dropdown
 
+$dropdown-bg:                   #333333 !default;
 $dropdown-padding-x:            0 !default;
 $dropdown-padding-y:            0 !default;
 $dropdown-border-color:         $border-color !default;
@@ -122,6 +129,8 @@ $dropdown-border-width:         $border-width !default;
 $dropdown-item-padding-y:       calc($spacer / 4) !default;
 $dropdown-item-padding-x:       $spacer !default;
 $dropdown-link-hover-bg:        $light !default;
+$dropdown-link-color:           $body-color !default;
+$dropdown-link-hover-bg:        #444444 !default;
 
 // Progress
 
@@ -173,7 +182,8 @@ body { width: 100%; height: 100%; overflow: hidden; }
 
 .text-shadow { text-shadow: 0px 1px 1px #000, 0px -1px 1px #000, 1px 0px 1px #000, -1px 0px 1px #000; }
 
-@media (min-width: 1200px) { .container-xl, .container-lg, .container-md, .container-sm, .container { max-width: 960px; } }
+@media (min-width: 992px) { .container-lg, .container-md, .container-sm, .container { max-width: 720px; } }
+@media (min-width: 1200px) { .container-xl, .container-lg, .container-md, .container-sm, .container { max-width: 720px; } }
 
 .modal-header { background: $card-cap-bg; }
 .modal-footer { padding: $modal-header-padding-y $modal-header-padding-x; }
@@ -187,7 +197,9 @@ body { width: 100%; height: 100%; overflow: hidden; }
 
 .dropdown-item { border-bottom: 1px solid $border-color; }
 .dropdown-item:last-child { border-bottom: 0; }
+.dropdown-item:hover, .dropdown-item:focus { color: $body-color; background-color: #444444; }
 
 .btn-dark { color: $body-color; }
+.btn-dark:focus, .btn-dark:active:focus, .btn-dark.active:focus { box-shadow: none; }
 
 ////////////////////////////////////////////////////////////////////////////////

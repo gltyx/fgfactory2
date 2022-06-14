@@ -187,7 +187,7 @@
                                 </a>
                             </div>
                             <div class="col-12 d-flex justify-content-center">
-                                <textarea spellcheck="false" rows="5" class="w-100 form-control" style="max-width:512px;">{{ exportGameData }}</textarea>
+                                <textarea spellcheck="false" rows="5" class="w-100 form-control border" style="max-width:512px;">{{ exportGameData }}</textarea>
                             </div>
                             <div class="col-12 text-center">
                                 <span class="text-normal">Or you could wipe your local data to restart the game at the beginning</span>
@@ -248,6 +248,7 @@
                 <div class="container">
                     <div class="row gx-0 align-items-center">
                         <TopMenuTab tabId="machines" icon="fa-industry" />
+                        <TopMenuTab tabId="items" icon="fa-boxes" />
                         <TopMenuTab tabId="settings" icon="fa-cogs" class="ms-auto" />
                     </div>
                 </div>
@@ -258,25 +259,25 @@
                     
                     <div v-if="currentTabId == 'machines'" class="row g-3">
                         <div class="col-12">
-                            <div class="mb-1 small"><span class="text-muted text-uppercase">Machines</span></div>
-                            <div class="row g-1 align-items-center">
-                                <Machine id="furnace1" assignedCount="4" totalCount="10" />
-                                <Machine id="furnace2" assignedCount="4" totalCount="10" />
-                                <Machine id="furnace3" assignedCount="4" totalCount="10" />
-                                <div class="col-12"></div>
-                                <Machine id="drill1" assignedCount="4" totalCount="10" />
-                                <Machine id="drill2" assignedCount="4" totalCount="10" />
-                                <div class="col-12"></div>
-                                <Machine id="assembler1" assignedCount="4" totalCount="10" />
-                                <Machine id="assembler2" assignedCount="4" totalCount="10" />
-                                <Machine id="assembler3" assignedCount="4" totalCount="10" />
+                            <div class="nav nav-pills">
+                                <MachineSubTab :data="game.machines['manual']" />
+                                <MachineSubTab :data="game.machines['furnace1']" />
+                            </div>
+                        </div>
+                        <Manual :data="game.machines['manual']" />
+                        <Machine :data="game.machines['furnace1']" />
+                    </div>
+
+                    <div v-if="currentTabId == 'items'" class="row g-3">
+                        <div class="col-12">
+                            <div class="row g-2 align-items-center">
+                                <ItemSubTab :data="game.items['coal']" />
+                                <ItemSubTab :data="game.items['stone']" />
+                                <ItemSubTab :data="game.items['iron']" />
+                                <ItemSubTab :data="game.items['ironPlate']" />
                             </div>
                         </div>
                         <div class="col-12">
-                            <div class="mb-1 small"><span class="text-muted text-uppercase">Recipes</span></div>
-                            <div class="row g-1 align-items-center">
-                                <Recipe />
-                            </div>
                         </div>
                     </div>
                     
@@ -382,7 +383,7 @@
                         </div>
                     </div>
 
-                    <div class="position-absolute bottom-0 end-0 p-3" style="z-index:100;">
+                    <div class="position-absolute bottom-0 end-0 pe-2" style="z-index:100;">
                         <div v-if="toastText" class="toast fade show text-white border-0" :class="{ 'bg-info':toastType == 'info', 'bg-danger':toastType == 'error', 'bg-success':toastType == 'success' }" role="alert" aria-live="assertive" aria-atomic="true">
                             <div class="toast-body">
                                 <span v-html="toastText"></span>
@@ -402,6 +403,304 @@
 
 //------------------------------------------------------------------------------
 
+class Base {
+
+    constructor(game, data) {
+        
+        this.game = game
+        
+        this.id = data.id
+        this.type = data.type
+        
+        this.count = 0
+    }
+        
+    //---
+    
+    getCount() { return this.count }
+}
+
+//------------------------------------------------------------------------------
+
+var recipeData = [
+
+    {   id:'coal',          type:'recipe',        machines:[ 'manual' ],          time:4,       outputs:{ coal:1 },     },
+    {   id:'stone',         type:'recipe',        machines:[ 'manual' ],          time:4,       outputs:{ stone:1 },    },
+    {   id:'iron',          type:'recipe',        machines:[ 'manual' ],          time:4,       outputs:{ iron:1 },     },
+    
+    {   id:'ironPlate',     type:'recipe',        machines:[ 'furnace1' ],        time:3.2,     inputs:{ iron:1 }, outputs:{ ironPlate:1 },     },
+    
+    {   id:'furnace1',      type:'recipe',        machines:[ 'manual' ],          time:.5,      inputs:{ stone:5 }, outputs:{ furnace1:1 },     },
+]
+
+class Recipe extends Base {
+
+    constructor(game, data) {
+        super(game,data)
+        
+        this.time = data.time
+        this.inputs = data.inputs
+        this.outputs = data.outputs
+    }
+}
+
+//------------------------------------------------------------------------------
+
+var itemData = [
+
+    {   id:'coal',          type:'item',        },
+    {   id:'stone',         type:'item',        },
+    {   id:'iron',          type:'item',        },
+
+    {   id:'ironPlate',     type:'item',        },
+]
+
+class Item extends Base {
+
+    constructor(game, data) {
+        super(game,data)
+    }
+}
+
+//------------------------------------------------------------------------------
+
+var machineData = [
+
+    {   id:'manual',        type:'machine',     auto:false,     speed:1,    },
+    {   id:'furnace1',      type:'machine',     auto:true,      speed:1,    energy:{ id:'coal', count:0.02 },    moduleSlots:4, },
+]
+
+class MachineGroup {
+
+    constructor(machine) {
+    
+        this.machine = machine
+        
+        this.count = 0
+        this.state = 'paused'
+        this.recipe = null        
+        this.remainingTime = null
+    }
+    
+    //---
+    
+    getEnergyConsumed() {
+        
+        if (this.machine.energy == null) return null
+        
+        let ret = 0
+        ret = this.machine.energy.count * this.count * this.machine.coeffEnergy
+        
+        return { id:this.machine.energy.id, count:ret }
+    }
+    
+    getTime(recipe) {
+        
+        let ret = recipe.time / this.machine.speed
+        ret *= this.machine.coeffTime        
+        
+        return ret
+    }
+    
+    getInputs(recipe) {
+    
+        if (recipe.inputs == null) return null
+        
+        let ret = {}
+        
+        for (let id in recipe.inputs) {
+            let input = recipe.inputs[id]            
+            ret[id] = input
+        }
+        
+        return ret
+    }
+    
+    getOutputs(recipe) {
+        
+        let ret = {}
+        
+        for (let id in recipe.outputs) {
+            let output = recipe.outputs[id]            
+            ret[id] = output * this.machine.coeffOutputs
+        }
+        
+        return ret
+    }
+    
+    canProduce() {
+    
+        if (this.count <= 0) return false
+        if (this.recipe == null) return false
+        
+        let energyConsumed = this.getEnergyConsumed()
+        if (energyConsumed && this.machine.game.bases[energyConsumed.id].count <= 0) return false
+        
+        let inputs = this.getInputs(this.recipe)
+        if (inputs == null) return true
+        
+        for (let id in inputs) {
+            let input = inputs[id]            
+            if (input > this.machine.game.bases[id].count) return false
+        }
+        
+        return true
+    }
+    
+    //---
+    
+    assignRecipe(recipe) {
+        
+        if (recipe != null) {
+        
+            this.recipe = recipe
+            
+            this.state = 'paused'
+            this.remainingTime = this.getTime(this.recipe)
+        }
+        else {
+        
+            this.recipe = null
+            
+            this.state = 'paused'
+            this.remainingTime = null
+        }
+    }
+    
+    startProducing() {
+    
+        if (this.canProduce() == true) {
+                    
+            this.state = 'running'
+            this.remainingTime = this.getTime(this.recipe)
+            
+            let inputs = this.getInputs(this.recipe)
+            if (inputs != null) {
+                for (let id in inputs) {
+                    let input = inputs[id]
+                    
+                    this.machine.game.bases[id].count -= input
+                }
+            }
+        }
+        else {
+        
+            this.state = 'waiting'
+            this.remainingTime = this.getTime(this.recipe)
+        }
+    }
+    
+    pauseProducing() {
+        
+        if (this.state == 'running') {
+            
+            let inputs = this.getInputs(this.recipe)
+            if (inputs != null) {
+                for (let id in inputs) {
+                    let input = inputs[id]
+                    
+                    this.machine.game.bases[id].count += input
+                }
+            }
+        }
+        
+        this.state = 'paused'
+        this.remainingTime = this.getTime(this.recipe)
+    }
+
+    doProduce(delta) {
+        
+        if (this.state == 'waiting') {                    
+            this.startProducing()
+        }
+        
+        if (this.state == 'running') {
+            
+            let energyConsumed = this.getEnergyConsumed()
+            if (energyConsumed) {            
+                this.machine.game.bases[energyConsumed.id].count -= energyConsumed.count * delta
+            }
+            
+            this.remainingTime -= delta            
+            if (this.remainingTime <= 0) {
+                                
+                let outputs = this.getOutputs(this.recipe)
+                for (let id in outputs) {
+                    let output = outputs[id]
+                    let base = this.machine.game.bases[id]
+                    
+                    base.count += output
+                }
+                
+                if (this.machine.auto == true) {                
+                    this.startProducing()
+                }
+                else {
+                
+                    this.state = 'paused'
+                    this.remainingTime = this.getTime(this.recipe)
+                }
+            }
+        }
+    }
+}
+
+class Machine extends Base {
+
+    constructor(game, data) {
+        super(game,data)
+        
+        this.auto = data.auto
+        this.speed = data.speed
+        this.energy = data.energy
+        
+        this.modules = null
+        
+        this.coeffTime = 1.0
+        this.coeffEnergy = 1.0
+        this.coeffOutputs = 1.0
+
+        this.groups = []
+        this.availableRecipes = []
+    }
+    
+    //---
+    
+    getAssignedCount() {
+        
+        let ret = 0
+        this.groups.forEach(group => { ret += group.count })
+        return ret
+    }
+    
+    getEnergyConsumed() {
+    
+        let ret = 0
+        this.groups.forEach(group => {
+            if (group.state == 'running') {
+                ret += group.getEnergyConsumed().count
+            }
+        })
+        return ret
+    }
+    
+    //---
+    
+    createGroup() {
+    
+        let group = new MachineGroup(this)
+        this.groups.push(group)
+        return group
+    }
+    
+    doProduce(delta) {
+    
+        this.groups.forEach(group => { group.doProduce(delta) })
+    }
+}
+
+//------------------------------------------------------------------------------
+
 class Game {
 
     constructor() {
@@ -409,18 +708,105 @@ class Game {
         this.paused = false
         this.timePlayed = 0
         
+        this.bases = {}
+        
+        this.items = {}
+        itemData.forEach(data => {
+        
+            let item = new Item(this, data)
+            this.bases[data.id] = item
+            this.items[data.id] = item
+        })
+        
+        this.machines = {}
+        machineData.forEach(data => {
+        
+            let machine = new Machine(this, data)
+            this.bases[data.id] = machine
+            this.machines[data.id] = machine
+        })
+        
+        this.recipes = {}
+        recipeData.forEach(data => {
+        
+            let recipe = new Recipe(this, data)
+            this.recipes[data.id] = recipe
+            
+            data.machines.forEach(machineId => this.machines[machineId].availableRecipes.push(recipe) )
+        })
+        
     }
         
     //---
     
     init() {
-               
+        
+        for (let id in this.machines) {
+            let machine = this.machines[id]
+            if (machine.id == 'manual') {
+                                
+                let group = machine.createGroup()
+                group.count = 1
+                group.assignRecipe(this.recipes['coal'])
+
+                group = machine.createGroup()
+                group.count = 1
+                group.assignRecipe(this.recipes['iron'])
+                
+                group = machine.createGroup()
+                group.count = 1
+                group.assignRecipe(this.recipes['stone'])
+                
+                group = machine.createGroup()
+                group.count = 1
+                group.assignRecipe(this.recipes['furnace1'])
+            }
+            else {
+            
+                machine.createGroup()
+            }
+        }
     }
     
     load(data) {
         
         if (data.paused != null) this.paused = data.paused
         if (data.timePlayed != null) this.timePlayed = data.timePlayed
+        
+        if (data.items) {
+            for (let id in data.items) {
+                let dataItem = data.items[id]
+                
+                let item = this.items[id]
+                if (item) {
+                
+                    item.count = dataItem.count
+                }
+            }
+        }
+
+        if (data.machines) {
+            for (let id in data.machines) {
+                let dataMachine = data.machines[id]
+                
+                let machine = this.machines[id]
+                if (machine) {
+                
+                    machine.count = dataMachine.count
+                    
+                    dataMachine.groups.forEach(dataGroup => {
+                        
+                        console.log(dataGroup)
+                        
+                        let group = machine.createGroup()
+                        group.count = dataGroup.count
+                        group.state = dataGroup.state
+                        group.recipe = dataGroup.recipeId ? this.recipes[dataGroup.recipeId] : null  
+                        group.remainingTime = dataGroup.remainingTime
+                    })
+                }
+            }
+        }
     }
     
     save() {
@@ -429,6 +815,39 @@ class Game {
             
             paused: this.paused,
             timePlayed: this.timePlayed,
+            
+            items: {},
+            machines: {},
+        }
+        
+        for (let id in this.items) {
+            let item = this.items[id]
+            
+            ret.items[item.id] = {            
+                count: item.count,
+            }
+        }
+        
+        
+        for (let id in this.machines) {
+            let machine = this.machines[id]
+            
+            ret.machines[machine.id] = {            
+                count: machine.count,
+                groups: []
+            }
+            
+            machine.groups.forEach(group => {
+            
+                let data = {
+                    count: group.count,
+                    state: group.state,
+                    recipeId: group.recipe ? group.recipe.id : null,     
+                    remainingTime: group.remainingTime,
+                }
+                
+                ret.machines[machine.id].groups.push(data)
+            })
         }
         
         return ret
@@ -448,7 +867,12 @@ class Game {
             
             for (let i = 0; i < cycleCount; i++) {    
                 
-                this.timePlayed += cycleDelta                
+                this.timePlayed += cycleDelta
+                
+                for (let id in this.machines) {
+                    let machine = this.machines[id]                    
+                    machine.doProduce(cycleDelta)
+                }
             }
         }
     }    
@@ -497,6 +921,8 @@ export default {
             
             currentTabId: 'machines',
             
+            currentMachineSubTabId: 'manual',
+            
             //---
             
             game: new Game(),
@@ -524,6 +950,8 @@ export default {
         //---
         
         setCurrentTabId(tabId) { this.currentTabId = tabId },
+        
+        setCurrentMachineSubtabId(subtabId) { this.currentMachineSubTabId = subtabId },
         
         //---
         
