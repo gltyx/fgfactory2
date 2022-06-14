@@ -10,6 +10,7 @@ export default {
     'name_manual': 'Manual',
     
     'name_coal': 'Coal',
+    'name_copper': 'Copper',
     'name_iron': 'Iron',
     'name_ironPlate': 'Iron Plate',
     'name_stone': 'Stone',

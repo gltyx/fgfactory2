@@ -262,6 +262,7 @@
                                 <ItemSubTab :data="game.items['coal']" />
                                 <ItemSubTab :data="game.items['stone']" />
                                 <ItemSubTab :data="game.items['iron']" />
+                                <ItemSubTab :data="game.items['copper']" />
                                 <ItemSubTab :data="game.items['ironPlate']" />
                             </div>
                         </div>
@@ -423,6 +424,7 @@ class Base {
 var recipeData = [
 
     {   id:'coal',          type:'recipe',        machines:[ 'manual' ],          time:4,       outputs:{ coal:1 },     },
+    {   id:'c',        type:'recipe',        machines:[ 'manual' ],          time:4,       outputs:{ copper:1 },   },
     {   id:'stone',         type:'recipe',        machines:[ 'manual' ],          time:4,       outputs:{ stone:1 },    },
     {   id:'iron',          type:'recipe',        machines:[ 'manual' ],          time:4,       outputs:{ iron:1 },     },
     
@@ -447,6 +449,7 @@ class Recipe extends Base {
 var itemData = [
 
     {   id:'coal',          type:'item',        },
+    {   id:'copper',        type:'item',        },
     {   id:'stone',         type:'item',        },
     {   id:'iron',          type:'item',        },
 
@@ -786,26 +789,40 @@ class Game {
         for (let id in this.machines) {
             let machine = this.machines[id]
             if (machine.id == 'manual') {
-                                
-                let group = machine.createGroup()
-                group.count = 1
-                group.assignRecipe(this.recipes['coal'])
-
-                group = machine.createGroup()
-                group.count = 1
-                group.assignRecipe(this.recipes['iron'])
                 
-                group = machine.createGroup()
-                group.count = 1
-                group.assignRecipe(this.recipes['stone'])
+                if (machine.groups[0] == null) {
+                    let group = machine.createGroup()
+                    group.count = 1
+                    group.assignRecipe(this.recipes['coal'])
+                }
                 
-                group = machine.createGroup()
-                group.count = 1
-                group.assignRecipe(this.recipes['furnace1'])
+                if (machine.groups[1] == null) {
+                    let group = machine.createGroup()
+                    group.count = 1
+                    group.assignRecipe(this.recipes['iron'])
+                }
+                    
+                if (machine.groups[2] == null) {
+                    let group = machine.createGroup()
+                    group.count = 1
+                    group.assignRecipe(this.recipes['copper'])
+                }
+                    
+                if (machine.groups[3] == null) {
+                    let group = machine.createGroup()
+                    group.count = 1
+                    group.assignRecipe(this.recipes['stone'])
+                }
+                    
+                if (machine.groups[4] == null) {
+                    let group = machine.createGroup()
+                    group.count = 1
+                    group.assignRecipe(this.recipes['furnace1'])
+                }
             }
             else {
             
-                machine.createGroup()
+                if (machine.groups[0] == null) machine.createGroup()
             }
         }
     }
@@ -1087,10 +1104,7 @@ export default {
             
             try {
             
-                if (this.load() == false) {
-                    this.init()
-                }
-                
+                this.load()                
                 this.update()
                                 
                 window.onbeforeunload = () => {
@@ -1114,11 +1128,6 @@ export default {
                 this.error = error                
                 console.error(error)
             }
-        },
-        
-        init() {
-        
-            this.game.init()
         },
         
         update() {
@@ -1168,11 +1177,9 @@ export default {
                         }
                     }
                 }
-                
-                return true
             }
             
-            return false
+            this.game.init()
         },
 
         save() {
