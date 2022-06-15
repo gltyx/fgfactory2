@@ -780,6 +780,16 @@ class Game {
         
     //---
     
+    checkMax(baseId) {
+    
+        let base = this.bases[baseId]
+        if (base == null) return false
+        
+        if (base.type == 'item' && base.count >= base.getMax()) return false
+        
+        return true
+    }
+    
     getAvailableCount(baseId) {
     
         let ret = 0
@@ -862,9 +872,12 @@ class Game {
                     machine.groups.forEach(group => {
                         
                         let dataGroup = dataMachine.groups[index]
-                        group.count = dataGroup.count
-                        group.state = dataGroup.state
-                        group.remainingTime = dataGroup.remainingTime
+                        if (dataGroup) {
+                        
+                            group.count = dataGroup.count
+                            group.state = dataGroup.state
+                            group.remainingTime = dataGroup.remainingTime
+                        }
                         
                         index++
                     })
