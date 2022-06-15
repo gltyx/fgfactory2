@@ -9,11 +9,13 @@ export default {
     'name_drill1': 'Burner Mining Drill',
     'name_furnace1': 'Stone Furnace',
     'name_manual': 'Manual',
+    'name_steamEngine': 'Steam Engine',
     
     'name_coal': 'Coal',
     'name_copper': 'Copper',
     'name_copperCable': 'Copper Cable',
     'name_copperPlate': 'Copper Plate',
+    'name_electricity': 'Electricity',
     'name_electronicCircuit': 'Electronic Circuit',
     'name_iron': 'Iron',
     'name_ironGearWheel': 'Iron Gear Wheel',

@@ -19,11 +19,11 @@
                 <div class="row gx-4 align-item-center mb-2">
                     <div class="col-auto">
                         <div class="small fw-bold text-muted mb-1">Total</div>
-                        <span style="line-height:24px;"><FormatNumber :value="data.getCount()" /></span>
+                        <span style="line-height:25px;"><FormatNumber :value="data.getCount()" /></span>
                     </div>
                     <div class="col-auto">
                         <div class="small fw-bold text-muted mb-1">Assigned</div>
-                        <span style="line-height:24px;"><FormatNumber :value="data.getAssignedCount()" /></span>
+                        <span style="line-height:25px;"><FormatNumber :value="data.getAssignedCount()" /></span>
                     </div>
                     <div v-if="data.energy" class="col-auto">
                         <div class="small fw-bold text-muted mb-1">Energy</div>
