@@ -263,6 +263,8 @@
                                 <ItemSubTab :data="game.items['stone']" />
                                 <ItemSubTab :data="game.items['iron']" />
                                 <ItemSubTab :data="game.items['copper']" />
+                                <ItemSubTab :data="game.items['copperPlate']" />
+                                <ItemSubTab :data="game.items['copperCable']" />
                                 <ItemSubTab :data="game.items['ironPlate']" />
                                 <ItemSubTab :data="game.items['ironGearWheel']" />
                                 <ItemSubTab :data="game.items['pipe']" />
@@ -431,12 +433,14 @@ var recipeData = [
     {   id:'copper',        type:'recipe',        machines:[ 'manual', 'drill1' ],          time:4,       outputs:{ copper:1 },   },
     {   id:'stone',         type:'recipe',        machines:[ 'manual', 'drill1' ],          time:4,       outputs:{ stone:1 },    },
     {   id:'iron',          type:'recipe',        machines:[ 'manual', 'drill1' ],          time:4,       outputs:{ iron:1 },     },
+    {   id:'copperCable',   type:'recipe',        machines:[ 'manual' ],                    time:.5,      inputs:{ copperPlate:1 }, outputs:{ copperCable:2 },     },
     {   id:'pipe',          type:'recipe',        machines:[ 'manual' ],                    time:.5,      inputs:{ ironPlate:1 }, outputs:{ pipe:1 },     },
     {   id:'ironGearWheel', type:'recipe',        machines:[ 'manual' ],                    time:.5,      inputs:{ ironPlate:2 }, outputs:{ ironGearWheel:1 },     },
     {   id:'furnace1',      type:'recipe',        machines:[ 'manual' ],                    time:.5,      inputs:{ stone:5 }, outputs:{ furnace1:1 },     },
     {   id:'drill1',        type:'recipe',        machines:[ 'manual' ],                    time:2,       inputs:{ ironGearWheel:3, ironPlate:3, furnace1:1 }, outputs:{ drill1:1 },     },    
     
     {   id:'ironPlate',     type:'recipe',        machines:[ 'furnace1' ],                  time:3.2,     inputs:{ iron:1 }, outputs:{ ironPlate:1 },     },
+    {   id:'copperPlate',   type:'recipe',        machines:[ 'furnace1' ],                  time:3.2,      inputs:{ copper:1 }, outputs:{ copperPlate:1 },     },
 ]
 
 class Recipe extends Base {
@@ -456,6 +460,8 @@ var itemData = [
 
     {   id:'coal',          type:'item',        },
     {   id:'copper',        type:'item',        },
+    {   id:'copperPlate',        type:'item',        },
+    {   id:'copperCable',        type:'item',        },
     {   id:'iron',          type:'item',        },
     {   id:'ironGearWheel', type:'item',        },
     {   id:'ironPlate',     type:'item',        },
@@ -519,7 +525,7 @@ class MachineGroup {
         
         for (let id in recipe.inputs) {
             let input = recipe.inputs[id]            
-            ret[id] = input
+            ret[id] = input * this.count
         }
         
         return ret
@@ -531,7 +537,7 @@ class MachineGroup {
         
         for (let id in recipe.outputs) {
             let output = recipe.outputs[id]            
-            ret[id] = output * this.machine.coeffOutputs
+            ret[id] = output * this.count * this.machine.coeffOutputs
         }
         
         return ret

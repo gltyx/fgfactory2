@@ -11,6 +11,8 @@ export default {
     
     'name_coal': 'Coal',
     'name_copper': 'Copper',
+    'name_copperCable': 'Copper Cable',
+    'name_copperPlate': 'Copper Plate',
     'name_iron': 'Iron',
     'name_ironGearWheel': 'Iron Gear Wheel',
     'name_ironPlate': 'Iron Plate',
