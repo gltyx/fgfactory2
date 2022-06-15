@@ -13,6 +13,7 @@ export default {
     'name_copper': 'Copper',
     'name_copperCable': 'Copper Cable',
     'name_copperPlate': 'Copper Plate',
+    'name_electronicCircuit': 'Electronic Circuit',
     'name_iron': 'Iron',
     'name_ironGearWheel': 'Iron Gear Wheel',
     'name_ironPlate': 'Iron Plate',

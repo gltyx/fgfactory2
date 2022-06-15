@@ -259,15 +259,18 @@
                     <div v-if="currentTabId == 'machines'" class="row g-3">
                         <div class="col-3">
                             <div class="row g-2 align-items-center">
-                                <ItemSubTab :data="game.items['coal']" />
-                                <ItemSubTab :data="game.items['stone']" />
-                                <ItemSubTab :data="game.items['iron']" />
-                                <ItemSubTab :data="game.items['copper']" />
-                                <ItemSubTab :data="game.items['copperPlate']" />
-                                <ItemSubTab :data="game.items['copperCable']" />
-                                <ItemSubTab :data="game.items['ironPlate']" />
-                                <ItemSubTab :data="game.items['ironGearWheel']" />
-                                <ItemSubTab :data="game.items['pipe']" />
+                                <div class="col-12"><small class="text-muted">Ores</small></div>
+                                <Item :data="game.items['coal']" />
+                                <Item :data="game.items['stone']" />
+                                <Item :data="game.items['iron']" />
+                                <Item :data="game.items['copper']" />
+                                <div class="col-12"><small class="text-muted">Fabricated</small></div>
+                                <Item :data="game.items['copperPlate']" />
+                                <Item :data="game.items['copperCable']" />
+                                <Item :data="game.items['ironPlate']" />
+                                <Item :data="game.items['ironGearWheel']" />
+                                <Item :data="game.items['pipe']" />
+                                <Item :data="game.items['electronicCircuit']" />
                             </div>
                         </div>
                         <div class="col-9">
@@ -330,7 +333,7 @@
                                                         </div>
                                                     </a>
                                                 </div>
-                                                <div class="col-12 text-center text-normal">Icons are provided by <a href="https://www.flaticon.com/" target="_blank">Flaticon</a> and <a href="https://fontawesome.com/" target="_blank">Fontawesome</a></div>
+                                                <div class="col-12 text-center text-normal">Icons are provided by <a href="https://wiki.factorio.com/" target="_blank">Factorio Wiki</a>, <a href="https://www.flaticon.com/" target="_blank">Flaticon</a> and <a href="https://fontawesome.com/" target="_blank">Fontawesome</a></div>
                                             </div>
                                         </div>
                                     </div>
@@ -429,24 +432,27 @@ class Base {
 
 var recipeData = [
 
-    {   id:'coal',          type:'recipe',        machines:[ 'manual', 'drill1' ],          time:4,       outputs:{ coal:1 },     },
-    {   id:'copper',        type:'recipe',        machines:[ 'manual', 'drill1' ],          time:4,       outputs:{ copper:1 },   },
-    {   id:'stone',         type:'recipe',        machines:[ 'manual', 'drill1' ],          time:4,       outputs:{ stone:1 },    },
-    {   id:'iron',          type:'recipe',        machines:[ 'manual', 'drill1' ],          time:4,       outputs:{ iron:1 },     },
-    {   id:'copperCable',   type:'recipe',        machines:[ 'manual' ],                    time:.5,      inputs:{ copperPlate:1 }, outputs:{ copperCable:2 },     },
-    {   id:'pipe',          type:'recipe',        machines:[ 'manual' ],                    time:.5,      inputs:{ ironPlate:1 }, outputs:{ pipe:1 },     },
-    {   id:'ironGearWheel', type:'recipe',        machines:[ 'manual' ],                    time:.5,      inputs:{ ironPlate:2 }, outputs:{ ironGearWheel:1 },     },
-    {   id:'furnace1',      type:'recipe',        machines:[ 'manual' ],                    time:.5,      inputs:{ stone:5 }, outputs:{ furnace1:1 },     },
-    {   id:'drill1',        type:'recipe',        machines:[ 'manual' ],                    time:2,       inputs:{ ironGearWheel:3, ironPlate:3, furnace1:1 }, outputs:{ drill1:1 },     },    
+    {   id:'coal',                  type:'recipe',        machines:[ 'manual', 'drill1' ],          time:4,       outputs:{ coal:1 }, },
+    {   id:'copper',                type:'recipe',        machines:[ 'manual', 'drill1' ],          time:4,       outputs:{ copper:1 }, },
+    {   id:'stone',                 type:'recipe',        machines:[ 'manual', 'drill1' ],          time:4,       outputs:{ stone:1 }, },
+    {   id:'iron',                  type:'recipe',        machines:[ 'manual', 'drill1' ],          time:4,       outputs:{ iron:1 }, },
     
-    {   id:'ironPlate',     type:'recipe',        machines:[ 'furnace1' ],                  time:3.2,     inputs:{ iron:1 }, outputs:{ ironPlate:1 },     },
-    {   id:'copperPlate',   type:'recipe',        machines:[ 'furnace1' ],                  time:3.2,      inputs:{ copper:1 }, outputs:{ copperPlate:1 },     },
+    {   id:'copperCable',           type:'recipe',        machines:[ 'manual' ],                    time:.5,      inputs:{ copperPlate:1 }, outputs:{ copperCable:2 }, },
+    {   id:'pipe',                  type:'recipe',        machines:[ 'manual' ],                    time:.5,      inputs:{ ironPlate:1 }, outputs:{ pipe:1 }, },
+    {   id:'ironGearWheel',         type:'recipe',        machines:[ 'manual' ],                    time:.5,      inputs:{ ironPlate:2 }, outputs:{ ironGearWheel:1 }, },
+    {   id:'electronicCircuit',     type:'recipe',        machines:[ 'manual' ],                    time:.5,      inputs:{ copperCable:3, ironPlate:1 }, outputs:{ electronicCircuit:1 }, },
+
+    {   id:'furnace1',              type:'recipe',        machines:[ 'manual' ],                    time:.5,      inputs:{ stone:5 }, outputs:{ furnace1:1 }, },
+    {   id:'drill1',                type:'recipe',        machines:[ 'manual' ],                    time:2,       inputs:{ ironGearWheel:3, ironPlate:3, furnace1:1 }, outputs:{ drill1:1 }, },    
+    
+    {   id:'ironPlate',             type:'recipe',        machines:[ 'furnace1' ],                  time:3.2,     inputs:{ iron:1 }, outputs:{ ironPlate:1 }, },
+    {   id:'copperPlate',           type:'recipe',        machines:[ 'furnace1' ],                  time:3.2,     inputs:{ copper:1 }, outputs:{ copperPlate:1 }, },
 ]
 
 class Recipe extends Base {
 
     constructor(game, data) {
-        super(game,data)
+        super(game, data)
         
         this.time = data.time
         this.inputs = data.inputs
@@ -458,21 +464,32 @@ class Recipe extends Base {
 
 var itemData = [
 
-    {   id:'coal',          type:'item',        },
-    {   id:'copper',        type:'item',        },
-    {   id:'copperPlate',        type:'item',        },
-    {   id:'copperCable',        type:'item',        },
-    {   id:'iron',          type:'item',        },
-    {   id:'ironGearWheel', type:'item',        },
-    {   id:'ironPlate',     type:'item',        },
-    {   id:'pipe',          type:'item',        },
-    {   id:'stone',         type:'item',        },
+    {   id:'coal',                  type:'item',        max:50, },
+    {   id:'copper',                type:'item',        max:50, },
+    {   id:'copperPlate',           type:'item',        max:50, },
+    {   id:'copperCable',           type:'item',        max:50, },
+    {   id:'electronicCircuit',     type:'item',        max:50, },
+    {   id:'iron',                  type:'item',        max:50, },
+    {   id:'ironGearWheel',         type:'item',        max:50, },
+    {   id:'ironPlate',             type:'item',        max:50, },
+    {   id:'pipe',                  type:'item',        max:50, },
+    {   id:'stone',                 type:'item',        max:50, },
 ]
 
 class Item extends Base {
 
     constructor(game, data) {
-        super(game,data)
+        super(game, data)
+        
+        this.max = data.max
+    }
+    
+    //---
+    
+    getMax() {
+    
+        let ret = this.max
+        return ret
     }
 }
 
@@ -521,11 +538,12 @@ class MachineGroup {
     
         if (recipe.inputs == null) return null
         
-        let ret = {}
+        let counr = this.count > 0 ? this.count : 1
         
+        let ret = {}        
         for (let id in recipe.inputs) {
             let input = recipe.inputs[id]            
-            ret[id] = input * this.count
+            ret[id] = input * counr
         }
         
         return ret
@@ -533,11 +551,12 @@ class MachineGroup {
     
     getOutputs(recipe) {
         
-        let ret = {}
+        let counr = this.count > 0 ? this.count : 1
         
+        let ret = {}        
         for (let id in recipe.outputs) {
             let output = recipe.outputs[id]            
-            ret[id] = output * this.count * this.machine.coeffOutputs
+            ret[id] = output * counr * this.machine.coeffOutputs
         }
         
         return ret
@@ -550,6 +569,12 @@ class MachineGroup {
         
         let energyConsumed = this.getEnergyConsumed()
         if (energyConsumed && this.machine.game.bases[energyConsumed.id].count <= 0) return false
+        
+        let outputs = this.getOutputs(this.recipe)
+        for (let id in outputs) {
+            let output = outputs[id]            
+            if (this.machine.game.bases[id].type == 'item' && this.machine.game.bases[id].count >= this.machine.game.bases[id].getMax()) return false
+        }
         
         let inputs = this.getInputs(this.recipe)
         if (inputs == null) return true
@@ -567,20 +592,10 @@ class MachineGroup {
     
     assignRecipe(recipe) {
         
-        if (recipe != null) {
+        this.recipe = recipe
         
-            this.recipe = recipe
-            
-            this.state = 'paused'
-            this.remainingTime = this.getTime(this.recipe)
-        }
-        else {
-        
-            this.recipe = null
-            
-            this.state = 'paused'
-            this.remainingTime = null
-        }
+        this.state = 'paused'
+        this.remainingTime = this.getTime(this.recipe)
     }
     
     startProducing() {
@@ -653,6 +668,7 @@ class MachineGroup {
                     let base = this.machine.game.bases[id]
                     
                     base.count += output
+                    if (base.type == 'item' && base.count > base.getMax()) base.count = base.getMax()
                 }
                 
                 if (this.machine.auto == true) {                
@@ -673,7 +689,7 @@ class MachineGroup {
 class Machine extends Base {
 
     constructor(game, data) {
-        super(game,data)
+        super(game, data)
         
         this.auto = data.auto
         this.speed = data.speed
@@ -710,18 +726,6 @@ class Machine extends Base {
     }
     
     //---
-    
-    createGroup() {
-    
-        let group = new MachineGroup(this)
-        this.groups.push(group)
-        return group
-    }
-    
-    deleteGroup(index) {
-    
-        if (index > -1) this.groups.splice(index, 1)
-    }
     
     doProduce(delta) {
     
@@ -762,7 +766,14 @@ class Game {
             let recipe = new Recipe(this, data)
             this.recipes[data.id] = recipe
             
-            data.machines.forEach(machineId => this.machines[machineId].availableRecipes.push(recipe) )
+            data.machines.forEach(machineId => {
+                
+                let machine = this.machines[machineId]
+                let group = new MachineGroup(machine)
+                machine.groups.push(group)                
+                if (machineId == 'manual') group.count = 1
+                group.assignRecipe(recipe)
+            })
         })
         
     }
@@ -821,31 +832,6 @@ class Game {
         
     //---
     
-    init() {
-        
-        for (let id in this.machines) {
-            let machine = this.machines[id]
-            if (machine.id == 'manual') {
-                
-                let index = 0
-                machine.availableRecipes.forEach(recipe => {
-                    
-                    if (machine.groups[index] == null || (machine.groups[index].recipe && machine.groups[index].recipe.id != recipe.id)) {
-                        machine.groups[index] = new MachineGroup(machine)
-                        machine.groups[index].count = 1
-                        machine.groups[index].assignRecipe(this.recipes[recipe.id])
-                    }
-                    
-                    index++
-                })
-            }
-            else {
-            
-                if (machine.groups[0] == null) machine.groups[0] = new MachineGroup(machine)
-            }
-        }
-    }
-    
     load(data) {
         
         if (data.paused != null) this.paused = data.paused
@@ -872,13 +858,15 @@ class Game {
                 
                     machine.count = dataMachine.count
                     
-                    dataMachine.groups.forEach(dataGroup => {
+                    let index = 0
+                    machine.groups.forEach(group => {
                         
-                        let group = machine.createGroup()
+                        let dataGroup = dataMachine.groups[index]
                         group.count = dataGroup.count
                         group.state = dataGroup.state
-                        group.recipe = dataGroup.recipeId ? this.recipes[dataGroup.recipeId] : null  
                         group.remainingTime = dataGroup.remainingTime
+                        
+                        index++
                     })
                 }
             }
@@ -918,7 +906,6 @@ class Game {
                 let data = {
                     count: group.count,
                     state: group.state,
-                    recipeId: group.recipe ? group.recipe.id : null,     
                     remainingTime: group.remainingTime,
                 }
                 
@@ -1197,8 +1184,6 @@ export default {
                     }
                 }
             }
-            
-            this.game.init()
         },
 
         save() {

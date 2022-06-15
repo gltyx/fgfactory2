@@ -126,14 +126,15 @@ $dropdown-padding-y:            0 !default;
 $dropdown-border-color:         $border-color !default;
 $dropdown-border-radius:        $border-radius !default;
 $dropdown-border-width:         $border-width !default;
-$dropdown-item-padding-y:       calc($spacer / 4) !default;
-$dropdown-item-padding-x:       $spacer !default;
+$dropdown-item-padding-y:       calc($spacer / 2) !default;
+$dropdown-item-padding-x:       calc($spacer / 2) !default;
 $dropdown-link-hover-bg:        $light !default;
 $dropdown-link-color:           $body-color !default;
 $dropdown-link-hover-bg:        #444444 !default;
 
 // Progress
 
+$progress-bg:                   #444444 !default;
 $progress-bar-transition:       none !default;
 
 ////////////////////////////////////////////////////////////////////////////////

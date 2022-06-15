@@ -16,9 +16,9 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="row gx-4 align-item-center mb-3">
+                <div class="row gx-4 align-item-center mb-2">
                     <div class="col-auto">
-                        <div class="small text-muted mb-1">Total Count</div>
+                        <div class="small text-muted mb-1">Total</div>
                         <span style="line-height:24px;"><FormatNumber :value="data.getCount()" /></span>
                     </div>
                     <div class="col-auto">
@@ -26,25 +26,18 @@
                         <span style="line-height:24px;"><FormatNumber :value="data.getAssignedCount()" /></span>
                     </div>
                     <div class="col-auto">
-                        <div class="small text-muted mb-1">Energy Consumed</div>
+                        <div class="small text-muted mb-1">Energy</div>
                         <div class="row gx-2 align-items-center">
                             <div class="col-auto">
                                 <img :src="require(`~/assets/vignets/${data.energy.id}.png`)" width="18px" height="18px" :title="$t('name_' + data.energy.id)" :alt="$t('name_' + data.energy.id)" />
                             </div>
                             <div class="col-auto" style="line-height:24px;">
-                                <span><FormatNumber :value="data.getEnergyConsumed()" /></span>
-                                <small class="text-muted">/s</small>
+                                <span :class="{ 'text-normal':data.getEnergyConsumed() == 0, 'text-danger':data.getEnergyConsumed() < 0 }"><span v-if="data.getEnergyConsumed() < 0">-</span><FormatNumber :value="data.getEnergyConsumed()" /> <small>/s</small></span>                                
                             </div>
                         </div>
                     </div>
                 </div>
-                <MachineGroup v-for="(group, index) in data.groups" :key="index" :data="group" :index="index" />
-                <div class="pt-3 border-top">
-                    <button type="button" class="btn btn-sm btn-dark" @click="data.createGroup()">
-                        <i class="fas fa-fw fa-plus-circle"></i>
-                        <span>Create a new group</span>
-                    </button>
-                </div>
+                <MachineGroup v-for="(group, index) in data.groups" :key="index" :data="group" />
             </div>
         </div>
     </div>
