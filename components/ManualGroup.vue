@@ -1,5 +1,5 @@
 <template>
-    <div class="py-2">
+    <div v-if="data.recipe.isUnlocked() == true" class="py-2">
         <div class="row align-items-center">
             <div class="col">
                 <div class="row gx-2 align-items-center">

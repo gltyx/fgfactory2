@@ -259,23 +259,26 @@
                     <div v-if="currentTabId == 'machines'" class="row g-3">
                         <div class="col-3">
                             <div class="row g-2 align-items-center">
-                                <div class="col-12"><small class="fw-bold text-muted">Ores</small></div>
+                                <div class="col-12 small"><span class="fw-bold text-muted">Ores</span></div>
                                 <Item :data="game.items['coal']" />
                                 <Item :data="game.items['stone']" />
                                 <Item :data="game.items['iron']" />
                                 <Item :data="game.items['copper']" />
-                                <div class="col-12"><small class="fw-bold text-muted">Fabricated</small></div>
+                                <div class="col-12 small"><span class="fw-bold text-muted">Fabricated</span></div>
                                 <Item :data="game.items['copperPlate']" />
                                 <Item :data="game.items['copperCable']" />
                                 <Item :data="game.items['ironPlate']" />
                                 <Item :data="game.items['ironGearWheel']" />
                                 <Item :data="game.items['pipe']" />
                                 <Item :data="game.items['electronicCircuit']" />
-                                <div class="col-12"><small class="fw-bold text-muted">Fluids</small></div>
+                                <div class="col-12 small"><span class="fw-bold text-muted">Fluids</span></div>
                                 <Item :data="game.items['water']" />
-                                <div class="col-12"><small class="fw-bold text-muted">Energy</small></div>
+                                <div class="col-12 small"><span class="fw-bold text-muted">Energy</span></div>
                                 <Item :data="game.items['steam']" />
                                 <Item :data="game.items['electricity']" />
+                                <div class="col-12 small"><span class="fw-bold text-muted">Science</span></div>
+                                <Lab :data="game.lab" />
+                                <Item :data="game.items['redPack']" />
                             </div>
                         </div>
                         <div class="col-9">
@@ -285,17 +288,21 @@
                                         <MachineSubTab :data="game.machines['manual']" />
                                         <MachineSubTab :data="game.machines['furnace1']" />
                                         <MachineSubTab :data="game.machines['drill1']" />
+                                        <MachineSubTab :data="game.machines['assembler1']" />
                                         <MachineSubTab :data="game.machines['offshorePump']" />
                                         <MachineSubTab :data="game.machines['boiler']" />
                                         <MachineSubTab :data="game.machines['steamEngine']" />
+                                        <MachineSubTab :data="game.lab" />
                                     </div>
                                 </div>
                                 <Manual :data="game.machines['manual']" />
                                 <Machine :data="game.machines['furnace1']" />
                                 <Machine :data="game.machines['drill1']" />
+                                <Machine :data="game.machines['assembler1']" />
                                 <Machine :data="game.machines['offshorePump']" />
                                 <Machine :data="game.machines['boiler']" />
                                 <Machine :data="game.machines['steamEngine']" />
+                                <MachineLab :data="game.lab" />
                             </div>
                         </div>
                     </div>
@@ -430,6 +437,7 @@ class Base {
         
         this.id = data.id
         this.type = data.type
+        this.reqs = data.reqs
         
         this.count = 0
     }
@@ -437,6 +445,18 @@ class Base {
     //---
     
     getCount() { return this.count }
+    
+    isUnlocked() {
+    
+        if (this.reqs == null) return true
+        
+        let ret = true
+        this.reqs.forEach(techId => {
+            let tech = this.game.lab.techs[techId]
+            if (tech.isDone() == false) ret = false
+        })
+        return ret
+    }
 }
 
 //------------------------------------------------------------------------------
@@ -448,16 +468,19 @@ var recipeData = [
     {   id:'stone',                 type:'recipe',        machines:[ 'manual', 'drill1' ],          time:4,       outputs:{ stone:1 }, },
     {   id:'iron',                  type:'recipe',        machines:[ 'manual', 'drill1' ],          time:4,       outputs:{ iron:1 }, },
     
-    {   id:'copperCable',           type:'recipe',        machines:[ 'manual' ],                    time:.5,      inputs:{ copperPlate:1 }, outputs:{ copperCable:2 }, },
-    {   id:'pipe',                  type:'recipe',        machines:[ 'manual' ],                    time:.5,      inputs:{ ironPlate:1 }, outputs:{ pipe:1 }, },
-    {   id:'ironGearWheel',         type:'recipe',        machines:[ 'manual' ],                    time:.5,      inputs:{ ironPlate:2 }, outputs:{ ironGearWheel:1 }, },
-    {   id:'electronicCircuit',     type:'recipe',        machines:[ 'manual' ],                    time:.5,      inputs:{ copperCable:3, ironPlate:1 }, outputs:{ electronicCircuit:1 }, },
+    {   id:'copperCable',           type:'recipe',        machines:[ 'manual', 'assembler1' ],                    time:.5,      inputs:{ copperPlate:1 }, outputs:{ copperCable:2 }, },
+    {   id:'pipe',                  type:'recipe',        machines:[ 'manual', 'assembler1' ],                    time:.5,      inputs:{ ironPlate:1 }, outputs:{ pipe:1 }, },
+    {   id:'ironGearWheel',         type:'recipe',        machines:[ 'manual', 'assembler1' ],                    time:.5,      inputs:{ ironPlate:2 }, outputs:{ ironGearWheel:1 }, },
+    {   id:'electronicCircuit',     type:'recipe',        machines:[ 'manual', 'assembler1' ],                    time:.5,      inputs:{ copperCable:3, ironPlate:1 }, outputs:{ electronicCircuit:1 }, },
 
-    {   id:'furnace1',              type:'recipe',        machines:[ 'manual' ],                    time:.5,      inputs:{ stone:5 }, outputs:{ furnace1:1 }, },
-    {   id:'drill1',                type:'recipe',        machines:[ 'manual' ],                    time:2,       inputs:{ ironGearWheel:3, ironPlate:3, furnace1:1 }, outputs:{ drill1:1 }, },    
-    {   id:'offshorePump',          type:'recipe',        machines:[ 'manual' ],                    time:.5,      inputs:{ ironGearWheel:1, pipe:1, electronicCircuit:2 }, outputs:{ offshorePump:1 }, },    
-    {   id:'boiler',                type:'recipe',        machines:[ 'manual' ],                    time:.5,      inputs:{ pipe:4, furnace1:1 }, outputs:{ boiler:1 }, },        
-    {   id:'steamEngine',           type:'recipe',        machines:[ 'manual' ],                    time:.5,      inputs:{ ironGearWheel:8, ironPlate:10, pipe:5 }, outputs:{ steamEngine:1 }, },    
+    {   id:'furnace1',              type:'recipe',        machines:[ 'manual', 'assembler1' ],                    time:.5,      inputs:{ stone:5 }, outputs:{ furnace1:1 }, },
+    {   id:'drill1',                type:'recipe',        machines:[ 'manual', 'assembler1' ],                    time:2,       inputs:{ ironGearWheel:3, ironPlate:3, furnace1:1 }, outputs:{ drill1:1 }, },    
+    {   id:'assembler1',            type:'recipe',        machines:[ 'manual', 'assembler1' ],                    time:.5,      inputs:{ electronicCircuit:3, ironGearWheel:5, ironPlate:9 }, outputs:{ assembler1:1 }, reqs:[ 'automation1' ], },    
+    {   id:'offshorePump',          type:'recipe',        machines:[ 'manual', 'assembler1' ],                    time:.5,      inputs:{ ironGearWheel:1, pipe:1, electronicCircuit:2 }, outputs:{ offshorePump:1 }, },    
+    {   id:'boiler',                type:'recipe',        machines:[ 'manual', 'assembler1' ],                    time:.5,      inputs:{ pipe:4, furnace1:1 }, outputs:{ boiler:1 }, },        
+    {   id:'steamEngine',           type:'recipe',        machines:[ 'manual', 'assembler1' ],                    time:.5,      inputs:{ ironGearWheel:8, ironPlate:10, pipe:5 }, outputs:{ steamEngine:1 }, },    
+    {   id:'lab',                   type:'recipe',        machines:[ 'manual', 'assembler1' ],                    time:3,       inputs:{ electronicCircuit:10, ironGearWheel:12, ironPlate:2 }, outputs:{ lab:1 }, },    
+    {   id:'redPack',               type:'recipe',        machines:[ 'manual', 'assembler1' ],                    time:5,       inputs:{ copperPlate:1, ironGearWheel:1 }, outputs:{ redPack:1 }, },    
 
     {   id:'ironPlate',             type:'recipe',        machines:[ 'furnace1' ],                  time:3.2,     inputs:{ iron:1 }, outputs:{ ironPlate:1 }, },
     {   id:'copperPlate',           type:'recipe',        machines:[ 'furnace1' ],                  time:3.2,     inputs:{ copper:1 }, outputs:{ copperPlate:1 }, },
@@ -468,6 +491,8 @@ var recipeData = [
     
     {   id:'electricitySteam',      type:'recipe',        machines:[ 'steamEngine' ],               time:1,       inputs:{ steam:30 }, outputs:{ electricity:900 }, },
 ]
+
+//------------------------------------------------------------------------------
 
 class Recipe extends Base {
 
@@ -494,10 +519,13 @@ var itemData = [
     {   id:'ironGearWheel',         type:'item',        max:50, },
     {   id:'ironPlate',             type:'item',        max:50, },
     {   id:'pipe',                  type:'item',        max:50, },
+    {   id:'redPack',               type:'item',        max:50, },
     {   id:'steam',                 type:'item',        max:1200, },
     {   id:'stone',                 type:'item',        max:50, },
     {   id:'water',                 type:'item',        max:1200, },
 ]
+
+//------------------------------------------------------------------------------
 
 class Item extends Base {
 
@@ -526,7 +554,10 @@ var machineData = [
     {   id:'offshorePump',          type:'machine',     auto:true,      speed:1,    },
     {   id:'boiler',                type:'machine',     auto:true,      speed:1,    energy:{ id:'coal', count:2 }, },
     {   id:'steamEngine',           type:'machine',     auto:true,      speed:1,    },
+    {   id:'assembler1',            type:'machine',     auto:true,      speed:.5,   energy:{ id:'electricity', count:75 }, reqs:[ 'automation1' ], },
 ]
+
+//------------------------------------------------------------------------------
 
 class MachineGroup {
 
@@ -712,6 +743,8 @@ class MachineGroup {
     }
 }
 
+//------------------------------------------------------------------------------
+
 class Machine extends Base {
 
     constructor(game, data) {
@@ -761,6 +794,200 @@ class Machine extends Base {
 
 //------------------------------------------------------------------------------
 
+var techData = [
+
+    {   id:'automation1',    cycleCount:10,     time:10,    inputs:{ redPack:1 }, },
+]
+
+//------------------------------------------------------------------------------
+
+class Tech extends Base {
+
+    constructor(lab, data) {
+        super(lab.game, data)
+        
+        this.lab = lab
+        
+        this.time = data.time
+        this.inputs = data.inputs
+        this.cycleCount = data.cycleCount
+    }
+    
+    //---
+    
+    isDone() { return this.cycleCount <= 0 }
+}
+
+//------------------------------------------------------------------------------
+
+var labData = { id:'lab', type:'lab', energy:{ id:'electricity', count:60 }, }
+
+//------------------------------------------------------------------------------
+
+class Lab extends Base {
+
+    constructor(game, data) {
+        super(game, data)
+        
+        this.energy = data.energy
+        
+        this.techs = {}
+        techData.forEach(data => {
+        
+            let tech = new Tech(this, data)
+            this.techs[data.id] = tech
+        })
+        
+        this.tech = null
+        this.state = 'paused'
+        this.remainingTime = null
+    }
+    
+    //---
+    
+    getEnergyConsumed() {
+        
+        if (this.state != 'running') return { id:this.energy.id, count:0 }
+        
+        let ret = 0
+        ret = this.energy.count * this.count
+        
+        return { id:this.energy.id, count:ret }
+    }
+    
+    getTime(tech) {
+        
+        let ret = tech.time
+        ret /= this.count
+        
+        return ret
+    }
+    
+    getInputs(tech) {
+    
+        let ret = {}        
+        for (let id in tech.inputs) {
+            let input = tech.inputs[id]            
+            ret[id] = input
+        }
+        
+        return ret
+    }
+    
+    canResearch(tech) {
+    
+        if (this.count <= 0) return false
+        if (this.state != 'paused' && this.tech.id != tech.id) return false
+        
+        let energyConsumed = this.getEnergyConsumed()
+        if (energyConsumed && this.game.bases[energyConsumed.id].count <= 0) return false
+        
+        let inputs = this.getInputs(tech)
+        if (inputs == null) return true
+        
+        for (let id in inputs) {
+            let input = inputs[id]            
+            if (input > this.game.bases[id].count) return false
+        }
+        
+        return true
+    }
+    
+    //---
+        
+    assignTech(tech) {
+        
+        this.tech = tech
+        
+        this.state = 'paused'
+        this.remainingTime = this.getTime(this.tech)
+    }
+        
+    startResearching() {
+    
+        if (this.canResearch(this.tech) == true) {
+                    
+            this.state = 'running'
+            if (this.remainingTime == this.getTime(this.tech)) {
+            
+                let inputs = this.getInputs(this.tech)
+                if (inputs != null) {
+                    for (let id in inputs) {
+                        let input = inputs[id]
+                        
+                        this.game.bases[id].count -= input
+                    }
+                }
+            }
+        }
+        else {
+        
+            this.state = 'waiting'
+            this.remainingTime = this.getTime(this.tech)
+        }
+        
+        console.log(this.state)
+    }
+    
+    pauseResearching() {
+        
+        if (this.state == 'running') {
+            
+            let inputs = this.getInputs(this.tech)
+            if (inputs != null) {
+                for (let id in inputs) {
+                    let input = inputs[id]
+                    
+                    this.game.bases[id].count += input
+                }
+            }
+        }
+        
+        this.state = 'paused'
+        this.remainingTime = this.getTime(this.tech)
+    }
+    
+    doResearch(delta) {
+        
+        if (this.state == 'waiting') {
+            this.startResearching()
+        }
+        
+        if (this.state == 'running') {
+        
+            this.remainingTime -= delta
+            
+            let energyConsumed = this.getEnergyConsumed()
+            this.game.bases[energyConsumed.id].count -= energyConsumed.count * delta
+            if (this.game.bases[energyConsumed.id].count <= 0) {
+                this.game.bases[energyConsumed.id].count = 0
+                this.state = 'waiting'
+                return
+            }                
+            
+            if (this.remainingTime <= 0) {
+            
+                this.tech.cycleCount -= 1
+                
+                if (this.tech.cycleCount > 0) {                
+                
+                    this.remainingTime = this.getTime(this.tech)
+                    this.startResearching()
+                }
+                else {
+                    
+                    this.tech.cycleCount = 0
+                    
+                    this.state = 'paused'
+                    this.remainingTime = null
+                }
+            }
+        }
+    }
+}
+
+//------------------------------------------------------------------------------
+
 class Game {
 
     constructor() {
@@ -785,6 +1012,10 @@ class Game {
             this.bases[data.id] = machine
             this.machines[data.id] = machine
         })
+        
+        let lab = new Lab(this, labData)
+        this.bases['lab'] = lab
+        this.lab = lab
         
         this.recipes = {}
         recipeData.forEach(data => {
@@ -910,6 +1141,28 @@ class Game {
                 }
             }
         }
+        
+        if (data.lab) {
+            this.lab.count = data.lab.count
+            
+            if (data.lab.techId) {
+                let tech = this.lab.techs[data.lab.techId]
+                if (tech) this.lab.assignTech(tech)
+            }
+            
+            if (data.lab.state) this.lab.state = data.lab.state
+            if (data.lab.remainingTime) this.lab.remainingTime = data.lab.remainingTime
+            
+            for (let id in data.lab.techs) {
+                let dataTech = data.lab.techs[id]
+
+                let tech = this.lab.techs[id]
+                if (tech) {
+                
+                    tech.cycleCount = dataTech.cycleCount
+                }
+            }
+        }
     }
     
     save() {
@@ -919,6 +1172,7 @@ class Game {
             paused: this.paused,
             timePlayed: this.timePlayed,
             
+            lab: {},
             items: {},
             machines: {},
         }
@@ -952,6 +1206,22 @@ class Game {
             })
         }
         
+        ret.lab.count = this.lab.count
+        ret.lab.techId = this.lab.tech ? this.lab.tech.id : null
+        ret.lab.state = this.lab.state
+        ret.lab.remainingTime = this.lab.remainingTime
+        
+        ret.lab.techs = {}        
+        for (let id in this.lab.techs) {
+            let tech = this.lab.techs[id]
+            
+            let data = {
+                cycleCount: tech.cycleCount,
+            }
+            
+            ret.lab.techs[tech.id] = data
+        }
+        
         return ret
     }
     
@@ -975,6 +1245,8 @@ class Game {
                     let machine = this.machines[id]                    
                     machine.doProduce(cycleDelta)
                 }
+                
+                this.lab.doResearch(cycleDelta)
             }
         }
     }    

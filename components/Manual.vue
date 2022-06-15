@@ -37,6 +37,12 @@
                     <div class="col-12"><ManualGroup :data="data.groups[10]" /></div>
                     <div class="col-12"><ManualGroup :data="data.groups[11]" /></div>
                     <div class="col-12"><ManualGroup :data="data.groups[12]" /></div>
+                    <div class="col-12"><ManualGroup :data="data.groups[13]" /></div>
+                </div>
+                <div class="row gx-3 align-items-center">
+                    <div class="col-12 small"><span class="fw-bold text-muted">Science</span></div>
+                    <div class="col-12"><ManualGroup :data="data.groups[14]" /></div>
+                    <div class="col-12"><ManualGroup :data="data.groups[15]" /></div>
                 </div>
             </div>
         </div>

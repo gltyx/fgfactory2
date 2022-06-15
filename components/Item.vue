@@ -1,5 +1,5 @@
 <template>
-    <div class="col-auto">
+    <div v-if="data.isUnlocked() == true" class="col-auto">
         <div class="position-relative card card-body">
             <img :src="require(`~/assets/vignets/${data.id}.png`)" width="24px" height="24px" :title="$t('name_' + data.id)" :alt="$t('name_' + data.id)" />
             <div class="position-absolute start-0 top-0 small ps-1">
