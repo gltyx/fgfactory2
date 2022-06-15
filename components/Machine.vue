@@ -18,15 +18,15 @@
             <div class="card-body">
                 <div class="row gx-4 align-item-center mb-2">
                     <div class="col-auto">
-                        <div class="small text-muted mb-1">Total</div>
+                        <div class="small fw-bold text-muted mb-1">Total</div>
                         <span style="line-height:24px;"><FormatNumber :value="data.getCount()" /></span>
                     </div>
                     <div class="col-auto">
-                        <div class="small text-muted mb-1">Assigned</div>
+                        <div class="small fw-bold text-muted mb-1">Assigned</div>
                         <span style="line-height:24px;"><FormatNumber :value="data.getAssignedCount()" /></span>
                     </div>
-                    <div class="col-auto">
-                        <div class="small text-muted mb-1">Energy</div>
+                    <div v-if="data.energy" class="col-auto">
+                        <div class="small fw-bold text-muted mb-1">Energy</div>
                         <div class="row gx-2 align-items-center">
                             <div class="col-auto">
                                 <img :src="require(`~/assets/vignets/${data.energy.id}.png`)" width="18px" height="18px" :title="$t('name_' + data.energy.id)" :alt="$t('name_' + data.energy.id)" />

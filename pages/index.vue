@@ -259,18 +259,21 @@
                     <div v-if="currentTabId == 'machines'" class="row g-3">
                         <div class="col-3">
                             <div class="row g-2 align-items-center">
-                                <div class="col-12"><small class="text-muted">Ores</small></div>
+                                <div class="col-12"><small class="fw-bold text-muted">Ores</small></div>
                                 <Item :data="game.items['coal']" />
                                 <Item :data="game.items['stone']" />
                                 <Item :data="game.items['iron']" />
                                 <Item :data="game.items['copper']" />
-                                <div class="col-12"><small class="text-muted">Fabricated</small></div>
+                                <div class="col-12"><small class="fw-bold text-muted">Fabricated</small></div>
                                 <Item :data="game.items['copperPlate']" />
                                 <Item :data="game.items['copperCable']" />
                                 <Item :data="game.items['ironPlate']" />
                                 <Item :data="game.items['ironGearWheel']" />
                                 <Item :data="game.items['pipe']" />
                                 <Item :data="game.items['electronicCircuit']" />
+                                <div class="col-12"><small class="fw-bold text-muted">Fluids</small></div>
+                                <Item :data="game.items['water']" />
+                                <Item :data="game.items['steam']" />
                             </div>
                         </div>
                         <div class="col-9">
@@ -280,11 +283,15 @@
                                         <MachineSubTab :data="game.machines['manual']" />
                                         <MachineSubTab :data="game.machines['furnace1']" />
                                         <MachineSubTab :data="game.machines['drill1']" />
+                                        <MachineSubTab :data="game.machines['offshorePump']" />
+                                        <MachineSubTab :data="game.machines['boiler']" />
                                     </div>
                                 </div>
                                 <Manual :data="game.machines['manual']" />
                                 <Machine :data="game.machines['furnace1']" />
                                 <Machine :data="game.machines['drill1']" />
+                                <Machine :data="game.machines['offshorePump']" />
+                                <Machine :data="game.machines['boiler']" />
                             </div>
                         </div>
                     </div>
@@ -444,9 +451,15 @@ var recipeData = [
 
     {   id:'furnace1',              type:'recipe',        machines:[ 'manual' ],                    time:.5,      inputs:{ stone:5 }, outputs:{ furnace1:1 }, },
     {   id:'drill1',                type:'recipe',        machines:[ 'manual' ],                    time:2,       inputs:{ ironGearWheel:3, ironPlate:3, furnace1:1 }, outputs:{ drill1:1 }, },    
+    {   id:'offshorePump',          type:'recipe',        machines:[ 'manual' ],                    time:.5,      inputs:{ ironGearWheel:1, pipe:1, electronicCircuit:2 }, outputs:{ offshorePump:1 }, },    
+    {   id:'boiler',                type:'recipe',        machines:[ 'manual' ],                    time:.5,      inputs:{ pipe:4, furnace1:1 }, outputs:{ boiler:1 }, },    
     
     {   id:'ironPlate',             type:'recipe',        machines:[ 'furnace1' ],                  time:3.2,     inputs:{ iron:1 }, outputs:{ ironPlate:1 }, },
     {   id:'copperPlate',           type:'recipe',        machines:[ 'furnace1' ],                  time:3.2,     inputs:{ copper:1 }, outputs:{ copperPlate:1 }, },
+    
+    {   id:'water',                 type:'recipe',        machines:[ 'offshorePump' ],              time:1,       outputs:{ water:1200 }, },
+    
+    {   id:'steam',                 type:'recipe',        machines:[ 'boiler' ],                    time:1,       inputs:{ water:60 }, outputs:{ steam:60 }, },
 ]
 
 class Recipe extends Base {
@@ -473,7 +486,9 @@ var itemData = [
     {   id:'ironGearWheel',         type:'item',        max:50, },
     {   id:'ironPlate',             type:'item',        max:50, },
     {   id:'pipe',                  type:'item',        max:50, },
+    {   id:'steam',                 type:'item',        max:1200, },
     {   id:'stone',                 type:'item',        max:50, },
+    {   id:'water',                 type:'item',        max:1200, },
 ]
 
 class Item extends Base {
@@ -498,8 +513,10 @@ class Item extends Base {
 var machineData = [
 
     {   id:'manual',        type:'machine',     auto:false,     speed:1,    },
-    {   id:'furnace1',      type:'machine',     auto:true,      speed:1,    energy:{ id:'coal', count:0.02 },    },
-    {   id:'drill1',        type:'machine',     auto:true,      speed:1,    energy:{ id:'coal', count:0.14 },    },
+    {   id:'furnace1',      type:'machine',     auto:true,      speed:1,    energy:{ id:'coal', count:0.02 }, },
+    {   id:'drill1',        type:'machine',     auto:true,      speed:1,    energy:{ id:'coal', count:0.14 }, },
+    {   id:'offshorePump',  type:'machine',     auto:true,      speed:1,    },
+    {   id:'boiler',        type:'machine',     auto:true,      speed:1,    energy:{ id:'coal', count:2 }, },
 ]
 
 class MachineGroup {
