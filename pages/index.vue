@@ -274,6 +274,7 @@
                                 <Item :data="game.items['ironGearWheel']" />
                                 <Item :data="game.items['pipe']" />
                                 <Item :data="game.items['electronicCircuit']" />
+                                <Item :data="game.items['steelPlate']" />
                                 <div class="col-12 mt-3"><div class="subtitle">Fluids</div></div>
                                 <Item :data="game.items['water']" />
                                 <div class="col-12 mt-3"><div class="subtitle">Energy</div></div>
@@ -573,6 +574,7 @@ var itemData = [
     {   id:'pipe',                  type:'item',        max:50,     storages:[ 'woodChest', 'ironChest', 'steelChest' ], },
     {   id:'redPack',               type:'item',        max:50,     storages:[ 'woodChest', 'ironChest', 'steelChest' ], },
     {   id:'steam',                 type:'item',        max:1200,   },
+    {   id:'steelPlate',            type:'item',        max:50,     storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'steelProcessing' ], },
     {   id:'steelChest',            type:'item',        max:50,     storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'steelProcessing' ], },
     {   id:'stone',                 type:'item',        max:50,     storages:[ 'woodChest', 'ironChest', 'steelChest' ], },
     {   id:'stoneBrick',            type:'item',        max:50,     storages:[ 'woodChest', 'ironChest', 'steelChest' ], },

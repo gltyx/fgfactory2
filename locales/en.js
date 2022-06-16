@@ -29,6 +29,8 @@ export default {
     'name_redPack': 'Red Pack',
     'name_steam': 'Steam',
     'name_steamEngine': 'Steam Engine',
+    'name_steelChest': 'Steel Chest',
+    'name_steelPlate': 'Steel Plate',
     'name_steelProcessing': 'Steel Processing',
     'name_stone': 'Stone',
     'name_stoneBrick': 'Stone Brick',
