@@ -1,5 +1,5 @@
 <template>
-    <div v-if="data.isUnlocked() == true && data.isDone() == false" class="py-2">
+    <div v-if="data.isUnlocked() == true && data.isDone() == false" class="card card-body p-1">
         <div class="row align-items-center">
             <div class="col">
                 <div class="row gx-2 align-items-center">
@@ -13,12 +13,8 @@
             </div>
             <div class="col-auto">
                 <div class="row gx-2 align-items-center">
-                    <div class="col">
-                        <div class="card card-body border py-1">
-                            <div class="col row gx-1 align-items-center justify-content-end me-2">
-                                <div v-for="(count, id) in data.lab.getInputs(data)" class="col-auto"><RecipeItem :id="id" :count="count" :class="{ 'text-danger':count > data.lab.game.getAvailableCount(id) }" /></div>
-                            </div>
-                        </div>
+                    <div class="col row gx-1 align-items-center justify-content-end me-2">
+                        <div v-for="(count, id) in data.lab.getInputs(data)" class="col-auto"><RecipeItem :id="id" :count="count" :class="{ 'text-danger':count > data.lab.game.getAvailableCount(id) }" /></div>
                     </div>
                     <div class="col-auto">
                         <div v-if="data.lab.state == 'paused'" class="text-center small mb-1"><FormatTime :value="data.time" /></div>

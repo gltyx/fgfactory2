@@ -16,12 +16,28 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="row gx-4 align-item-center mb-2">
+                <div class="row gx-4 align-item-center mb-3">
                     <div class="col-auto">
                         <div class="small fw-bold text-muted mb-1">Total</div>
                         <span style="line-height:25px;"><FormatNumber :value="data.count" /></span>
                     </div>
-                    <div v-if="data.energy" class="col-auto">
+                    <div class="col-auto">
+                        <div class="small fw-bold text-muted mb-1">Assigned</div>
+                        <div class="row gx-2 align-item-center" style="line-height:25px;">
+                            <div class="col-auto">
+                                <button type="button" class="btn btn-dark btn-sm py-1" :class="{ 'disabled opacity-25':data.state != 'paused' || data.assigned >= data.count }" @click="data.assigned += 1;">
+                                    <i class="fas fa-fw fa-plus small"></i>
+                                </button>
+                            </div>
+                            <div class="col-auto">
+                                <button type="button" class="btn btn-dark btn-sm py-1" :class="{ 'disabled opacity-25':data.state != 'paused' || data.assigned < 1 }" @click="data.assigned -= 1;">
+                                    <i class="fas fa-fw fa-minus small"></i>
+                                </button>
+                            </div>
+                            <div class="col-auto"><FormatNumber :value="data.assigned" /></div>
+                        </div>
+                    </div>
+                    <div class="col-auto">
                         <div class="small fw-bold text-muted mb-1">Energy</div>
                         <div class="row gx-2 align-items-center">
                             <div class="col-auto">
@@ -33,7 +49,9 @@
                         </div>
                     </div>
                 </div>
-                <LabTech v-for="(tech, index) in data.techs" :key="tech.id" :data="tech" />
+                <div class="row g-2 align-item-center">
+                    <LabTech v-for="(tech, index) in data.techs" :key="tech.id" :data="tech" />
+                </div>
             </div>
         </div>
     </div>

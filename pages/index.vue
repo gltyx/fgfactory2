@@ -886,7 +886,9 @@ class Machine extends Base {
 
 var techData = [
 
-    {   id:'automation1',    cycleCount:10,     time:10,    inputs:{ redPack:1 }, },
+    {   id:'automation1',           cycleCount:10,     time:10,     inputs:{ redPack:1 },   },
+    {   id:'electronics',           cycleCount:30,     time:15,     inputs:{ redPack:1 },   reqs:[ 'automation1' ], },
+    {   id:'steelProcessing',       cycleCount:50,     time:5,      inputs:{ redPack:1 },   },
 ]
 
 //------------------------------------------------------------------------------
@@ -930,6 +932,7 @@ class Lab extends Base {
         
         this.tech = null
         this.state = 'paused'
+        this.assigned = 0
         this.remainingTime = null
     }
     
@@ -947,8 +950,10 @@ class Lab extends Base {
     
     getTime(tech) {
         
+        let count = this.assigned ? this.assigned : 1
+        
         let ret = tech.time
-        ret /= this.count
+        ret /= count
         
         return ret
     }
@@ -967,6 +972,7 @@ class Lab extends Base {
     canResearch(tech) {
     
         if (this.count <= 0) return false
+        if (this.assigned <= 0) return false
         if (this.state != 'paused' && this.tech.id != tech.id) return false
         
         let energyConsumed = this.getEnergyConsumed()
@@ -1259,7 +1265,9 @@ class Game {
         }
         
         if (data.lab) {
+            
             this.lab.count = data.lab.count
+            if (data.lab.assigned) this.lab.assigned = data.lab.assigned
             
             if (data.lab.techId) {
                 let tech = this.lab.techs[data.lab.techId]
@@ -1328,8 +1336,9 @@ class Game {
         }
         
         ret.lab.count = this.lab.count
-        ret.lab.techId = this.lab.tech ? this.lab.tech.id : null
         ret.lab.state = this.lab.state
+        ret.lab.techId = this.lab.tech ? this.lab.tech.id : null
+        ret.lab.assigned = this.lab.assigned
         ret.lab.remainingTime = this.lab.remainingTime
         
         ret.lab.techs = {}        
