@@ -248,6 +248,7 @@
                 <div class="container">
                     <div class="row gx-0 align-items-center">
                         <TopMenuTab tabId="machines" icon="fa-industry" />
+                        <TopMenuTab tabId="storages" icon="fa-boxes" />
                         <TopMenuTab tabId="settings" icon="fa-cogs" class="ms-auto" />
                     </div>
                 </div>
@@ -259,7 +260,8 @@
                     <div v-if="currentTabId == 'machines'" class="row g-3">
                         <div class="col-3">
                             <div class="row g-2 align-items-center">
-                                <div class="col-12 small"><span class="fw-bold text-muted">Ores</span></div>
+                                <div class="col-12 small"><span class="fw-bold text-muted">Extracted</span></div>
+                                <Item :data="game.items['wood']" />
                                 <Item :data="game.items['coal']" />
                                 <Item :data="game.items['stone']" />
                                 <Item :data="game.items['iron']" />
@@ -303,6 +305,43 @@
                                 <Machine :data="game.machines['boiler']" />
                                 <Machine :data="game.machines['steamEngine']" />
                                 <MachineLab :data="game.lab" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div v-if="currentTabId == 'storages'" class="row g-3">
+                        <div class="col-3">
+                            <div class="row g-2 align-items-center">
+                                <div class="col-12 small"><span class="fw-bold text-muted">Extracted</span></div>
+                                <Stock :data="game.items['wood']" />
+                                <Stock :data="game.items['coal']" />
+                                <Stock :data="game.items['stone']" />
+                                <Stock :data="game.items['iron']" />
+                                <Stock :data="game.items['copper']" />
+                                <div class="col-12 small"><span class="fw-bold text-muted">Fabricated</span></div>
+                                <Stock :data="game.items['copperPlate']" />
+                                <Stock :data="game.items['copperCable']" />
+                                <Stock :data="game.items['ironPlate']" />
+                                <Stock :data="game.items['ironGearWheel']" />
+                                <Stock :data="game.items['pipe']" />
+                                <Stock :data="game.items['electronicCircuit']" />
+                                <div class="col-12 small"><span class="fw-bold text-muted">Fluids</span></div>
+                                <Stock :data="game.items['water']" />
+                                <div class="col-12 small"><span class="fw-bold text-muted">Energy</span></div>
+                                <Stock :data="game.items['steam']" />
+                                <Stock :data="game.items['electricity']" />
+                                <div class="col-12 small"><span class="fw-bold text-muted">Science</span></div>
+                                <Stock :data="game.items['redPack']" />
+                            </div>
+                        </div>
+                        <div class="col-9">
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <div class="nav nav-pills">
+                                        <StorageSubTab :data="game.items['woodChest']" />
+                                    </div>
+                                </div>
+                                <Storage :data="game.items['woodChest']" />
                             </div>
                         </div>
                     </div>
@@ -453,7 +492,7 @@ class Base {
         let ret = true
         this.reqs.forEach(techId => {
             let tech = this.game.lab.techs[techId]
-            if (tech.isDone() == false) ret = false
+            if (tech == null || tech.isDone() == false) ret = false
         })
         return ret
     }
@@ -463,33 +502,38 @@ class Base {
 
 var recipeData = [
 
-    {   id:'coal',                  type:'recipe',        machines:[ 'manual', 'drill1' ],          time:4,       outputs:{ coal:1 }, },
-    {   id:'copper',                type:'recipe',        machines:[ 'manual', 'drill1' ],          time:4,       outputs:{ copper:1 }, },
-    {   id:'stone',                 type:'recipe',        machines:[ 'manual', 'drill1' ],          time:4,       outputs:{ stone:1 }, },
-    {   id:'iron',                  type:'recipe',        machines:[ 'manual', 'drill1' ],          time:4,       outputs:{ iron:1 }, },
+    {   id:'wood',                  type:'recipe',        machines:[ 'manual' ],                                                time:4,       outputs:{ wood:1 },                       },
+    {   id:'coal',                  type:'recipe',        machines:[ 'manual', 'drill1', 'drill2' ],                            time:4,       outputs:{ coal:1 },                       },
+    {   id:'copper',                type:'recipe',        machines:[ 'manual', 'drill1', 'drill2' ],                            time:4,       outputs:{ copper:1 },                     },
+    {   id:'stone',                 type:'recipe',        machines:[ 'manual', 'drill1', 'drill2' ],                            time:4,       outputs:{ stone:1 },                      },
+    {   id:'iron',                  type:'recipe',        machines:[ 'manual', 'drill1', 'drill2' ],                            time:4,       outputs:{ iron:1 },                       },
+    {   id:'uranium',               type:'recipe',        machines:[ 'drill2' ],                                                time:8,       outputs:{ uranium:1 },                    },
     
-    {   id:'copperCable',           type:'recipe',        machines:[ 'manual', 'assembler1' ],                    time:.5,      inputs:{ copperPlate:1 }, outputs:{ copperCable:2 }, },
-    {   id:'pipe',                  type:'recipe',        machines:[ 'manual', 'assembler1' ],                    time:.5,      inputs:{ ironPlate:1 }, outputs:{ pipe:1 }, },
-    {   id:'ironGearWheel',         type:'recipe',        machines:[ 'manual', 'assembler1' ],                    time:.5,      inputs:{ ironPlate:2 }, outputs:{ ironGearWheel:1 }, },
-    {   id:'electronicCircuit',     type:'recipe',        machines:[ 'manual', 'assembler1' ],                    time:.5,      inputs:{ copperCable:3, ironPlate:1 }, outputs:{ electronicCircuit:1 }, },
+    {   id:'copperCable',           type:'recipe',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ],      time:.5,      outputs:{ copperCable:2 },                                                inputs:{ copperPlate:1 },                                           },
+    {   id:'pipe',                  type:'recipe',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ],      time:.5,      outputs:{ pipe:1 },                                                       inputs:{ ironPlate:1 },                                             },
+    {   id:'ironGearWheel',         type:'recipe',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ],      time:.5,      outputs:{ ironGearWheel:1 },                                              inputs:{ ironPlate:2 },                                             },
+    {   id:'electronicCircuit',     type:'recipe',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ],      time:.5,      outputs:{ electronicCircuit:1 },                                          inputs:{ copperCable:3, ironPlate:1 },                              },
 
-    {   id:'furnace1',              type:'recipe',        machines:[ 'manual', 'assembler1' ],                    time:.5,      inputs:{ stone:5 }, outputs:{ furnace1:1 }, },
-    {   id:'drill1',                type:'recipe',        machines:[ 'manual', 'assembler1' ],                    time:2,       inputs:{ ironGearWheel:3, ironPlate:3, furnace1:1 }, outputs:{ drill1:1 }, },    
-    {   id:'assembler1',            type:'recipe',        machines:[ 'manual', 'assembler1' ],                    time:.5,      inputs:{ electronicCircuit:3, ironGearWheel:5, ironPlate:9 }, outputs:{ assembler1:1 }, reqs:[ 'automation1' ], },    
-    {   id:'offshorePump',          type:'recipe',        machines:[ 'manual', 'assembler1' ],                    time:.5,      inputs:{ ironGearWheel:1, pipe:1, electronicCircuit:2 }, outputs:{ offshorePump:1 }, },    
-    {   id:'boiler',                type:'recipe',        machines:[ 'manual', 'assembler1' ],                    time:.5,      inputs:{ pipe:4, furnace1:1 }, outputs:{ boiler:1 }, },        
-    {   id:'steamEngine',           type:'recipe',        machines:[ 'manual', 'assembler1' ],                    time:.5,      inputs:{ ironGearWheel:8, ironPlate:10, pipe:5 }, outputs:{ steamEngine:1 }, },    
-    {   id:'lab',                   type:'recipe',        machines:[ 'manual', 'assembler1' ],                    time:3,       inputs:{ electronicCircuit:10, ironGearWheel:12, ironPlate:2 }, outputs:{ lab:1 }, },    
-    {   id:'redPack',               type:'recipe',        machines:[ 'manual', 'assembler1' ],                    time:5,       inputs:{ copperPlate:1, ironGearWheel:1 }, outputs:{ redPack:1 }, },    
+    {   id:'furnace1',              type:'recipe',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ],      time:.5,      outputs:{ furnace1:1 },                                                   inputs:{ stone:5 },                                                 },
+    {   id:'drill1',                type:'recipe',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ],      time:2,       outputs:{ drill1:1 },                                                     inputs:{ ironGearWheel:3, ironPlate:3, furnace1:1 },                },    
+    {   id:'assembler1',            type:'recipe',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ],      time:.5,      outputs:{ assembler1:1 },                 reqs:[ 'automation1' ],         inputs:{ electronicCircuit:3, ironGearWheel:5, ironPlate:9 },       },    
+    {   id:'offshorePump',          type:'recipe',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ],      time:.5,      outputs:{ offshorePump:1 },                                               inputs:{ ironGearWheel:1, pipe:1, electronicCircuit:2 },            },    
+    {   id:'boiler',                type:'recipe',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ],      time:.5,      outputs:{ boiler:1 },                                                     inputs:{ pipe:4, furnace1:1 },                                      },        
+    {   id:'steamEngine',           type:'recipe',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ],      time:.5,      outputs:{ steamEngine:1 },                                                inputs:{ ironGearWheel:8, ironPlate:10, pipe:5 },                   },    
+    {   id:'lab',                   type:'recipe',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ],      time:3,       outputs:{ lab:1 },                                                        inputs:{ electronicCircuit:10, ironGearWheel:12, ironPlate:2 },     },    
+    {   id:'redPack',               type:'recipe',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ],      time:5,       outputs:{ redPack:1 },                                                    inputs:{ copperPlate:1, ironGearWheel:1 },                          },    
+    {   id:'woodChest',             type:'recipe',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ],      time:.5,      outputs:{ woodChest:1 },                                                  inputs:{ wood:2 },                                                  },    
 
-    {   id:'ironPlate',             type:'recipe',        machines:[ 'furnace1' ],                  time:3.2,     inputs:{ iron:1 }, outputs:{ ironPlate:1 }, },
-    {   id:'copperPlate',           type:'recipe',        machines:[ 'furnace1' ],                  time:3.2,     inputs:{ copper:1 }, outputs:{ copperPlate:1 }, },
+    {   id:'ironPlate',             type:'recipe',        machines:[ 'furnace1', 'furnace2', 'furnace3' ],                      time:3.2,     outputs:{ ironPlate:1 },                                                  inputs:{ iron:1 },                                                  },
+    {   id:'copperPlate',           type:'recipe',        machines:[ 'furnace1', 'furnace2', 'furnace3' ],                      time:3.2,     outputs:{ copperPlate:1 },                                                inputs:{ copper:1 },                                                },
+    {   id:'stoneBrick',            type:'recipe',        machines:[ 'furnace1', 'furnace2', 'furnace3' ],                      time:3.2,     outputs:{ stoneBrick:1 },                                                 inputs:{ stone:2 },                                                 },
+    {   id:'steelPlate',            type:'recipe',        machines:[ 'furnace1', 'furnace2', 'furnace3' ],                      time:16,      outputs:{ steelPlate:1 },                 reqs:[ 'steelProcessing' ],     inputs:{ ironPlate:5 },                                             },
     
-    {   id:'water',                 type:'recipe',        machines:[ 'offshorePump' ],              time:1,       outputs:{ water:1200 }, },
+    {   id:'water',                 type:'recipe',        machines:[ 'offshorePump' ],                                          time:1,       outputs:{ water:1200 },                   },
     
-    {   id:'steam',                 type:'recipe',        machines:[ 'boiler' ],                    time:1,       inputs:{ water:60 }, outputs:{ steam:60 }, },
+    {   id:'steam',                 type:'recipe',        machines:[ 'boiler' ],                                                time:1,       outputs:{ steam:60 },                                                     inputs:{ water:60 },                                                },
     
-    {   id:'electricitySteam',      type:'recipe',        machines:[ 'steamEngine' ],               time:1,       inputs:{ steam:30 }, outputs:{ electricity:900 }, },
+    {   id:'electricitySteam',      type:'recipe',        machines:[ 'steamEngine' ],                                           time:1,       outputs:{ electricity:900 },                                              inputs:{ steam:30 },                                                },
 ]
 
 //------------------------------------------------------------------------------
@@ -509,23 +553,44 @@ class Recipe extends Base {
 
 var itemData = [
 
-    {   id:'coal',                  type:'item',        max:50, },
-    {   id:'copper',                type:'item',        max:50, },
-    {   id:'copperPlate',           type:'item',        max:50, },
-    {   id:'copperCable',           type:'item',        max:50, },
-    {   id:'electricity',           type:'item',        max:1200, },
-    {   id:'electronicCircuit',     type:'item',        max:50, },
-    {   id:'iron',                  type:'item',        max:50, },
-    {   id:'ironGearWheel',         type:'item',        max:50, },
-    {   id:'ironPlate',             type:'item',        max:50, },
-    {   id:'pipe',                  type:'item',        max:50, },
-    {   id:'redPack',               type:'item',        max:50, },
-    {   id:'steam',                 type:'item',        max:1200, },
-    {   id:'stone',                 type:'item',        max:50, },
-    {   id:'water',                 type:'item',        max:1200, },
+    {   id:'coal',                  type:'item',        max:50,     storages:[ 'woodChest', 'ironChest' ], },
+    {   id:'copper',                type:'item',        max:50,     storages:[ 'woodChest', 'ironChest' ], },
+    {   id:'copperPlate',           type:'item',        max:50,     storages:[ 'woodChest', 'ironChest' ], },
+    {   id:'copperCable',           type:'item',        max:50,     storages:[ 'woodChest', 'ironChest' ], },
+    {   id:'electricity',           type:'item',        max:1200,   },
+    {   id:'electronicCircuit',     type:'item',        max:50,     storages:[ 'woodChest', 'ironChest' ], },
+    {   id:'iron',                  type:'item',        max:50,     storages:[ 'woodChest', 'ironChest' ], },
+    {   id:'ironGearWheel',         type:'item',        max:50,     storages:[ 'woodChest', 'ironChest' ], },
+    {   id:'ironPlate',             type:'item',        max:50,     storages:[ 'woodChest', 'ironChest' ], },
+    {   id:'pipe',                  type:'item',        max:50,     storages:[ 'woodChest', 'ironChest' ], },
+    {   id:'redPack',               type:'item',        max:50,     storages:[ 'woodChest', 'ironChest' ], },
+    {   id:'steam',                 type:'item',        max:1200,   },
+    {   id:'stone',                 type:'item',        max:50,     storages:[ 'woodChest', 'ironChest' ], },
+    {   id:'water',                 type:'item',        max:1200,   },
+    {   id:'wood',                  type:'item',        max:50,     storages:[ 'woodChest', 'ironChest' ], },
+    {   id:'woodChest',             type:'item',        max:50,     },
 ]
 
+var storageData = {
+
+    ironChest: { id:'ironChest',    value:32,   },
+    woodChest: { id:'woodChest',    value:16,   },
+}
+
 //------------------------------------------------------------------------------
+
+class ItemStorage {
+
+    constructor(item, data) {
+    
+        this.item = item
+        
+        this.id = data.id
+        this.value = data.value
+        
+        this.count = 0
+    }
+}
 
 class Item extends Base {
 
@@ -533,6 +598,16 @@ class Item extends Base {
         super(game, data)
         
         this.max = data.max
+        
+        this.storages = []
+        if (data.storages) {
+            data.storages.forEach(storageId => {
+                
+                let data = storageData[storageId]            
+                let storage = new ItemStorage(this, data)
+                this.storages.push(storage)
+            })
+        }
     }
     
     //---
@@ -540,6 +615,10 @@ class Item extends Base {
     getMax() {
     
         let ret = this.max
+        this.storages.forEach(storage => {
+            ret += storage.count * storage.value
+        })
+        
         return ret
     }
 }
@@ -549,12 +628,12 @@ class Item extends Base {
 var machineData = [
 
     {   id:'manual',                type:'machine',     auto:false,     speed:1,    },
-    {   id:'furnace1',              type:'machine',     auto:true,      speed:1,    energy:{ id:'coal', count:0.02 }, },
-    {   id:'drill1',                type:'machine',     auto:true,      speed:1,    energy:{ id:'coal', count:0.14 }, },
+    {   id:'furnace1',              type:'machine',     auto:true,      speed:1,    energy:{ id:'coal', count:0.02 },       },
+    {   id:'drill1',                type:'machine',     auto:true,      speed:1,    energy:{ id:'coal', count:0.14 },       },
     {   id:'offshorePump',          type:'machine',     auto:true,      speed:1,    },
-    {   id:'boiler',                type:'machine',     auto:true,      speed:1,    energy:{ id:'coal', count:2 }, },
+    {   id:'boiler',                type:'machine',     auto:true,      speed:1,    energy:{ id:'coal', count:2 },          },
     {   id:'steamEngine',           type:'machine',     auto:true,      speed:1,    },
-    {   id:'assembler1',            type:'machine',     auto:true,      speed:.5,   energy:{ id:'electricity', count:75 }, reqs:[ 'automation1' ], },
+    {   id:'assembler1',            type:'machine',     auto:true,      speed:.5,   energy:{ id:'electricity', count:75 },  reqs:[ 'automation1' ], },
 ]
 
 //------------------------------------------------------------------------------
@@ -1026,10 +1105,13 @@ class Game {
             data.machines.forEach(machineId => {
                 
                 let machine = this.machines[machineId]
-                let group = new MachineGroup(machine)
-                machine.groups.push(group)                
-                if (machineId == 'manual') group.count = 1
-                group.assignRecipe(recipe)
+                if (machine) {
+                
+                    let group = new MachineGroup(machine)
+                    machine.groups.push(group)                
+                    if (machineId == 'manual') group.count = 1
+                    group.assignRecipe(recipe)
+                }
             })
         })
         
@@ -1096,7 +1178,22 @@ class Game {
         
         return ret
     }
+    
+    getStorageAssignedCount(storageId) {
+    
+        let ret = 0
+        for (let itemId in this.items) {
+            let item = this.items[itemId]
+            item.storages.forEach(itemStorage => {
+                if (itemStorage.id == storageId) {
+                    ret += itemStorage.count
+                }
+            })
+        }
         
+        return ret
+    }
+    
     //---
     
     load(data) {
@@ -1296,6 +1393,7 @@ export default {
             currentTabId: 'machines',
             
             currentMachineSubTabId: 'manual',
+            currentStorageSubTabId: 'woodChest',
             
             //---
             
@@ -1326,6 +1424,7 @@ export default {
         setCurrentTabId(tabId) { this.currentTabId = tabId },
         
         setCurrentMachineSubtabId(subtabId) { this.currentMachineSubTabId = subtabId },
+        setCurrentStorageSubtabId(subtabId) { this.currentStorageSubTabId = subtabId },
         
         //---
         

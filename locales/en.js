@@ -4,6 +4,7 @@ export default {
     
     'menuTab_machines': 'Production',
     'menuTab_settings': 'Settings',
+    'menuTab_storages': 'Storages',
     
     'name_assembler1': 'Assembler 1',
     'name_automation1': 'Automation 1',
@@ -28,4 +29,5 @@ export default {
     'name_steamEngine': 'Steam Engine',
     'name_stone': 'Stone',
     'name_water': 'Water',
+    'name_woodChest': 'Wooden Chest',
 }
