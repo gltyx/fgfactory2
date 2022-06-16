@@ -18,6 +18,7 @@ export default {
     'name_electronicCircuit': 'Electronic Circuit',
     'name_furnace1': 'Stone Furnace',
     'name_iron': 'Iron',
+    'name_ironChest': 'Iron Chest',
     'name_ironGearWheel': 'Iron Gear Wheel',
     'name_ironPlate': 'Iron Plate',
     'name_lab': 'Lab',

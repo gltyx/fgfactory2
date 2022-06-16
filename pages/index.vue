@@ -282,6 +282,9 @@
                                 <div class="col-12 mt-3"><div class="subtitle">Science</div></div>
                                 <Lab :data="game.lab" />
                                 <Item :data="game.items['redPack']" />
+                                <div class="col-12 mt-3"><div class="subtitle">Storage</div></div>
+                                <Item :data="game.items['woodChest']" />
+                                <Item :data="game.items['ironChest']" />
                             </div>
                         </div>
                         <div class="h-100 col-9 d-flex flex-column">
@@ -330,6 +333,9 @@
                                 <Stock :data="game.items['electricity']" />
                                 <div class="col-12 mt-3"><div class="subtitle">Science</div></div>
                                 <Stock :data="game.items['redPack']" />
+                                <div class="col-12 mt-3"><div class="subtitle">Storage</div></div>
+                                <Stock :data="game.items['woodChest']" />
+                                <Stock :data="game.items['ironChest']" />
                             </div>
                         </div>
                         <div class="col-9">
@@ -337,9 +343,11 @@
                                 <div class="col-12">
                                     <div class="nav nav-pills">
                                         <StorageSubTab :data="game.items['woodChest']" />
+                                        <StorageSubTab :data="game.items['ironChest']" />
                                     </div>
                                 </div>
                                 <Storage :data="game.items['woodChest']" />
+                                <Storage :data="game.items['ironChest']" />
                             </div>
                         </div>
                     </div>
@@ -520,7 +528,8 @@ var recipeData = [
     {   id:'steamEngine',           type:'recipe',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ],      time:.5,      outputs:{ steamEngine:1 },                                                inputs:{ ironGearWheel:8, ironPlate:10, pipe:5 },                   },    
     {   id:'lab',                   type:'recipe',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ],      time:3,       outputs:{ lab:1 },                                                        inputs:{ electronicCircuit:10, ironGearWheel:12, ironPlate:2 },     },    
     {   id:'redPack',               type:'recipe',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ],      time:5,       outputs:{ redPack:1 },                                                    inputs:{ copperPlate:1, ironGearWheel:1 },                          },    
-    {   id:'woodChest',             type:'recipe',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ],      time:.5,      outputs:{ woodChest:1 },                                                  inputs:{ wood:2 },                                                  },    
+    {   id:'woodChest',             type:'recipe',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ],      time:.5,      outputs:{ woodChest:1 },                                                  inputs:{ wood:2 },                                                  },
+    {   id:'ironChest',             type:'recipe',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ],      time:.5,      outputs:{ ironChest:1 },                                                  inputs:{ ironPlate:8 },                                             },
 
     {   id:'ironPlate',             type:'recipe',        machines:[ 'furnace1', 'furnace2', 'furnace3' ],                      time:3.2,     outputs:{ ironPlate:1 },                                                  inputs:{ iron:1 },                                                  },
     {   id:'copperPlate',           type:'recipe',        machines:[ 'furnace1', 'furnace2', 'furnace3' ],                      time:3.2,     outputs:{ copperPlate:1 },                                                inputs:{ copper:1 },                                                },
@@ -551,29 +560,32 @@ class Recipe extends Base {
 
 var itemData = [
 
-    {   id:'coal',                  type:'item',        max:50,     storages:[ 'woodChest', 'ironChest' ], },
-    {   id:'copper',                type:'item',        max:50,     storages:[ 'woodChest', 'ironChest' ], },
-    {   id:'copperPlate',           type:'item',        max:50,     storages:[ 'woodChest', 'ironChest' ], },
-    {   id:'copperCable',           type:'item',        max:50,     storages:[ 'woodChest', 'ironChest' ], },
+    {   id:'coal',                  type:'item',        max:50,     storages:[ 'woodChest', 'ironChest', 'steelChest' ], },
+    {   id:'copper',                type:'item',        max:50,     storages:[ 'woodChest', 'ironChest', 'steelChest' ], },
+    {   id:'copperPlate',           type:'item',        max:50,     storages:[ 'woodChest', 'ironChest', 'steelChest' ], },
+    {   id:'copperCable',           type:'item',        max:50,     storages:[ 'woodChest', 'ironChest', 'steelChest' ], },
     {   id:'electricity',           type:'item',        max:1200,   },
-    {   id:'electronicCircuit',     type:'item',        max:50,     storages:[ 'woodChest', 'ironChest' ], },
-    {   id:'iron',                  type:'item',        max:50,     storages:[ 'woodChest', 'ironChest' ], },
-    {   id:'ironGearWheel',         type:'item',        max:50,     storages:[ 'woodChest', 'ironChest' ], },
-    {   id:'ironPlate',             type:'item',        max:50,     storages:[ 'woodChest', 'ironChest' ], },
-    {   id:'pipe',                  type:'item',        max:50,     storages:[ 'woodChest', 'ironChest' ], },
-    {   id:'redPack',               type:'item',        max:50,     storages:[ 'woodChest', 'ironChest' ], },
+    {   id:'electronicCircuit',     type:'item',        max:50,     storages:[ 'woodChest', 'ironChest', 'steelChest' ], },
+    {   id:'iron',                  type:'item',        max:50,     storages:[ 'woodChest', 'ironChest', 'steelChest' ], },
+    {   id:'ironChest',             type:'item',        max:50,     storages:[ 'woodChest', 'ironChest', 'steelChest' ], },
+    {   id:'ironGearWheel',         type:'item',        max:50,     storages:[ 'woodChest', 'ironChest', 'steelChest' ], },
+    {   id:'ironPlate',             type:'item',        max:50,     storages:[ 'woodChest', 'ironChest', 'steelChest' ], },
+    {   id:'pipe',                  type:'item',        max:50,     storages:[ 'woodChest', 'ironChest', 'steelChest' ], },
+    {   id:'redPack',               type:'item',        max:50,     storages:[ 'woodChest', 'ironChest', 'steelChest' ], },
     {   id:'steam',                 type:'item',        max:1200,   },
-    {   id:'stone',                 type:'item',        max:50,     storages:[ 'woodChest', 'ironChest' ], },
-    {   id:'stoneBrick',            type:'item',        max:50,     storages:[ 'woodChest', 'ironChest' ], },
+    {   id:'steelChest',            type:'item',        max:50,     storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'steelProcessing' ], },
+    {   id:'stone',                 type:'item',        max:50,     storages:[ 'woodChest', 'ironChest', 'steelChest' ], },
+    {   id:'stoneBrick',            type:'item',        max:50,     storages:[ 'woodChest', 'ironChest', 'steelChest' ], },
     {   id:'water',                 type:'item',        max:1200,   },
-    {   id:'wood',                  type:'item',        max:50,     storages:[ 'woodChest', 'ironChest' ], },
-    {   id:'woodChest',             type:'item',        max:50,     },
+    {   id:'wood',                  type:'item',        max:50,     storages:[ 'woodChest', 'ironChest', 'steelChest' ], },
+    {   id:'woodChest',             type:'item',        max:50,     storages:[ 'woodChest', 'ironChest', 'steelChest' ], },
 ]
 
 var storageData = {
 
-    ironChest: { id:'ironChest',    value:32,   },
-    woodChest: { id:'woodChest',    value:16,   },
+    ironChest:  { id:'ironChest',    value:32,   },
+    steelChest: { id:'steelChest',   value:48,   },
+    woodChest:  { id:'woodChest',    value:16,   },
 }
 
 //------------------------------------------------------------------------------

@@ -48,6 +48,7 @@
                 <div class="row g-2 align-items-center">
                     <div class="col-12 pt-3"><div class="subtitle">Storages</div></div>
                     <div class="col-6"><ManualGroup :data="data.groups[17]" /></div>
+                    <div class="col-6"><ManualGroup :data="data.groups[18]" /></div>
                 </div>
             </div>
         </div>

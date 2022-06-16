@@ -1,6 +1,6 @@
 <template>
-    <div v-if="$parent.currentMachineSubTabId == data.id" class="col-12">
-        <div class="card">
+    <div v-if="$parent.currentMachineSubTabId == data.id" class="flex-grow-1 scrollbar">
+        <div class="card" style="max-height: 100%;">
             <div class="card-header">
                 <div class="row align-item-center">
                     <div class="col">
@@ -15,7 +15,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card-body">
+            <div class="card-body scrollbar">
                 <div class="row gx-4 align-item-center mb-2">
                     <div class="col-auto">
                         <div class="small fw-bold text-muted mb-1">Total</div>
