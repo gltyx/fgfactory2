@@ -21,7 +21,7 @@
                         <div class="small fw-bold text-muted mb-1">Total</div>
                         <span style="line-height:25px;"><FormatNumber :value="data.getCount()" /></span>
                     </div>
-                    <div class="col-auto">
+                    <div class="col-auto" :class="{ 'text-muted opacity-25':data.getAssignedCount() < 1 }">
                         <div class="small fw-bold text-muted mb-1">Assigned</div>
                         <span style="line-height:25px;"><FormatNumber :value="data.getAssignedCount()" /></span>
                     </div>
@@ -37,7 +37,9 @@
                         </div>
                     </div>
                 </div>
-                <MachineGroup v-for="(group, index) in data.groups" :key="index" :data="group" />
+                <div class="row g-2 align-item-center">
+                    <MachineGroup v-for="(group, index) in data.groups" :key="index" :data="group" />
+                </div>
             </div>
         </div>
     </div>

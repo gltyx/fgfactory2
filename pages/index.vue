@@ -230,7 +230,7 @@
             
             <div class="navbar fixed-bottom bg-dark">
                 <div class="container">
-                    <div class="w-100 row align-items-center">
+                    <div class="w-100 row gx-0 align-items-center">
                         <BottomButton label="Save" icon="fa-save" :click="manualSave" />
                         <BottomButton label="Support" icon="fa-hand-holding-heart" :click="showSupportPopup" />
                         <BottomButton label="Tutorial" icon="fa-question-circle" :click="enableTutorial" />
@@ -255,82 +255,80 @@
             </div>
             
             <div class="position-fixed top-0 bottom-0 start-0 end-0 py-3" style="margin-top:75px; margin-bottom:50px;">
-                <div class="h-100 position-relative container scrollbar">
+                <div class="h-100 position-relative container">
                     
-                    <div v-if="currentTabId == 'machines'" class="row g-3">
-                        <div class="col-3">
+                    <div v-if="currentTabId == 'machines'" class="h-100 row g-3">
+                        <div class="col-3 scrollbar">
                             <div class="row g-2 align-items-center">
-                                <div class="col-12 small"><span class="fw-bold text-muted">Extracted</span></div>
+                                <div class="col-12"><div class="subtitle">Extracted</div></div>
                                 <Item :data="game.items['wood']" />
                                 <Item :data="game.items['coal']" />
                                 <Item :data="game.items['stone']" />
                                 <Item :data="game.items['iron']" />
                                 <Item :data="game.items['copper']" />
-                                <div class="col-12 small"><span class="fw-bold text-muted">Fabricated</span></div>
+                                <div class="col-12 mt-3"><div class="subtitle">Fabricated</div></div>
+                                <Item :data="game.items['stoneBrick']" />
                                 <Item :data="game.items['copperPlate']" />
                                 <Item :data="game.items['copperCable']" />
                                 <Item :data="game.items['ironPlate']" />
                                 <Item :data="game.items['ironGearWheel']" />
                                 <Item :data="game.items['pipe']" />
                                 <Item :data="game.items['electronicCircuit']" />
-                                <div class="col-12 small"><span class="fw-bold text-muted">Fluids</span></div>
+                                <div class="col-12 mt-3"><div class="subtitle">Fluids</div></div>
                                 <Item :data="game.items['water']" />
-                                <div class="col-12 small"><span class="fw-bold text-muted">Energy</span></div>
+                                <div class="col-12 mt-3"><div class="subtitle">Energy</div></div>
                                 <Item :data="game.items['steam']" />
                                 <Item :data="game.items['electricity']" />
-                                <div class="col-12 small"><span class="fw-bold text-muted">Science</span></div>
+                                <div class="col-12 mt-3"><div class="subtitle">Science</div></div>
                                 <Lab :data="game.lab" />
                                 <Item :data="game.items['redPack']" />
                             </div>
                         </div>
-                        <div class="col-9">
-                            <div class="row g-3">
-                                <div class="col-12">
-                                    <div class="nav nav-pills">
-                                        <MachineSubTab :data="game.machines['manual']" />
-                                        <MachineSubTab :data="game.machines['furnace1']" />
-                                        <MachineSubTab :data="game.machines['drill1']" />
-                                        <MachineSubTab :data="game.machines['assembler1']" />
-                                        <MachineSubTab :data="game.machines['offshorePump']" />
-                                        <MachineSubTab :data="game.machines['boiler']" />
-                                        <MachineSubTab :data="game.machines['steamEngine']" />
-                                        <MachineSubTab :data="game.lab" />
-                                    </div>
-                                </div>
-                                <Manual :data="game.machines['manual']" />
-                                <Machine :data="game.machines['furnace1']" />
-                                <Machine :data="game.machines['drill1']" />
-                                <Machine :data="game.machines['assembler1']" />
-                                <Machine :data="game.machines['offshorePump']" />
-                                <Machine :data="game.machines['boiler']" />
-                                <Machine :data="game.machines['steamEngine']" />
-                                <MachineLab :data="game.lab" />
+                        <div class="h-100 col-9 d-flex flex-column">
+                            <div class="nav nav-pills row g-2 mb-3">
+                                <MachineSubTab :data="game.machines['manual']" />
+                                <MachineSubTab :data="game.machines['furnace1']" />
+                                <MachineSubTab :data="game.machines['drill1']" />
+                                <MachineSubTab :data="game.machines['assembler1']" />
+                                <MachineSubTab :data="game.machines['offshorePump']" />
+                                <MachineSubTab :data="game.machines['boiler']" />
+                                <MachineSubTab :data="game.machines['steamEngine']" />
+                                <MachineSubTab :data="game.lab" />
                             </div>
+                            <Manual :data="game.machines['manual']" />
+                            <Machine :data="game.machines['furnace1']" />
+                            <Machine :data="game.machines['drill1']" />
+                            <Machine :data="game.machines['assembler1']" />
+                            <Machine :data="game.machines['offshorePump']" />
+                            <Machine :data="game.machines['boiler']" />
+                            <Machine :data="game.machines['steamEngine']" />
+                            <MachineLab :data="game.lab" />
                         </div>
                     </div>
 
                     <div v-if="currentTabId == 'storages'" class="row g-3">
                         <div class="col-3">
                             <div class="row g-2 align-items-center">
-                                <div class="col-12 small"><span class="fw-bold text-muted">Extracted</span></div>
+                                <div class="col-12"><div class="subtitle">Extracted</div></div>
                                 <Stock :data="game.items['wood']" />
                                 <Stock :data="game.items['coal']" />
                                 <Stock :data="game.items['stone']" />
                                 <Stock :data="game.items['iron']" />
                                 <Stock :data="game.items['copper']" />
-                                <div class="col-12 small"><span class="fw-bold text-muted">Fabricated</span></div>
+                                <div class="col-12 mt-3"><div class="subtitle">Fabricated</div></div>
+                                <Stock :data="game.items['stoneBrick']" />
                                 <Stock :data="game.items['copperPlate']" />
                                 <Stock :data="game.items['copperCable']" />
                                 <Stock :data="game.items['ironPlate']" />
                                 <Stock :data="game.items['ironGearWheel']" />
                                 <Stock :data="game.items['pipe']" />
                                 <Stock :data="game.items['electronicCircuit']" />
-                                <div class="col-12 small"><span class="fw-bold text-muted">Fluids</span></div>
+                                <div class="col-12 mt-3"><div class="subtitle">Fluids</div></div>
                                 <Stock :data="game.items['water']" />
-                                <div class="col-12 small"><span class="fw-bold text-muted">Energy</span></div>
+                                <div class="col-12 mt-3"><div class="subtitle">Energy</div></div>
                                 <Stock :data="game.items['steam']" />
                                 <Stock :data="game.items['electricity']" />
-                                <div class="col-12 small"><span class="fw-bold text-muted">Science</span></div>
+                                <div class="col-12 mt-3"><div class="subtitle">Science</div></div>
                                 <Stock :data="game.items['redPack']" />
                             </div>
                         </div>
@@ -566,6 +564,7 @@ var itemData = [
     {   id:'redPack',               type:'item',        max:50,     storages:[ 'woodChest', 'ironChest' ], },
     {   id:'steam',                 type:'item',        max:1200,   },
     {   id:'stone',                 type:'item',        max:50,     storages:[ 'woodChest', 'ironChest' ], },
+    {   id:'stoneBrick',            type:'item',        max:50,     storages:[ 'woodChest', 'ironChest' ], },
     {   id:'water',                 type:'item',        max:1200,   },
     {   id:'wood',                  type:'item',        max:50,     storages:[ 'woodChest', 'ironChest' ], },
     {   id:'woodChest',             type:'item',        max:50,     },
@@ -616,7 +615,7 @@ class Item extends Base {
     
         let ret = this.max
         this.storages.forEach(storage => {
-            ret += storage.count * storage.value
+            ret += this.max * storage.count * storage.value
         })
         
         return ret
@@ -1209,6 +1208,14 @@ class Game {
                 if (item) {
                 
                     item.count = dataItem.count
+                    
+                    if (dataItem.storages) {
+                        item.storages.forEach(storage => {
+                            if (dataItem.storages[storage.id]) {
+                                storage.count = dataItem.storages[storage.id]
+                            }
+                        })
+                    }
                 }
             }
         }
@@ -1279,7 +1286,12 @@ class Game {
             
             ret.items[item.id] = {            
                 count: item.count,
+                storages: {},
             }
+            
+            item.storages.forEach(storage => {
+                ret.items[item.id].storages[storage.id] = storage.count
+            })
         }
         
         

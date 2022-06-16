@@ -5,7 +5,7 @@
                 <div class="col-auto">
                     <span class="h5"><i :class="'fas fa-fw ' + icon"></i></span>
                 </div>
-                <div class="col-auto">
+                <div class="d-none d-sm-block col-auto">
                     <span>{{ label }}</span>
                 </div>
             </div>

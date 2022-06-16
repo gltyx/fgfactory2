@@ -1,16 +1,16 @@
 <template>
     <div v-if="data.item.isUnlocked() == true" class="col-4">
-        <div class="card card-body border">
+        <div class="card card-body p-1">
             <div class="row align-items-center">
                 <div class="col-auto">
                     <img :src="require(`~/assets/vignets/${data.item.id}.png`)" width="18px" height="18px" :title="$t('name_' + data.item.id)" :alt="$t('name_' + data.item.id)" />
                 </div>
                 <div class="col">
-                    /<FormatNumber :value="data.item.getMax()" />
+                    <FormatNumber :value="data.item.getMax()" />
                 </div>
                 <div class="col-auto">
                     <div class="row gx-2 align-items-center">
-                        <div class="col-auto">
+                        <div class="col-auto text-muted" :class="{ 'opacity-25':data.count < 1 }">
                             <small class="text-muted">x</small>
                             <FormatNumber :value="data.count" />
                         </div>

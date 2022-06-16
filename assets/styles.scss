@@ -12,7 +12,7 @@ $info:                          #0dcaf0 !default;
 $warning:                       #ffc107 !default;
 $danger:                        #dc3545 !default;
 $light:                         #f7f7f7 !default;
-$dark:                          #444444 !default;
+$dark:                          #555555 !default;
 
 // Grid
 
@@ -107,14 +107,14 @@ $nav-tabs-link-active-border-color: $border-color $border-color $nav-tabs-link-a
 
 // Card
 
-$card-bg:                       #333333 !default;
+$card-bg:                       rgba(255, 255, 255, .05) !default;
 $card-spacer-y:                 calc($spacer / 1.5) !default;
 $card-spacer-x:                 $spacer !default;
 $card-title-spacer-y:           calc($spacer / 1.5) !default;
 $card-border-width:             0 !default;
 $card-border-color:             $border-color !default;
 $card-border-radius:            $border-radius !default;
-$card-cap-bg:                   #444444 !default;
+$card-cap-bg:                   #555555 !default;
 $card-cap-padding-y:            calc($spacer / 1.5) !default;
 $card-cap-padding-x:            $spacer !default;
 
@@ -204,5 +204,7 @@ body { width: 100%; height: 100%; overflow: hidden; }
 
 .btn-dark { color: $body-color; }
 .btn-dark:focus, .btn-dark:active:focus, .btn-dark.active:focus { box-shadow: none; }
+
+.subtitle { font-size: $small-font-size; color: $text-muted; font-weight: bold; }
 
 ////////////////////////////////////////////////////////////////////////////////

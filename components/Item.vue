@@ -1,6 +1,6 @@
 <template>
     <div v-if="data.isUnlocked() == true" class="col-auto">
-        <div class="position-relative card card-body">
+        <div class="position-relative card card-body align-items-center">
             <img :src="require(`~/assets/vignets/${data.id}.png`)" width="24px" height="24px" :title="$t('name_' + data.id)" :alt="$t('name_' + data.id)" />
             <div class="position-absolute start-0 top-0 small ps-1">
                 <FormatNumber class="text-shadow fw-bold" :class="{ 'text-muted':data.count == 0, 'text-danger':data.count >= data.getMax() }" :value="data.count" />

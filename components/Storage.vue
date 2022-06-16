@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-auto">
                         <div class="small fw-bold text-muted mb-1">Assigned</div>
-                        <span style="line-height:25px;"><FormatNumber :value="assignedCount" /></span>
+                        <span :class="{ 'text-muted opacity-25':assignedCount < 1 }" style="line-height:25px;"><FormatNumber :value="assignedCount" /></span>
                     </div>
                 </div>
                 <div class="row gx-2 gy-2 align-item-center">

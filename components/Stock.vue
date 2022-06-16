@@ -6,7 +6,7 @@
                 <FormatNumber class="text-shadow fw-bold" :class="{ 'text-muted':data.count == 0, 'text-danger':data.count >= data.getMax() }" :value="data.count" />
             </div>
             <div class="position-absolute end-0 bottom-0 small pe-1">
-                <span class="text-shadow fw-bold text-muted">/<FormatNumber :value="data.getMax()" /></span>                
+                <span class="text-shadow fw-bold text-muted"><FormatNumber :value="data.getMax()" /></span>                
             </div>
         </div>
     </div>

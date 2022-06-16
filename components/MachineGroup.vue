@@ -1,5 +1,5 @@
 <template>
-    <div v-if="data.recipe.isUnlocked() == true" class="py-2">
+    <div v-if="data.recipe.isUnlocked() == true" class="card card-body p-1">
         <div class="row align-items-center">
             <div class="col-auto">
                 <div class="row gx-2 align-items-center">
@@ -13,22 +13,18 @@
                             <i class="fas fa-fw fa-minus small"></i>
                         </button>
                     </div>
-                    <div class="col-auto" style="width:65px;">
+                    <div class="col-auto" :class="{ 'text-muted opacity-25':data.count < 1 }" style="width:65px;">
                         <small class="text-muted">x</small>
-                        <FormatNumber :value="data.count" />
+                        <span><FormatNumber :value="data.count" /></span>
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="row gx-2 align-items-center">
-                    <div class="col">
-                        <div class="card card-body border py-1">
-                            <div v-if="data.recipe != null" class="col row gx-1 align-items-center justify-content-end me-2">
-                                <div v-if="data.recipe.inputs" v-for="(count, id) in data.getInputs(data.recipe)" class="col-auto"><RecipeItem :id="id" :count="count" :class="{ 'text-danger':count > data.machine.game.getAvailableCount(id) }" /></div>
-                                <div v-if="data.recipe.inputs" class="col-auto"><i class="text-muted fas fa-fw fa-long-arrow-alt-right"></i></div>
-                                <div v-for="(count, id) in data.getOutputs(data.recipe)" class="col-auto"><RecipeItem :id="id" :count="count" :class="{ 'text-danger':data.machine.game.checkMax(id) == false }" /></div>
-                            </div>
-                        </div>
+                    <div v-if="data.recipe != null" class="col row gx-1 align-items-center justify-content-end me-2">
+                        <div v-if="data.recipe.inputs" v-for="(count, id) in data.getInputs(data.recipe)" class="col-auto"><RecipeItem :id="id" :count="count" :class="{ 'text-danger':count > data.machine.game.getAvailableCount(id) }" /></div>
+                        <div v-if="data.recipe.inputs" class="col-auto"><i class="text-muted fas fa-fw fa-long-arrow-alt-right"></i></div>
+                        <div v-for="(count, id) in data.getOutputs(data.recipe)" class="col-auto"><RecipeItem :id="id" :count="count" :class="{ 'text-danger':data.machine.game.checkMax(id) == false }" /></div>
                     </div>
                     <div class="col-auto">
                         <div class="text-center small mb-1"><FormatTime :value="data.remainingTime" /></div>

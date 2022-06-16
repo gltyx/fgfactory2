@@ -28,6 +28,8 @@ export default {
     'name_steam': 'Steam',
     'name_steamEngine': 'Steam Engine',
     'name_stone': 'Stone',
+    'name_stoneBrick': 'Stone Brick',
     'name_water': 'Water',
+    'name_wood': 'Wood',
     'name_woodChest': 'Wooden Chest',
 }
