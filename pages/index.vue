@@ -259,191 +259,135 @@
                     <div v-if="currentTabId == 'production'" class="h-100 row g-3">
                         <div class="col-auto scrollbar" style="width:475px;">
                             <div class="row g-3">
-                                <div class="col-12">
-                                    <button class="btn px-0 py-1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMachines" aria-expanded="false" aria-controls="collapseMachines">
-                                        <div class="subtitle mb-0"><i class="fas fa-fw fa-caret-down"></i> Machines</div>
-                                    </button>
-                                    <div class="collapse" id="collapseMachines">
-                                        <div class="row g-2">
-                                            <Item id="furnace1" :game="game" />
-                                            <Item id="furnace2" :game="game" />
-                                            <Item id="furnace3" :game="game" />
-                                            <Item id="drill1" :game="game" />
-                                            <Item id="drill2" :game="game" />
-                                            <Item id="assembler1" :game="game" />
-                                            <Item id="assembler2" :game="game" />
-                                            <Item id="assembler3" :game="game" />
-                                            <Item id="lab" :game="game" />
-                                            <Item id="offshorePump" :game="game" />
-                                            <Item id="pumpjack" :game="game" />
-                                            <Item id="oilRefinery" :game="game" />
-                                            <Item id="chemicalPlant" :game="game" />
-                                            <Item id="boiler" :game="game" />
-                                            <Item id="steamEngine" :game="game" />
-                                            <Item id="solarPanel" :game="game" />
-                                            <Item id="constructionRobot" :game="game" />
-                                            <Item id="centrifuge" :game="game" />
-                                            <Item id="nuclearReactor" :game="game" />
-                                            <Item id="heatExchanger" :game="game" />
-                                            <Item id="steamTurbine" :game="game" />
-                                            <Item id="rocketSilo" :game="game" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn px-0 py-1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseStorages" aria-expanded="false" aria-controls="collapseStorages">
-                                        <div class="subtitle mb-0"><i class="fas fa-fw fa-caret-down"></i> Storages</div>
-                                    </button>
-                                    <div class="collapse" id="collapseStorages">
-                                        <div class="row g-2">
-                                            <Item id="woodChest" :game="game" />
-                                            <Item id="ironChest" :game="game" />
-                                            <Item id="steelChest" :game="game" />
-                                            <Item id="storageTank" :game="game" />
-                                            <Item id="barrel" :game="game" />
-                                            <Item id="accumulator" :game="game" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn px-0 py-1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseScience" aria-expanded="false" aria-controls="collapseScience">
-                                        <div class="subtitle mb-0"><i class="fas fa-fw fa-caret-down"></i> Science Packs</div>
-                                    </button>
-                                    <div class="collapse" id="collapseScience">
-                                        <div class="row g-2">
-                                            <Item id="redPack" :game="game" />
-                                            <Item id="greenPack" :game="game" />
-                                            <Item id="grayPack" :game="game" />
-                                            <Item id="bluePack" :game="game" />
-                                            <Item id="purplePack" :game="game" />
-                                            <Item id="yellowPack" :game="game" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn px-0 py-1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseModules" aria-expanded="false" aria-controls="collapseModules">
-                                        <div class="subtitle mb-0"><i class="fas fa-fw fa-caret-down"></i> Modules</div>
-                                    </button>
-                                    <div class="collapse" id="collapseModules">
-                                        <div class="row g-2">
-                                            <Item id="speedModule1" :game="game" />
-                                            <Item id="speedModule2" :game="game" />
-                                            <Item id="speedModule3" :game="game" />
-                                            <Item id="efficiencyModule1" :game="game" />
-                                            <Item id="efficiencyModule2" :game="game" />
-                                            <Item id="efficiencyModule3" :game="game" />
-                                            <Item id="productivityModule1" :game="game" />
-                                            <Item id="productivityModule2" :game="game" />
-                                            <Item id="productivityModule3" :game="game" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn px-0 py-1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRaw" aria-expanded="false" aria-controls="collapseRaw">
-                                        <div class="subtitle mb-0"><i class="fas fa-fw fa-caret-down"></i> Raw</div>
-                                    </button>
-                                    <div class="collapse" id="collapseRaw">
-                                        <div class="row g-2">
-                                            <Item id="wood" :game="game" />
-                                            <Item id="coal" :game="game" />
-                                            <Item id="stone" :game="game" />
-                                            <Item id="iron" :game="game" />
-                                            <Item id="copper" :game="game" />
-                                            <Item id="uranium" :game="game" />
-                                            <Item id="water" :game="game" />
-                                            <Item id="oil" :game="game" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn px-0 py-1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFabricated" aria-expanded="false" aria-controls="collapseFabricated">
-                                        <div class="subtitle mb-0"><i class="fas fa-fw fa-caret-down"></i> Fabricated</div>
-                                    </button>
-                                    <div class="collapse" id="collapseFabricated">
-                                        <div class="row g-2">
-                                            <Item id="ironPlate" :game="game" />
-                                            <Item id="copperPlate" :game="game" />
-                                            <Item id="steelPlate" :game="game" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn px-0 py-1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseItems" aria-expanded="false" aria-controls="collapseItems">
-                                        <div class="subtitle mb-0"><i class="fas fa-fw fa-caret-down"></i> Items</div>
-                                    </button>
-                                    <div class="collapse" id="collapseItems">
-                                        <div class="row g-2">
-                                            <Item id="steam" :game="game" />
-                                            <Item id="heavyOil" :game="game" />
-                                            <Item id="lightOil" :game="game" />
-                                            <Item id="lubricant" :game="game" />
-                                            <Item id="petroleumGas" :game="game" />
-                                            <Item id="sulfuricAcid" :game="game" />
-                                            <Item id="solidFuel" :game="game" />
-                                            <Item id="plasticBar" :game="game" />
-                                            <Item id="sulfur" :game="game" />
-                                            <Item id="battery" :game="game" />
-                                            <Item id="explosives" :game="game" />
-                                            <Item id="copperCable" :game="game" />
-                                            <Item id="ironStick" :game="game" />
-                                            <Item id="ironGearWheel" :game="game" />
-                                            <Item id="electronicCircuit" :game="game" />
-                                            <Item id="advancedCircuit" :game="game" />
-                                            <Item id="processingUnit" :game="game" />
-                                            <Item id="engineUnit" :game="game" />
-                                            <Item id="electricEngineUnit" :game="game" />
-                                            <Item id="flyingRobot" :game="game" />
-                                            <Item id="rocketPart" :game="game" />
-                                            <Item id="rocketControlUnit" :game="game" />
-                                            <Item id="lowDensityStructure" :game="game" />
-                                            <Item id="rocketFuel" :game="game" />
-                                            <Item id="nuclearFuel" :game="game" />
-                                            <Item id="uranium235" :game="game" />
-                                            <Item id="uranium238" :game="game" />
-                                            <Item id="uraniumFuelCell" :game="game" />
-                                            <Item id="heat" :game="game" />
-                                            <Item id="satellite" :game="game" />
-                                            <Item id="electricity" :game="game" />
-                                            <Item id="pipe" :game="game" />
-                                            <Item id="stoneBrick" :game="game" />
-                                            <Item id="concrete" :game="game" />
-                                            <Item id="portableFusionReactor" :game="game" />
-                                            <Item id="radar" :game="game" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn px-0 py-1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWeapons" aria-expanded="false" aria-controls="collapseWeapons">
-                                        <div class="subtitle mb-0"><i class="fas fa-fw fa-caret-down"></i> Weapons</div>
-                                    </button>
-                                    <div class="collapse" id="collapseWeapons">
-                                        <div class="row g-2">
-                                            <Item id="pistol" :game="game" />
-                                            <Item id="submachineGun" :game="game" />
-                                            <Item id="shotgun" :game="game" />
-                                            <Item id="combatShotgun" :game="game" />
-                                            <Item id="rocketLauncher" :game="game" />
-                                            <Item id="gunTurret" :game="game" />
-                                            <Item id="laserTurret" :game="game" />
-                                            <Item id="artilleryTurret" :game="game" />
-                                            <Item id="car" :game="game" />
-                                            <Item id="tank" :game="game" />
-                                            <Item id="spidertron" :game="game" />
-                                            <Item id="firearmMagazine" :game="game" />
-                                            <Item id="piercingMagazine" :game="game" />
-                                            <Item id="uraniumMagazine" :game="game" />
-                                            <Item id="shotgunShells" :game="game" />
-                                            <Item id="piercingShells" :game="game" />
-                                            <Item id="cannonShell" :game="game" />
-                                            <Item id="explosiveCannonShell" :game="game" />
-                                            <Item id="uraniumCannonShell" :game="game" />
-                                            <Item id="artilleryShell" :game="game" />
-                                            <Item id="rocket" :game="game" />
-                                            <Item id="explosiveRocket" :game="game" />
-                                            <Item id="atomicBomb" :game="game" />
-                                        </div>
-                                    </div>
-                                </div>
+                                <Category id="machines">
+                                    <Item id="furnace1" :game="game" />
+                                    <Item id="furnace2" :game="game" />
+                                    <Item id="furnace3" :game="game" />
+                                    <Item id="drill1" :game="game" />
+                                    <Item id="drill2" :game="game" />
+                                    <Item id="assembler1" :game="game" />
+                                    <Item id="assembler2" :game="game" />
+                                    <Item id="assembler3" :game="game" />
+                                    <Item id="lab" :game="game" />
+                                    <Item id="offshorePump" :game="game" />
+                                    <Item id="pumpjack" :game="game" />
+                                    <Item id="oilRefinery" :game="game" />
+                                    <Item id="chemicalPlant" :game="game" />
+                                    <Item id="boiler" :game="game" />
+                                    <Item id="steamEngine" :game="game" />
+                                    <Item id="solarPanel" :game="game" />
+                                    <Item id="constructionRobot" :game="game" />
+                                    <Item id="centrifuge" :game="game" />
+                                    <Item id="nuclearReactor" :game="game" />
+                                    <Item id="heatExchanger" :game="game" />
+                                    <Item id="steamTurbine" :game="game" />
+                                    <Item id="rocketSilo" :game="game" />
+                                </Category>
+                                <Category id="raw">
+                                    <Item id="wood" :game="game" />
+                                    <Item id="coal" :game="game" />
+                                    <Item id="stone" :game="game" />
+                                    <Item id="iron" :game="game" />
+                                    <Item id="copper" :game="game" />
+                                    <Item id="uranium" :game="game" />
+                                    <Item id="water" :game="game" />
+                                    <Item id="oil" :game="game" />
+                                </Category>
+                                <Category id="fabricated">
+                                    <Item id="ironPlate" :game="game" />
+                                    <Item id="steelPlate" :game="game" />
+                                    <Item id="ironStick" :game="game" />
+                                    <Item id="ironGearWheel" :game="game" />
+                                    <Item id="pipe" :game="game" />
+                                    <Item id="engineUnit" :game="game" />
+                                    <Item id="copperPlate" :game="game" />
+                                    <Item id="copperCable" :game="game" />
+                                    <Item id="stoneBrick" :game="game" />
+                                    <Item id="concrete" :game="game" />
+                                </Category>
+                                <Category id="items">
+                                    <Item id="heat" :game="game" />
+                                    <Item id="steam" :game="game" />
+                                    <Item id="electricity" :game="game" />
+                                    <Item id="heavyOil" :game="game" />
+                                    <Item id="lightOil" :game="game" />
+                                    <Item id="lubricant" :game="game" />
+                                    <Item id="petroleumGas" :game="game" />
+                                    <Item id="sulfur" :game="game" />
+                                    <Item id="sulfuricAcid" :game="game" />
+                                    <Item id="solidFuel" :game="game" />
+                                    <Item id="plasticBar" :game="game" />
+                                    <Item id="battery" :game="game" />
+                                    <Item id="explosives" :game="game" />
+                                    <Item id="uranium235" :game="game" />
+                                    <Item id="uranium238" :game="game" />
+                                    <Item id="uraniumFuelCell" :game="game" />
+                                    <Item id="nuclearFuel" :game="game" />
+                                    <Item id="electronicCircuit" :game="game" />
+                                    <Item id="advancedCircuit" :game="game" />
+                                    <Item id="processingUnit" :game="game" />
+                                    <Item id="electricEngineUnit" :game="game" />
+                                    <Item id="flyingRobot" :game="game" />
+                                    <Item id="radar" :game="game" />
+                                    <Item id="rocketControlUnit" :game="game" />
+                                    <Item id="lowDensityStructure" :game="game" />
+                                    <Item id="rocketFuel" :game="game" />
+                                    <Item id="rocketPart" :game="game" />
+                                    <Item id="portableFusionReactor" :game="game" />
+                                    <Item id="satellite" :game="game" />
+                                </Category>
+                                <Category id="storages">
+                                    <Item id="woodChest" :game="game" />
+                                    <Item id="ironChest" :game="game" />
+                                    <Item id="steelChest" :game="game" />
+                                    <Item id="storageTank" :game="game" />
+                                    <Item id="barrel" :game="game" />
+                                    <Item id="accumulator" :game="game" />
+                                </Category>
+                                <Category id="science">
+                                    <Item id="redPack" :game="game" />
+                                    <Item id="greenPack" :game="game" />
+                                    <Item id="grayPack" :game="game" />
+                                    <Item id="bluePack" :game="game" />
+                                    <Item id="purplePack" :game="game" />
+                                    <Item id="yellowPack" :game="game" />
+                                </Category>
+                                <Category id="modules">
+                                    <Item id="speedModule1" :game="game" />
+                                    <Item id="speedModule2" :game="game" />
+                                    <Item id="speedModule3" :game="game" />
+                                    <Item id="efficiencyModule1" :game="game" />
+                                    <Item id="efficiencyModule2" :game="game" />
+                                    <Item id="efficiencyModule3" :game="game" />
+                                    <Item id="productivityModule1" :game="game" />
+                                    <Item id="productivityModule2" :game="game" />
+                                    <Item id="productivityModule3" :game="game" />
+                                </Category>
+                                <Category id="weapons">
+                                    <Item id="pistol" :game="game" />
+                                    <Item id="submachineGun" :game="game" />
+                                    <Item id="shotgun" :game="game" />
+                                    <Item id="combatShotgun" :game="game" />
+                                    <Item id="rocketLauncher" :game="game" />
+                                    <Item id="gunTurret" :game="game" />
+                                    <Item id="laserTurret" :game="game" />
+                                    <Item id="artilleryTurret" :game="game" />
+                                    <Item id="car" :game="game" />
+                                    <Item id="tank" :game="game" />
+                                    <Item id="spidertron" :game="game" />
+                                    <Item id="firearmMagazine" :game="game" />
+                                    <Item id="piercingMagazine" :game="game" />
+                                    <Item id="uraniumMagazine" :game="game" />
+                                    <Item id="shotgunShells" :game="game" />
+                                    <Item id="piercingShells" :game="game" />
+                                    <Item id="cannonShell" :game="game" />
+                                    <Item id="explosiveCannonShell" :game="game" />
+                                    <Item id="uraniumCannonShell" :game="game" />
+                                    <Item id="artilleryShell" :game="game" />
+                                    <Item id="rocket" :game="game" />
+                                    <Item id="explosiveRocket" :game="game" />
+                                    <Item id="atomicBomb" :game="game" />
+                                </Category>
                             </div>
                         </div>
                         <div class="h-100 col d-flex flex-column">

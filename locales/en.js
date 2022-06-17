@@ -5,6 +5,15 @@ export default {
     'menuTab_production': 'Production',
     'menuTab_settings': 'Settings',
     
+    'category_machines': 'Machines',
+    'category_raw': 'Raw',
+    'category_fabricated': 'Fabricated',
+    'category_items': 'Items',
+    'category_storages': 'Storages',
+    'category_science': 'Science',
+    'category_modules': 'Modules',
+    'category_weapons': 'Weapons',
+    
     'name_assembler1': 'Assembler 1',
     'name_automation1': 'Automation 1',
     'name_boiler': 'Boiler',
