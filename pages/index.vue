@@ -260,8 +260,8 @@
                         <div class="col-auto scrollbar" style="width:475px;">
                             <div class="row g-3">
                                 <div class="col-12">
-                                    <button class="btn px-0 py-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMachines" aria-expanded="false" aria-controls="collapseMachines">
-                                        <div class="subtitle mb-0">Machines</div>
+                                    <button class="btn px-0 py-1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMachines" aria-expanded="false" aria-controls="collapseMachines">
+                                        <div class="subtitle mb-0"><i class="fas fa-fw fa-caret-down"></i> Machines</div>
                                     </button>
                                     <div class="collapse" id="collapseMachines">
                                         <div class="row g-2">
@@ -291,8 +291,8 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn px-0 py-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseStorages" aria-expanded="false" aria-controls="collapseStorages">
-                                        <div class="subtitle mb-0">Storages</div>
+                                    <button class="btn px-0 py-1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseStorages" aria-expanded="false" aria-controls="collapseStorages">
+                                        <div class="subtitle mb-0"><i class="fas fa-fw fa-caret-down"></i> Storages</div>
                                     </button>
                                     <div class="collapse" id="collapseStorages">
                                         <div class="row g-2">
@@ -306,8 +306,8 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn px-0 py-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseScience" aria-expanded="false" aria-controls="collapseScience">
-                                        <div class="subtitle mb-0">Science Packs</div>
+                                    <button class="btn px-0 py-1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseScience" aria-expanded="false" aria-controls="collapseScience">
+                                        <div class="subtitle mb-0"><i class="fas fa-fw fa-caret-down"></i> Science Packs</div>
                                     </button>
                                     <div class="collapse" id="collapseScience">
                                         <div class="row g-2">
@@ -321,8 +321,8 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn px-0 py-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseModules" aria-expanded="false" aria-controls="collapseModules">
-                                        <div class="subtitle mb-0">Modules</div>
+                                    <button class="btn px-0 py-1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseModules" aria-expanded="false" aria-controls="collapseModules">
+                                        <div class="subtitle mb-0"><i class="fas fa-fw fa-caret-down"></i> Modules</div>
                                     </button>
                                     <div class="collapse" id="collapseModules">
                                         <div class="row g-2">
@@ -339,10 +339,10 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn px-0 py-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseItems" aria-expanded="false" aria-controls="collapseItems">
-                                        <div class="subtitle mb-0">Items</div>
+                                    <button class="btn px-0 py-1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRaw" aria-expanded="false" aria-controls="collapseRaw">
+                                        <div class="subtitle mb-0"><i class="fas fa-fw fa-caret-down"></i> Raw</div>
                                     </button>
-                                    <div class="collapse" id="collapseItems">
+                                    <div class="collapse" id="collapseRaw">
                                         <div class="row g-2">
                                             <Item id="wood" :game="game" />
                                             <Item id="coal" :game="game" />
@@ -351,17 +351,35 @@
                                             <Item id="copper" :game="game" />
                                             <Item id="uranium" :game="game" />
                                             <Item id="water" :game="game" />
-                                            <Item id="steam" :game="game" />
                                             <Item id="oil" :game="game" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn px-0 py-1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFabricated" aria-expanded="false" aria-controls="collapseFabricated">
+                                        <div class="subtitle mb-0"><i class="fas fa-fw fa-caret-down"></i> Fabricated</div>
+                                    </button>
+                                    <div class="collapse" id="collapseFabricated">
+                                        <div class="row g-2">
+                                            <Item id="ironPlate" :game="game" />
+                                            <Item id="copperPlate" :game="game" />
+                                            <Item id="steelPlate" :game="game" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn px-0 py-1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseItems" aria-expanded="false" aria-controls="collapseItems">
+                                        <div class="subtitle mb-0"><i class="fas fa-fw fa-caret-down"></i> Items</div>
+                                    </button>
+                                    <div class="collapse" id="collapseItems">
+                                        <div class="row g-2">
+                                            <Item id="steam" :game="game" />
                                             <Item id="heavyOil" :game="game" />
                                             <Item id="lightOil" :game="game" />
                                             <Item id="lubricant" :game="game" />
                                             <Item id="petroleumGas" :game="game" />
                                             <Item id="sulfuricAcid" :game="game" />
-                                            <Item id="ironPlate" :game="game" />
-                                            <Item id="copperPlate" :game="game" />
                                             <Item id="solidFuel" :game="game" />
-                                            <Item id="steelPlate" :game="game" />
                                             <Item id="plasticBar" :game="game" />
                                             <Item id="sulfur" :game="game" />
                                             <Item id="battery" :game="game" />
@@ -395,8 +413,8 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn px-0 py-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWeapons" aria-expanded="false" aria-controls="collapseWeapons">
-                                        <div class="subtitle mb-0">Weapons</div>
+                                    <button class="btn px-0 py-1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWeapons" aria-expanded="false" aria-controls="collapseWeapons">
+                                        <div class="subtitle mb-0"><i class="fas fa-fw fa-caret-down"></i> Weapons</div>
                                     </button>
                                     <div class="collapse" id="collapseWeapons">
                                         <div class="row g-2">
