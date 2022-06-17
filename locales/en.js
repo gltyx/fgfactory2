@@ -2,9 +2,8 @@ export default {
     
     'abbr_day': 'd',
     
-    'menuTab_machines': 'Production',
+    'menuTab_production': 'Production',
     'menuTab_settings': 'Settings',
-    'menuTab_storages': 'Storages',
     
     'name_assembler1': 'Assembler 1',
     'name_automation1': 'Automation 1',

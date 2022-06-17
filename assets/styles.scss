@@ -205,6 +205,6 @@ body { width: 100%; height: 100%; overflow: hidden; }
 .btn-dark { color: $body-color; }
 .btn-dark:focus, .btn-dark:active:focus, .btn-dark.active:focus { box-shadow: none; }
 
-.subtitle { font-size: $small-font-size; color: $text-muted; font-weight: bold; }
+.subtitle { font-size: $small-font-size; color: $text-muted; text-transform: uppercase; margin-bottom: .25rem; }
 
 ////////////////////////////////////////////////////////////////////////////////
