@@ -7,10 +7,10 @@ $black:                         #000000 !default;
 
 $primary:                       #e69100 !default;
 $secondary:                     #6c757d !default;
-$success:                       #198754 !default;
+$success:                       #00ff89 !default;
 $info:                          #0dcaf0 !default;
 $warning:                       #ffc107 !default;
-$danger:                        #dc3545 !default;
+$danger:                        #ff0018 !default;
 $light:                         #f7f7f7 !default;
 $dark:                          #555555 !default;
 
@@ -45,7 +45,7 @@ $headings-line-height:          1.2 !default;
 
 $small-font-size:               .8em !default;
 
-$text-muted:                    rgba($body-color, .75) !default;
+$text-muted:                    rgba($body-color, .5) !default;
 
 // Link
 

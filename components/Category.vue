@@ -1,9 +1,9 @@
 <template>
     <div class="col-12">
-        <button class="btn px-0 py-1 collapsed" type="button" data-bs-toggle="collapse" :data-bs-target="'#collapse_' + id" aria-expanded="false" :aria-controls="'collapse_' + id">
+        <button class="btn px-0 py-1" :class="{ 'collapsed':!show }" type="button" data-bs-toggle="collapse" :data-bs-target="'#collapse_' + id" aria-expanded="false" :aria-controls="'collapse_' + id">
             <div class="subtitle mb-0"><i class="fas fa-fw fa-caret-down"></i> {{ $t('category_' + id) }}</div>
         </button>
-        <div class="collapse" :id="'collapse_' + id">
+        <div class="collapse" :class="{ 'show':show }" :id="'collapse_' + id">
             <div class="row g-2">
                 <slot />
             </div>
@@ -14,6 +14,6 @@
 <script>
 export default {
 
-    props: [ 'id' ],    
+    props: [ 'id', 'show' ],    
 }
 </script>

@@ -248,6 +248,7 @@
                 <div class="container">
                     <div class="row gx-0 align-items-center">
                         <TopMenuTab tabId="production" icon="fa-industry" />
+                        <TopMenuTab tabId="research" icon="fa-flask" />
                         <TopMenuTab tabId="settings" icon="fa-cogs" class="ms-auto" />
                     </div>
                 </div>
@@ -260,138 +261,153 @@
                         <div class="col-auto scrollbar" style="width:475px;">
                             <div class="row g-3">
                                 <Category id="machines">
-                                    <Item id="furnace1" :game="game" />
-                                    <Item id="furnace2" :game="game" />
-                                    <Item id="furnace3" :game="game" />
-                                    <Item id="drill1" :game="game" />
-                                    <Item id="drill2" :game="game" />
-                                    <Item id="assembler1" :game="game" />
-                                    <Item id="assembler2" :game="game" />
-                                    <Item id="assembler3" :game="game" />
-                                    <Item id="lab" :game="game" />
-                                    <Item id="offshorePump" :game="game" />
-                                    <Item id="pumpjack" :game="game" />
-                                    <Item id="oilRefinery" :game="game" />
-                                    <Item id="chemicalPlant" :game="game" />
-                                    <Item id="boiler" :game="game" />
-                                    <Item id="steamEngine" :game="game" />
-                                    <Item id="solarPanel" :game="game" />
-                                    <Item id="constructionRobot" :game="game" />
-                                    <Item id="centrifuge" :game="game" />
-                                    <Item id="nuclearReactor" :game="game" />
-                                    <Item id="heatExchanger" :game="game" />
-                                    <Item id="steamTurbine" :game="game" />
-                                    <Item id="rocketSilo" :game="game" />
+                                    <ItemButton id="furnace1" :game="game" />
+                                    <ItemButton id="furnace2" :game="game" />
+                                    <ItemButton id="furnace3" :game="game" />
+                                    <ItemButton id="drill1" :game="game" />
+                                    <ItemButton id="drill2" :game="game" />
+                                    <ItemButton id="assembler1" :game="game" />
+                                    <ItemButton id="assembler2" :game="game" />
+                                    <ItemButton id="assembler3" :game="game" />
+                                    <ItemButton id="lab" :game="game" />
+                                    <ItemButton id="offshorePump" :game="game" />
+                                    <ItemButton id="pumpjack" :game="game" />
+                                    <ItemButton id="oilRefinery" :game="game" />
+                                    <ItemButton id="chemicalPlant" :game="game" />
+                                    <ItemButton id="boiler" :game="game" />
+                                    <ItemButton id="steamEngine" :game="game" />
+                                    <ItemButton id="solarPanel" :game="game" />
+                                    <ItemButton id="constructionRobot" :game="game" />
+                                    <ItemButton id="centrifuge" :game="game" />
+                                    <ItemButton id="nuclearReactor" :game="game" />
+                                    <ItemButton id="heatExchanger" :game="game" />
+                                    <ItemButton id="steamTurbine" :game="game" />
+                                    <ItemButton id="rocketSilo" :game="game" />
                                 </Category>
-                                <Category id="raw">
-                                    <Item id="wood" :game="game" />
-                                    <Item id="coal" :game="game" />
-                                    <Item id="stone" :game="game" />
-                                    <Item id="iron" :game="game" />
-                                    <Item id="copper" :game="game" />
-                                    <Item id="uranium" :game="game" />
-                                    <Item id="water" :game="game" />
-                                    <Item id="oil" :game="game" />
+                                <Category id="raw" show="true">
+                                    <ItemButton id="wood" :game="game" />
+                                    <ItemButton id="coal" :game="game" />
+                                    <ItemButton id="stone" :game="game" />
+                                    <ItemButton id="iron" :game="game" />
+                                    <ItemButton id="copper" :game="game" />
+                                    <ItemButton id="uranium" :game="game" />
+                                    <ItemButton id="water" :game="game" />
+                                    <ItemButton id="oil" :game="game" />
                                 </Category>
                                 <Category id="fabricated">
-                                    <Item id="ironPlate" :game="game" />
-                                    <Item id="steelPlate" :game="game" />
-                                    <Item id="ironStick" :game="game" />
-                                    <Item id="ironGearWheel" :game="game" />
-                                    <Item id="pipe" :game="game" />
-                                    <Item id="engineUnit" :game="game" />
-                                    <Item id="copperPlate" :game="game" />
-                                    <Item id="copperCable" :game="game" />
-                                    <Item id="stoneBrick" :game="game" />
-                                    <Item id="concrete" :game="game" />
+                                    <ItemButton id="ironPlate" :game="game" />
+                                    <ItemButton id="steelPlate" :game="game" />
+                                    <ItemButton id="ironStick" :game="game" />
+                                    <ItemButton id="ironGearWheel" :game="game" />
+                                    <ItemButton id="pipe" :game="game" />
+                                    <ItemButton id="engineUnit" :game="game" />
+                                    <ItemButton id="copperPlate" :game="game" />
+                                    <ItemButton id="copperCable" :game="game" />
+                                    <ItemButton id="stoneBrick" :game="game" />
+                                    <ItemButton id="concrete" :game="game" />
                                 </Category>
                                 <Category id="items">
-                                    <Item id="heat" :game="game" />
-                                    <Item id="steam" :game="game" />
-                                    <Item id="electricity" :game="game" />
-                                    <Item id="heavyOil" :game="game" />
-                                    <Item id="lightOil" :game="game" />
-                                    <Item id="lubricant" :game="game" />
-                                    <Item id="petroleumGas" :game="game" />
-                                    <Item id="sulfur" :game="game" />
-                                    <Item id="sulfuricAcid" :game="game" />
-                                    <Item id="solidFuel" :game="game" />
-                                    <Item id="plasticBar" :game="game" />
-                                    <Item id="battery" :game="game" />
-                                    <Item id="explosives" :game="game" />
-                                    <Item id="uranium235" :game="game" />
-                                    <Item id="uranium238" :game="game" />
-                                    <Item id="uraniumFuelCell" :game="game" />
-                                    <Item id="nuclearFuel" :game="game" />
-                                    <Item id="electronicCircuit" :game="game" />
-                                    <Item id="advancedCircuit" :game="game" />
-                                    <Item id="processingUnit" :game="game" />
-                                    <Item id="electricEngineUnit" :game="game" />
-                                    <Item id="flyingRobot" :game="game" />
-                                    <Item id="radar" :game="game" />
-                                    <Item id="rocketControlUnit" :game="game" />
-                                    <Item id="lowDensityStructure" :game="game" />
-                                    <Item id="rocketFuel" :game="game" />
-                                    <Item id="rocketPart" :game="game" />
-                                    <Item id="portableFusionReactor" :game="game" />
-                                    <Item id="satellite" :game="game" />
+                                    <ItemButton id="heat" :game="game" />
+                                    <ItemButton id="steam" :game="game" />
+                                    <ItemButton id="electricity" :game="game" />
+                                    <ItemButton id="heavyOil" :game="game" />
+                                    <ItemButton id="lightOil" :game="game" />
+                                    <ItemButton id="lubricant" :game="game" />
+                                    <ItemButton id="petroleumGas" :game="game" />
+                                    <ItemButton id="sulfur" :game="game" />
+                                    <ItemButton id="sulfuricAcid" :game="game" />
+                                    <ItemButton id="solidFuel" :game="game" />
+                                    <ItemButton id="plasticBar" :game="game" />
+                                    <ItemButton id="battery" :game="game" />
+                                    <ItemButton id="explosives" :game="game" />
+                                    <ItemButton id="uranium235" :game="game" />
+                                    <ItemButton id="uranium238" :game="game" />
+                                    <ItemButton id="uraniumFuelCell" :game="game" />
+                                    <ItemButton id="nuclearFuel" :game="game" />
+                                    <ItemButton id="electronicCircuit" :game="game" />
+                                    <ItemButton id="advancedCircuit" :game="game" />
+                                    <ItemButton id="processingUnit" :game="game" />
+                                    <ItemButton id="electricEngineUnit" :game="game" />
+                                    <ItemButton id="flyingRobot" :game="game" />
+                                    <ItemButton id="radar" :game="game" />
+                                    <ItemButton id="rocketControlUnit" :game="game" />
+                                    <ItemButton id="lowDensityStructure" :game="game" />
+                                    <ItemButton id="rocketFuel" :game="game" />
+                                    <ItemButton id="rocketPart" :game="game" />
+                                    <ItemButton id="portableFusionReactor" :game="game" />
+                                    <ItemButton id="satellite" :game="game" />
                                 </Category>
                                 <Category id="storages">
-                                    <Item id="woodChest" :game="game" />
-                                    <Item id="ironChest" :game="game" />
-                                    <Item id="steelChest" :game="game" />
-                                    <Item id="storageTank" :game="game" />
-                                    <Item id="barrel" :game="game" />
-                                    <Item id="accumulator" :game="game" />
+                                    <ItemButton id="woodChest" :game="game" />
+                                    <ItemButton id="ironChest" :game="game" />
+                                    <ItemButton id="steelChest" :game="game" />
+                                    <ItemButton id="storageTank" :game="game" />
+                                    <ItemButton id="barrel" :game="game" />
+                                    <ItemButton id="accumulator" :game="game" />
                                 </Category>
                                 <Category id="science">
-                                    <Item id="redPack" :game="game" />
-                                    <Item id="greenPack" :game="game" />
-                                    <Item id="grayPack" :game="game" />
-                                    <Item id="bluePack" :game="game" />
-                                    <Item id="purplePack" :game="game" />
-                                    <Item id="yellowPack" :game="game" />
+                                    <ItemButton id="redPack" :game="game" />
+                                    <ItemButton id="greenPack" :game="game" />
+                                    <ItemButton id="grayPack" :game="game" />
+                                    <ItemButton id="bluePack" :game="game" />
+                                    <ItemButton id="purplePack" :game="game" />
+                                    <ItemButton id="yellowPack" :game="game" />
                                 </Category>
                                 <Category id="modules">
-                                    <Item id="speedModule1" :game="game" />
-                                    <Item id="speedModule2" :game="game" />
-                                    <Item id="speedModule3" :game="game" />
-                                    <Item id="efficiencyModule1" :game="game" />
-                                    <Item id="efficiencyModule2" :game="game" />
-                                    <Item id="efficiencyModule3" :game="game" />
-                                    <Item id="productivityModule1" :game="game" />
-                                    <Item id="productivityModule2" :game="game" />
-                                    <Item id="productivityModule3" :game="game" />
+                                    <ItemButton id="speedModule1" :game="game" />
+                                    <ItemButton id="speedModule2" :game="game" />
+                                    <ItemButton id="speedModule3" :game="game" />
+                                    <ItemButton id="efficiencyModule1" :game="game" />
+                                    <ItemButton id="efficiencyModule2" :game="game" />
+                                    <ItemButton id="efficiencyModule3" :game="game" />
+                                    <ItemButton id="productivityModule1" :game="game" />
+                                    <ItemButton id="productivityModule2" :game="game" />
+                                    <ItemButton id="productivityModule3" :game="game" />
                                 </Category>
                                 <Category id="weapons">
-                                    <Item id="pistol" :game="game" />
-                                    <Item id="submachineGun" :game="game" />
-                                    <Item id="shotgun" :game="game" />
-                                    <Item id="combatShotgun" :game="game" />
-                                    <Item id="rocketLauncher" :game="game" />
-                                    <Item id="gunTurret" :game="game" />
-                                    <Item id="laserTurret" :game="game" />
-                                    <Item id="artilleryTurret" :game="game" />
-                                    <Item id="car" :game="game" />
-                                    <Item id="tank" :game="game" />
-                                    <Item id="spidertron" :game="game" />
-                                    <Item id="firearmMagazine" :game="game" />
-                                    <Item id="piercingMagazine" :game="game" />
-                                    <Item id="uraniumMagazine" :game="game" />
-                                    <Item id="shotgunShells" :game="game" />
-                                    <Item id="piercingShells" :game="game" />
-                                    <Item id="cannonShell" :game="game" />
-                                    <Item id="explosiveCannonShell" :game="game" />
-                                    <Item id="uraniumCannonShell" :game="game" />
-                                    <Item id="artilleryShell" :game="game" />
-                                    <Item id="rocket" :game="game" />
-                                    <Item id="explosiveRocket" :game="game" />
-                                    <Item id="atomicBomb" :game="game" />
+                                    <ItemButton id="pistol" :game="game" />
+                                    <ItemButton id="submachineGun" :game="game" />
+                                    <ItemButton id="shotgun" :game="game" />
+                                    <ItemButton id="combatShotgun" :game="game" />
+                                    <ItemButton id="rocketLauncher" :game="game" />
+                                    <ItemButton id="gunTurret" :game="game" />
+                                    <ItemButton id="laserTurret" :game="game" />
+                                    <ItemButton id="artilleryTurret" :game="game" />
+                                    <ItemButton id="car" :game="game" />
+                                    <ItemButton id="tank" :game="game" />
+                                    <ItemButton id="spidertron" :game="game" />
+                                    <ItemButton id="firearmMagazine" :game="game" />
+                                    <ItemButton id="piercingMagazine" :game="game" />
+                                    <ItemButton id="uraniumMagazine" :game="game" />
+                                    <ItemButton id="shotgunShells" :game="game" />
+                                    <ItemButton id="piercingShells" :game="game" />
+                                    <ItemButton id="cannonShell" :game="game" />
+                                    <ItemButton id="explosiveCannonShell" :game="game" />
+                                    <ItemButton id="uraniumCannonShell" :game="game" />
+                                    <ItemButton id="artilleryShell" :game="game" />
+                                    <ItemButton id="rocket" :game="game" />
+                                    <ItemButton id="explosiveRocket" :game="game" />
+                                    <ItemButton id="atomicBomb" :game="game" />
                                 </Category>
                             </div>
                         </div>
                         <div class="h-100 col d-flex flex-column">
-                            <ItemDetails id="coal" :game="game" />
+                            <ItemCard id="coal" :game="game" />
+                            <ItemCard id="drill1" :game="game" />
+                        </div>
+                    </div>
+                    
+                    <div v-if="currentTabId == 'research'" class="h-100 row g-3">
+                        <div class="col-auto scrollbar" style="width:475px;">
+                            <div class="row g-3">
+                                <Category id="techs">
+                                    <TechButton id="automation1" :game="game" />
+                                    <TechButton id="modules" :game="game" />
+                                </Category>
+                            </div>
+                        </div>
+                        <div class="h-100 col d-flex flex-column">
+                            <TechCard id="automation1" :game="game" />
                         </div>
                     </div>
 
@@ -517,12 +533,787 @@
 
 //------------------------------------------------------------------------------
 
+var baseData = [
+
+    { id:'coal', type:'item', max:50, storages:[ 'woodChest', 'ironChest', 'steelChest' ], },
+    { id:'coalManual', type:'production', itemId:'coal', machineId:'manual', auto:false, time:4, outputs:{ coal:1 }, },
+    { id:'coalDrill1', type:'production', itemId:'coal', machineId:'drill1', auto:true,  time:4, outputs:{ coal:1 }, },
+    { id:'coalDrill2', type:'production', itemId:'coal', machineId:'drill2', auto:true,  time:2, energy:{ id:'electricity', count:180 }, outputs:{ coal:1 }, moduleSlots:3, },
+
+    //---
+    
+    { id:'ironChest',  type:'storage', value:32, },
+    { id:'steelChest', type:'storage', value:48, reqs:[ 'steelProcessing' ], },
+    { id:'woodChest',  type:'storage', value:16, },
+    
+    //---
+    
+    { id:'efficiencyModule1', type:'module', coeffEnergy:.7, reqs:[ 'efficiency1' ], },
+    { id:'efficiencyModule2', type:'module', coeffEnergy:.6, reqs:[ 'efficiency2' ], },
+    { id:'efficiencyModule3', type:'module', coeffEnergy:.5, reqs:[ 'efficiency3' ], },
+    
+    { id:'productivityModule1', type:'module', coeffTime:1.05, coeffEnergy:1.4, coeffOutputs:1.04, reqs:[ 'productivity1' ], },
+    { id:'productivityModule2', type:'module', coeffTime:1.10, coeffEnergy:1.6, coeffOutputs:1.06, reqs:[ 'productivity2' ], },
+    { id:'productivityModule3', type:'module', coeffTime:1.15, coeffEnergy:1.8, coeffOutputs:1.10, reqs:[ 'productivity3' ], },
+    
+    { id:'speedModule1', type:'module', coeffTime:.8, coeffEnergy:1.5, reqs:[ 'speed1' ], },
+    { id:'speedModule2', type:'module', coeffTime:.7, coeffEnergy:1.6, reqs:[ 'speed2' ], },
+    { id:'speedModule3', type:'module', coeffTime:.5, coeffEnergy:1.7, reqs:[ 'speed3' ], },
+    
+    //---
+    
+    { id:'drill1', type:'machine', },
+    { id:'drill1Manual', type:'production', itemId:'drill1', machineId:'manual', auto:false, time:2, inputs:{ ironGearWheel:3, ironPlate:3, furnace1:1 }, outputs:{ drill1:1 }, },
+    
+    { id:'drill2', type:'machine', },
+    
+    //---
+    
+    { id:'lab', type:'lab', moduleSlots:2, },
+    
+    //---
+    
+    { id:'automation1', type:'research', energy:{ id:'electricity', count:60 }, time:10, cycleCount:10, costs:{ redPack:1 }, },
+    { id:'modules', type:'research', energy:{ id:'electricity', count:60 }, time:30, cycleCount:100, costs:{ redPack:1, greenPack:1 }, reqs:[ 'electronics2' ], },
+]
+
+//------------------------------------------------------------------------------
+
+class Base {
+
+    constructor(game, data) {
+    
+        this.game = game
+        
+        this.id = data.id
+        this.type = data.type
+        this.reqs = data.reqs
+    }
+    
+    //---
+    
+    isUnlocked() {
+    
+        if (this.reqs == null) return true
+        
+        let ret = true
+        this.reqs.forEach(techId => {
+            
+            let tech = this.game.bases[techId]
+            if (tech == null || tech.isDone() == false) ret = false
+        })
+        
+        return ret
+    }
+    
+    //---
+    
+    onLoad(data) {}
+    
+    onSave(data) {}
+    
+    onMainLoop(delta) {}
+}
+
+//------------------------------------------------------------------------------
+
+class Item extends Base {
+
+    constructor(game, data) {
+        super(game, data)
+        
+        this.max = data.max
+        
+        this.storages = []
+        if (data.storages) {
+            data.storages.forEach(storageId => {
+            
+                let storage = { id:storageId, count:0 }
+                this.storages.push(storage)
+            })
+        }
+        
+        this.count = 0
+        this.buildCount = 1
+        this.productions = []
+    }
+    
+    //---
+    
+    getMax() {
+    
+        let ret = this.max
+        this.storages.forEach(storage => {
+            
+            let data = this.game.bases[storage.id]
+            ret += this.max * storage.count * data.value
+        })
+        
+        return ret
+    }
+    
+    getUsedCount() { return 0 }
+    
+    getAvailableCount() { return this.count - this.getUsedCount() }
+    
+    getProd() {
+    
+        let ret = 0
+        
+        for (let id in this.game.bases) {
+            let base = this.game.bases[id]
+            if (base.type == 'production' && base.state == 'running') {
+                
+                let energy = base.getEnergy()
+                if (energy && energy.id == this.id) {
+                    ret -= energy.count
+                }
+                
+                let time = base.getTime()
+                
+                let inputs = base.getInputs()
+                if (inputs) {
+                    for (let inputId in inputs) {
+                        let inputCount = inputs[inputId]
+                        if (inputId == this.id) {
+                            ret -= inputCount / time
+                        }
+                    }
+                }
+                
+                let outputs = base.getOutputs()
+                for (let outputId in outputs) {
+                    let outputCount = outputs[outputId]
+                    if (outputId == this.id) {
+                        ret += outputCount / time
+                    }
+                }
+            }            
+        }
+        
+        return ret
+    }    
+}
+
+//------------------------------------------------------------------------------
+
+class Storage extends Item {
+
+    constructor(game, data) {
+        super(game, data)
+        
+        this.value = data.value
+    }
+    
+    //---
+    
+    getUsedCount() {
+    
+        let ret = 0
+        for (let id in this.game.bases) {
+            let base = this.game.bases[id]
+            if (base.type == 'item') {
+                base.storages.forEach(storage => {
+                    if (storage.id == this.id) {
+                        ret += storage.count
+                    }
+                })
+            }            
+        }
+        
+        return ret
+    }
+}
+
+//------------------------------------------------------------------------------
+
+class Module extends Item {
+
+    constructor(game, data) {
+        super(game, data)
+        
+        this.coeffTime = data.coeffTime
+        this.coeffEnergy = data.coeffEnergy
+        this.coeffOutputs = data.coeffOutputs
+    }
+    
+    //---
+    
+    getUsedCount() {
+    
+        let ret = 0
+        for (let id in this.game.bases) {
+            let base = this.game.bases[id]
+            if (base.type == 'production') {
+                base.modules.forEach(module => {
+                    if (module.id == this.id) {
+                        ret += module.count
+                    }
+                })
+            }            
+        }
+        
+        return ret
+    }
+}
+
+//------------------------------------------------------------------------------
+
+class Machine extends Item {
+
+    constructor(game, data) {
+        super(game, data)
+    }
+    
+    //---
+    
+    getUsedCount() {
+    
+        let ret = 0
+        for (let id in this.game.bases) {
+            let base = this.game.bases[id]
+            if (base.type == 'production' && base.machineId == this.id) {
+                ret += base.count
+            }
+        }
+        
+        return ret
+    }
+}
+
+//------------------------------------------------------------------------------
+
+class Lab extends Item {
+
+    constructor(game, data) {
+        super(game, data)
+        
+        this.moduleSlots = data.moduleSlots
+        
+        this.modules = []
+        for (let i = 0; i < this.moduleSlots; i++) {
+        
+            let module = { id:null, count: 0 }
+            this.modules.push(module)
+        }
+    }
+    
+    //---
+    
+    getModuleCount() {
+    
+        let ret = 0
+        this.modules.forEach(module => {
+            ret += module.count
+        })
+        
+        return ret
+    }
+    
+    getModuleMax() {
+    
+        let ret = 0
+        ret = this.count * this.moduleSlots
+        
+        return ret
+    }
+    
+    getCoeffTime() {
+    
+        let ret = 1.0
+        this.modules.forEach(module => {
+            if (module.id && module.count) {
+            
+                let data = moduleData[module.id]
+                ret *= data.coeffTime * module.count
+            }
+        })
+        
+        return ret
+    }
+    
+    getCoeffEnergy() {
+    
+        let ret = 1.0
+        this.modules.forEach(module => {
+            if (module.id && module.count) {
+            
+                let data = moduleData[module.id]
+                ret *= data.coeffEnergy * module.count
+            }
+        })
+        
+        return ret
+    }
+}
+
+//------------------------------------------------------------------------------
+
+class Production extends Base {
+
+    constructor(item, data) {
+        super(item.game, data)
+        
+        item.productions.push(this)
+        
+        this.auto = data.auto
+        this.time = data.time
+        this.energy = data.energy
+        this.inputs = data.inputs
+        this.outputs = data.outputs
+        this.machineId = data.machineId        
+        this.moduleSlots = data.moduleSlots
+        this.remainingTime = data.time
+        
+        this.modules = []
+        if (this.moduleSlots > 0) {
+            for (let i = 0; i < this.moduleSlots; i++) {
+            
+                let module = { id:null, count: 0 }
+                this.modules.push(module)
+            }
+        }
+        
+        this.count = 0
+        this.state = 'paused'
+    }
+    
+    //---
+    
+    getModuleCount() {
+    
+        let ret = 0
+        this.modules.forEach(module => {
+            ret += module.count
+        })
+        
+        return ret
+    }
+    
+    getModuleMax() {
+    
+        let ret = 0
+        ret = this.count * this.moduleSlots
+        
+        return ret
+    }
+    
+    getCoeffTime() {
+    
+        let ret = 1.0
+        this.modules.forEach(module => {
+            if (module.id && module.count) {
+            
+                let data = moduleData[module.id]
+                ret *= data.coeffTime * module.count
+            }
+        })
+        
+        return ret
+    }
+    
+    getCoeffEnergy() {
+    
+        let ret = 1.0
+        this.modules.forEach(module => {
+            if (module.id && module.count) {
+            
+                let data = moduleData[module.id]
+                ret *= data.coeffEnergy * module.count
+            }
+        })
+        
+        return ret
+    }
+    
+    getCoeffOutputs() {
+    
+        let ret = 1.0
+        this.modules.forEach(module => {
+            if (module.id && module.count) {
+            
+                let data = moduleData[module.id]
+                ret *= data.coeffOutputs * module.count
+            }
+        })
+        
+        return ret
+    }
+    
+    getEnergy() {
+        
+        if (this.energy == null) return null
+        
+        let count = this.count > 0 ? this.count : 1
+        
+        let ret = 0
+        ret = this.energy.count * count * this.getCoeffEnergy()
+        
+        return { id:this.energy.id, count:ret }
+    }
+    
+    getTime() {
+        
+        let ret = this.time
+        ret *= this.getCoeffTime()
+        
+        return ret
+    }
+    
+    getInputs() {
+    
+        if (this.inputs == null) return null
+        
+        let count = this.count > 0 ? this.count : 1
+        
+        let ret = {}        
+        for (let id in this.inputs) {
+            let input = this.inputs[id]            
+            ret[id] = input * count
+        }
+        
+        return ret
+    }
+    
+    getOutputs() {
+        
+        let count = this.count > 0 ? this.count : 1
+        
+        let ret = {}
+        for (let id in this.outputs) {
+            let output = this.outputs[id]
+            ret[id] = output * count * this.getCoeffOutputs()
+        }
+        
+        return ret
+    }
+    
+    canProduce() {
+    
+        if (this.machineId != 'manual' && this.count <= 0) return false
+        
+        let energy = this.getEnergy()
+        if (energy && this.game.bases[energy.id].count < energy.count) return false
+        
+        let outputs = this.getOutputs()
+        for (let id in outputs) {
+            
+            let base = this.game.bases[id]
+            if (base.type == 'item') {
+                let max = base.getMax()
+                let count = base.count
+                
+                if (max && count >= max) {
+                    return false
+                }
+            }
+            else {
+            
+                let availableCount = base.getAvailableCount()
+                if (availableCount <= 50) {
+                    return false
+                }
+            }
+        }
+        
+        let inputs = this.getInputs()
+        if (inputs == null) return true
+        
+        for (let id in inputs) {
+            let input = inputs[id]            
+            if (input > this.game.bases[id].getAvailableCount()) {
+                return false
+            }
+        }
+        
+        return true
+    }
+    
+    //---
+        
+    startProducing() {
+    
+        if (this.canProduce() == true) {
+                    
+            this.state = 'running'
+            if (this.remainingTime == this.getTime()) {
+            
+                let energy = this.getEnergy()
+                if (energy != null) {
+                    this.game.bases[energy.id].count -= energy.count
+                }
+                
+                let inputs = this.getInputs()
+                if (inputs != null) {
+                    for (let id in inputs) {
+                        let input = inputs[id]
+                        
+                        this.game.bases[id].count -= input
+                    }
+                }
+            }
+        }
+        else {
+        
+            this.state = 'waiting'
+            this.remainingTime = this.getTime()
+        }
+    }
+    
+    pauseProducing() {
+        
+        if (this.state == 'running') {
+            
+            let energy = this.getEnergy()
+            if (energy != null) {
+                this.game.bases[energy.id].count += energy.count
+            }
+                
+            let inputs = this.getInputs()
+            if (inputs != null) {
+                for (let id in inputs) {
+                    let input = inputs[id]
+                    
+                    this.game.bases[id].count += input
+                }
+            }
+        }
+        
+        this.state = 'paused'
+        this.remainingTime = this.getTime()
+    }
+
+    onMainLoop(delta) {
+        
+        if (this.state == 'waiting') {                    
+            this.startProducing()
+        }
+        
+        if (this.state == 'running') {
+            
+            this.remainingTime -= delta            
+            if (this.remainingTime <= 0) {
+                                
+                let outputs = this.getOutputs()
+                for (let id in outputs) {
+                    let output = outputs[id]
+                    
+                    let base = this.game.bases[id]                    
+                    base.count += output
+                    
+                    let max = base.getMax()
+                    if (max && base.count > max) base.count = max
+                }
+                
+                if (this.auto == true) {                
+                
+                    this.remainingTime = this.getTime()
+                    this.startProducing()
+                }
+                else {
+                
+                    this.state = 'paused'
+                    this.remainingTime = this.getTime()
+                }
+            }
+        }
+    }
+}
+
+//------------------------------------------------------------------------------
+
+class Research extends Base {
+
+    constructor(game, data) {
+        super(game, data)
+        
+        this.time = data.time
+        this.costs = data.costs
+        this.energy = data.energy
+        this.cycleCount = data.cycleCount
+        this.remainingTime = data.time
+        
+        this.done = false
+        this.count = 0
+        this.state = 'paused'
+    }
+    
+    //---
+    
+    isDone() { return this.done }
+    
+    getEnergy() {
+        
+        let count = this.count > 0 ? this.count : 1
+        
+        let ret = 0
+        ret = this.energy.count * count * this.game.bases['lab'].getCoeffEnergy()
+        
+        return { id:this.energy.id, count:ret }
+    }
+    
+    getTime() {
+        
+        let ret = this.time
+        ret *= this.game.bases['lab'].getCoeffTime()
+        
+        return ret
+    }
+    
+    getCosts() {
+    
+        let count = this.count > 0 ? this.count : 1
+        
+        let ret = {}        
+        for (let id in this.costs) {
+            let cost = this.costs[id]            
+            ret[id] = cost * count
+        }
+        
+        return ret
+    }
+    
+    canResearch() {
+    
+        if (this.done == true) return false
+        if (this.count <= 0) return false
+        
+        let energy = this.getEnergy()
+        if (this.game.bases[energy.id].count < energy.count) return false
+        
+        let inputs = this.getCosts()
+        for (let id in costs) {
+            let cost = costs[id]            
+            if (cost > this.game.bases[id].getAvailableCount()) {
+                return false
+            }
+        }
+        
+        return true
+    }
+    
+    //---
+    
+    startResearching() {
+    
+        if (this.canResearch() == true) {
+                    
+            this.state = 'running'
+            if (this.remainingTime == this.getTime()) {
+            
+                let energy = this.getEnergy()
+                this.game.bases[energy.id].count -= energy.count
+                
+                let costs = this.getCosts()
+                for (let id in costs) {
+                    let cost = costs[id]
+                    
+                    this.game.bases[id].count -= cost
+                }
+            }
+        }
+        else {
+        
+            this.state = 'waiting'
+            this.remainingTime = this.getTime()
+        }
+    }
+    
+    pauseResearching() {
+        
+        if (this.state == 'running') {
+            
+            let energy = this.getEnergy()
+            this.game.bases[energy.id].count += energy.count
+                
+            let costs = this.getCosts()
+            for (let id in costs) {
+                let cost = costs[id]
+                
+                this.game.bases[id].count += cost
+            }
+        }
+        
+        this.state = 'paused'
+        this.remainingTime = this.getTime()
+    }
+
+    onMainLoop(delta) {
+        
+        if (this.state == 'waiting') {
+            this.startResearching()
+        }
+        
+        if (this.state == 'running') {
+        
+            this.remainingTime -= delta
+            if (this.remainingTime <= 0) {
+            
+                this.cycleCount -= this.count
+                
+                if (this.cycleCount > 0) {                
+                
+                    this.remainingTime = this.getTime()
+                    this.startResearching()
+                }
+                else {
+                    
+                    this.cycleCount = 0
+                    
+                    this.state = 'paused'
+                    this.remainingTime = this.getTime()
+                }
+            }
+        }
+    }
+}
+
+//------------------------------------------------------------------------------
+
 class Game {
 
     constructor() {
         
         this.paused = false
         this.timePlayed = 0
+        
+        this.bases = {}
+        baseData.forEach(data => {
+            
+            let base = null
+            if (data.type == 'item') {
+            
+                base = new Item(this, data)
+            }
+            else if (data.type == 'storage') {
+            
+                base = new Storage(this, data)
+            }
+            else if (data.type == 'module') {
+            
+                base = new Module(this, data)
+            }
+            else if (data.type == 'machine') {
+            
+                base = new Machine(this, data)
+            }
+            else if (data.type == 'lab') {
+            
+                base = new Lab(this, data)
+            }
+            else if (data.type == 'production') {
+                
+                let item = this.bases[data.itemId]
+                base = new Production(item, data)
+            }
+            else if (data.type == 'research') {
+            
+                base = new Research(this, data)
+            }
+            else base = new Base(this, data)
+            
+            this.bases[data.id] = base
+        })
     }
         
     //---
@@ -530,7 +1321,15 @@ class Game {
     load(data) {
         
         if (data.paused != null) this.paused = data.paused
-        if (data.timePlayed != null) this.timePlayed = data.timePlayed        
+        if (data.timePlayed != null) this.timePlayed = data.timePlayed
+        
+        if (data.base) {
+            data.bases.forEach(data => {
+            
+                let base = this.bases[data.id]
+                if (base) base.onLoad(data)
+            })
+        }
     }
     
     save() {
@@ -539,6 +1338,16 @@ class Game {
             
             paused: this.paused,
             timePlayed: this.timePlayed,
+            
+            bases: [],
+        }
+        
+        for (let baseId in this.bases) {
+            let base = this.bases[baseId]
+            
+            let data = {}
+            base.onSave(data)
+            ret.bases[baseId] = data
         }
         
         return ret
@@ -559,6 +1368,12 @@ class Game {
             for (let i = 0; i < cycleCount; i++) {    
                 
                 this.timePlayed += cycleDelta
+                
+                for (let baseId in this.bases) {
+                    let base = this.bases[baseId]
+                    
+                    base.onMainLoop(cycleDelta)
+                }
             }
         }
     }    
@@ -608,6 +1423,7 @@ export default {
             currentTabId: 'production',
             
             currentProductionSelection: 'coal',
+            currentResearchSelection: null,
             
             //---
             
@@ -638,6 +1454,7 @@ export default {
         setCurrentTabId(tabId) { this.currentTabId = tabId },
         
         setCurrentProductionSelection(id) { this.currentProductionSelection = id },
+        setCurrentResearchSelection(id) { this.currentResearchSelection = id },
         
         //---
         
