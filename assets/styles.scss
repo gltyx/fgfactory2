@@ -37,7 +37,7 @@ $font-weight-normal:            400 !default;
 $line-height-base:              1.5 !default;
 
 $body-bg:                       #2a2a2a !default;
-$body-color:                    #d2d2d2 !default;
+$body-color:                    #e3e3e3 !default;
 
 $headings-margin-bottom:        0 !default;
 $headings-font-weight:          500 !default;
@@ -107,7 +107,7 @@ $nav-tabs-link-active-border-color: $border-color $border-color $nav-tabs-link-a
 
 // Card
 
-$card-bg:                       rgba(255, 255, 255, .1) !default;
+$card-bg:                       rgba(255, 255, 255, .05) !default;
 $card-spacer-y:                 calc($spacer / 1.5) !default;
 $card-spacer-x:                 $spacer !default;
 $card-title-spacer-y:           calc($spacer / 1.5) !default;

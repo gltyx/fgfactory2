@@ -234,7 +234,7 @@
                         <BottomButton label="Save" icon="fa-save" :click="manualSave" />
                         <BottomButton label="Support" icon="fa-hand-holding-heart" :click="showSupportPopup" />
                         <BottomButton label="Tutorial" icon="fa-question-circle" :click="enableTutorial" />
-                        <div class="ms-auto col-auto">
+                        <div class="ms-auto col-auto me-2">
                             <div class="text-center text-muted small">Time Played</div>
                             <div class="text-center"><FormatTime :value="game.timePlayed" /></div>
                         </div>
@@ -394,13 +394,14 @@
                         <div class="h-100 col d-flex flex-column">
                             <ItemCard id="coal" :game="game" />
                             <ItemCard id="drill1" :game="game" />
+                            <ItemCard id="stone" :game="game" />
                         </div>
                     </div>
                     
                     <div v-if="currentTabId == 'research'" class="h-100 row g-3">
                         <div class="col-auto scrollbar" style="width:475px;">
                             <div class="row g-3">
-                                <Category id="techs">
+                                <Category id="techs" show="true">
                                     <TechButton id="automation1" :game="game" />
                                     <TechButton id="modules" :game="game" />
                                 </Category>
@@ -514,7 +515,7 @@
                     </div>
 
                     <div class="position-absolute bottom-0 end-0 pe-2" style="z-index:100;">
-                        <div v-if="toastText" class="toast fade show text-white border-0" :class="{ 'bg-info':toastType == 'info', 'bg-danger':toastType == 'error', 'bg-success':toastType == 'success' }" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div v-if="toastText" class="toast fade show text-white border-0" :class="{ 'bg-primary':toastType == 'info', 'bg-danger':toastType == 'error', 'bg-success':toastType == 'success' }" role="alert" aria-live="assertive" aria-atomic="true">
                             <div class="toast-body">
                                 <span v-html="toastText"></span>
                             </div>
@@ -539,38 +540,86 @@ var baseData = [
     { id:'coalManual', type:'production', itemId:'coal', machineId:'manual', auto:false, time:4, outputs:{ coal:1 }, },
     { id:'coalDrill1', type:'production', itemId:'coal', machineId:'drill1', auto:true,  time:4, outputs:{ coal:1 }, },
     { id:'coalDrill2', type:'production', itemId:'coal', machineId:'drill2', auto:true,  time:2, energy:{ id:'electricity', count:180 }, outputs:{ coal:1 }, moduleSlots:3, },
-
-    //---
-    
-    { id:'ironChest',  type:'storage', value:32, },
-    { id:'steelChest', type:'storage', value:48, reqs:[ 'steelProcessing' ], },
-    { id:'woodChest',  type:'storage', value:16, },
-    
-    //---
-    
-    { id:'efficiencyModule1', type:'module', coeffEnergy:.7, reqs:[ 'efficiency1' ], },
-    { id:'efficiencyModule2', type:'module', coeffEnergy:.6, reqs:[ 'efficiency2' ], },
-    { id:'efficiencyModule3', type:'module', coeffEnergy:.5, reqs:[ 'efficiency3' ], },
-    
-    { id:'productivityModule1', type:'module', coeffTime:1.05, coeffEnergy:1.4, coeffOutputs:1.04, reqs:[ 'productivity1' ], },
-    { id:'productivityModule2', type:'module', coeffTime:1.10, coeffEnergy:1.6, coeffOutputs:1.06, reqs:[ 'productivity2' ], },
-    { id:'productivityModule3', type:'module', coeffTime:1.15, coeffEnergy:1.8, coeffOutputs:1.10, reqs:[ 'productivity3' ], },
-    
-    { id:'speedModule1', type:'module', coeffTime:.8, coeffEnergy:1.5, reqs:[ 'speed1' ], },
-    { id:'speedModule2', type:'module', coeffTime:.7, coeffEnergy:1.6, reqs:[ 'speed2' ], },
-    { id:'speedModule3', type:'module', coeffTime:.5, coeffEnergy:1.7, reqs:[ 'speed3' ], },
     
     //---
     
     { id:'drill1', type:'machine', },
     { id:'drill1Manual', type:'production', itemId:'drill1', machineId:'manual', auto:false, time:2, inputs:{ ironGearWheel:3, ironPlate:3, furnace1:1 }, outputs:{ drill1:1 }, },
+    { id:'drill1Assembler1', type:'production', itemId:'drill1', machineId:'assembler1', auto:true, time:4, energy:{ id:'electricity', count:300 }, inputs:{ ironGearWheel:3, ironPlate:3, furnace1:1 }, outputs:{ drill1:1 }, reqs:[ 'automation1'], },
+    { id:'drill1Assembler2', type:'production', itemId:'drill1', machineId:'assembler2', auto:true, time:3, energy:{ id:'electricity', count:450 }, inputs:{ ironGearWheel:3, ironPlate:3, furnace1:1 }, outputs:{ drill1:1 }, moduleSlots:2, reqs:[ 'automation2'], },
+    { id:'drill1Assembler3', type:'production', itemId:'drill1', machineId:'assembler3', auto:true, time:2, energy:{ id:'electricity', count:750 }, inputs:{ ironGearWheel:3, ironPlate:3, furnace1:1 }, outputs:{ drill1:1 }, moduleSlots:4, reqs:[ 'automation3'], },
+    
+    //---
     
     { id:'drill2', type:'machine', },
     
     //---
     
+    { id:'furnace1', type:'machine', },
+    { id:'furnace1Manual', type:'production', itemId:'furnace1', machineId:'manual', auto:false, time:.5, inputs:{ stone:5 }, outputs:{ furnace1:1 }, },
+    { id:'furnace1Assembler1', type:'production', itemId:'furnace1', machineId:'assembler1', auto:true, time:4, energy:{ id:'electricity', count:300 }, inputs:{ stone:5 }, outputs:{ furnace1:1 }, reqs:[ 'automation1'], },
+    { id:'furnace1Assembler2', type:'production', itemId:'furnace1', machineId:'assembler2', auto:true, time:3, energy:{ id:'electricity', count:450 }, inputs:{ stone:5 }, outputs:{ furnace1:1 }, moduleSlots:2, reqs:[ 'automation2'], },
+    { id:'furnace1Assembler3', type:'production', itemId:'furnace1', machineId:'assembler3', auto:true, time:2, energy:{ id:'electricity', count:750 }, inputs:{ stone:5 }, outputs:{ furnace1:1 }, moduleSlots:4, reqs:[ 'automation3'], },
+    
+    //---
+    
+    { id:'efficiencyModule1', type:'module', coeffEnergy:.7, reqs:[ 'efficiency1' ], },
+
+    //---
+    
+    { id:'efficiencyModule2', type:'module', coeffEnergy:.6, reqs:[ 'efficiency2' ], },
+
+    //---
+    
+    { id:'efficiencyModule3', type:'module', coeffEnergy:.5, reqs:[ 'efficiency3' ], },
+
+    //---
+    
+    { id:'ironChest',  type:'storage', value:32, },
+
+    //---
+    
     { id:'lab', type:'lab', moduleSlots:2, },
     
+    //---    
+    
+    { id:'productivityModule1', type:'module', coeffTime:1.05, coeffEnergy:1.4, coeffOutputs:1.04, reqs:[ 'productivity1' ], },
+
+    //---
+    
+    { id:'productivityModule2', type:'module', coeffTime:1.10, coeffEnergy:1.6, coeffOutputs:1.06, reqs:[ 'productivity2' ], },
+
+    //---
+    
+    { id:'productivityModule3', type:'module', coeffTime:1.15, coeffEnergy:1.8, coeffOutputs:1.10, reqs:[ 'productivity3' ], },
+    
+    //---
+    
+    { id:'speedModule1', type:'module', coeffTime:.8, coeffEnergy:1.5, reqs:[ 'speed1' ], },
+
+    //---
+    
+    { id:'speedModule2', type:'module', coeffTime:.7, coeffEnergy:1.6, reqs:[ 'speed2' ], },
+
+    //---
+    
+    { id:'speedModule3', type:'module', coeffTime:.5, coeffEnergy:1.7, reqs:[ 'speed3' ], },
+    
+    //---
+    
+    { id:'steelChest', type:'storage', value:48, reqs:[ 'steelProcessing' ], },
+
+    //---
+    
+    { id:'stone', type:'item', max:50, storages:[ 'woodChest', 'ironChest', 'steelChest' ], },
+    { id:'stoneManual', type:'production', itemId:'stone', machineId:'manual', auto:false, time:4, outputs:{ stone:1 }, },
+    { id:'stoneDrill1', type:'production', itemId:'stone', machineId:'drill1', auto:true,  time:4, outputs:{ stone:1 }, },
+    { id:'stoneDrill2', type:'production', itemId:'stone', machineId:'drill2', auto:true,  time:2, energy:{ id:'electricity', count:180 }, outputs:{ stone:1 }, moduleSlots:3, },
+    
+    //---
+    
+    { id:'woodChest',  type:'storage', value:16, },
+            
     //---
     
     { id:'automation1', type:'research', energy:{ id:'electricity', count:60 }, time:10, cycleCount:10, costs:{ redPack:1 }, },
@@ -1433,7 +1482,6 @@ class Game {
             ret.bases.push(data)
         }
         
-        console.log(ret)
         return ret
     }
     
@@ -1506,8 +1554,8 @@ export default {
             
             currentTabId: 'production',
             
-            currentProductionSelection: 'coal',
-            currentResearchSelection: null,
+            currentProductionSelection: 'stone',
+            currentResearchSelection: 'automation1',
             
             //---
             
