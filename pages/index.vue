@@ -610,7 +610,7 @@ class Base {
     
     onLoad(data) {}
     
-    onSave(data) {}
+    onSave(data) { data.id = this.id }
     
     onMainLoop(delta) {}
 }
@@ -636,6 +636,33 @@ class Item extends Base {
         this.count = 0
         this.buildCount = 1
         this.productions = []
+    }
+    
+    //---
+    
+    onLoad(data) {
+        super.onLoad(data)
+        
+        this.count = data.count
+        this.buildCount = data.buildCount
+        
+        this.storages.forEach(storage => {
+            if (data.storages[storage.id]) {
+                storage.count = data.storages[storage.id]
+            }
+        })
+    }
+    
+    onSave(data) {
+        super.onSave(data)
+        
+        data.count = this.count
+        data.buildCount = this.buildCount
+        
+        data.storages = {}
+        this.storages.forEach(storage => {
+            data.storages[storage.id] = storage.count
+        })
     }
     
     //---
@@ -876,6 +903,40 @@ class Production extends Base {
         
         this.count = 0
         this.state = 'paused'
+    }
+    
+    //---
+    
+    onLoad(data) {
+        super.onLoad(data)
+        
+        this.count = data.count
+        this.state = data.state
+        this.remainingTime = data.remainingTime
+        
+        let index = 0
+        if (data.modules) {
+            data.modules.forEach(module => {
+
+                this.modules[index].id = module.id
+                this.modules[index].count = module.count
+
+                index++
+            })
+        }
+    }
+    
+    onSave(data) {
+        super.onSave(data)
+        
+        data.count = this.count
+        data.state = this.state
+        data.remainingTime = this.remainingTime
+        
+        data.modules = []
+        this.modules.forEach(module => {
+            data.modules.push(module)
+        })
     }
     
     //---
@@ -1137,6 +1198,28 @@ class Research extends Base {
         this.count = 0
         this.state = 'paused'
     }
+
+    //---
+    
+    onLoad(data) {
+        super.onLoad(data)
+        
+        this.done = data.done
+        this.count = data.count
+        this.state = data.state
+        this.cycleCount = data.cycleCount
+        this.remainingTime = data.remainingTime        
+    }
+    
+    onSave(data) {
+        super.onSave(data)
+        
+        data.done = this.done
+        data.count = this.count
+        data.state = this.state
+        data.cycleCount = this.cycleCount
+        data.remainingTime = this.remainingTime
+    }
     
     //---
     
@@ -1323,7 +1406,7 @@ class Game {
         if (data.paused != null) this.paused = data.paused
         if (data.timePlayed != null) this.timePlayed = data.timePlayed
         
-        if (data.base) {
+        if (data.bases) {
             data.bases.forEach(data => {
             
                 let base = this.bases[data.id]
@@ -1347,9 +1430,10 @@ class Game {
             
             let data = {}
             base.onSave(data)
-            ret.bases[baseId] = data
+            ret.bases.push(data)
         }
         
+        console.log(ret)
         return ret
     }
     
