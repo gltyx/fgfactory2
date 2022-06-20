@@ -686,6 +686,19 @@ var baseData = [
     
     //---
     
+    { id:'ironPlate',           type:'item', },
+    { id:'steelPlate',          type:'item', },
+    { id:'ironStick',           type:'item', },
+    { id:'ironGearWheel',       type:'item', },
+    { id:'pipe',                type:'item', },
+    { id:'engineUnit',          type:'item', reqs:[ 'engineTech' ], },
+    { id:'copperPlate',         type:'item', },
+    { id:'copperCable',         type:'item', },
+    { id:'stoneBrick',          type:'item', },
+    { id:'concrete',            type:'item', reqs:[ 'concreteTech' ], },
+    
+    //---
+    
     { id:'efficiencyModule1',   type:'module', coeffEnergy:.7, reqs:[ 'efficiency1' ], },
     { id:'efficiencyModule2',   type:'module', coeffEnergy:.6, reqs:[ 'efficiency2' ], },
     { id:'efficiencyModule3',   type:'module', coeffEnergy:.5, reqs:[ 'efficiency3' ], },
@@ -1274,7 +1287,7 @@ class Production extends Base {
             else {
             
                 let availableCount = base.getAvailableCount()
-                if (availableCount <= 50) {
+                if (availableCount >= 50) {
                     return false
                 }
             }
