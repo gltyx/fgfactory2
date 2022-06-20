@@ -686,16 +686,16 @@ var baseData = [
     
     //---
     
-    { id:'ironPlate',           type:'item', },
-    { id:'steelPlate',          type:'item', },
-    { id:'ironStick',           type:'item', },
-    { id:'ironGearWheel',       type:'item', },
-    { id:'pipe',                type:'item', },
-    { id:'engineUnit',          type:'item', reqs:[ 'engineTech' ], },
-    { id:'copperPlate',         type:'item', },
-    { id:'copperCable',         type:'item', },
-    { id:'stoneBrick',          type:'item', },
-    { id:'concrete',            type:'item', reqs:[ 'concreteTech' ], },
+    { id:'ironPlate',           type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:3.2, inputs:{ iron:1 }, outputs:{ ironPlate:1 }, },
+    { id:'steelPlate',          type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'steelProcessing' ], },
+    { id:'ironStick',           type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], },
+    { id:'ironGearWheel',       type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:.5, inputs:{ ironPlate:2 }, outputs:{ ironGearWheel:1 }, },
+    { id:'pipe',                type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], },
+    { id:'engineUnit',          type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'engineTech' ], },
+    { id:'copperPlate',         type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:3.2, inputs:{ copper:1 }, outputs:{ copperPlate:1 },},
+    { id:'copperCable',         type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:.5, inputs:{ copperPlate:1 }, outputs:{ copperCable:2 },},
+    { id:'stoneBrick',          type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], },
+    { id:'concrete',            type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'concreteTech' ], },
     
     //---
     
@@ -713,7 +713,7 @@ var baseData = [
     
     //---
     
-    { id:'woodChest',           type:'storage', value:16,    },
+    { id:'woodChest',           type:'storage', value:16,    time:.5, inputs:{ wood:2 }, outputs:{ woodChest:1 }, },
     { id:'steelChest',          type:'storage', value:48,    reqs:[ 'steelProcessing' ], },
     { id:'ironChest',           type:'storage', value:32,    },
     { id:'storageTank',         type:'storage', value:25000, reqs:[ 'fluidHandling' ], },
@@ -729,6 +729,15 @@ var baseData = [
     { id:'copperManual',                type:'production', itemId:'copper',             machineId:'manual', },
     { id:'copperDrill1',                type:'production', itemId:'copper',             machineId:'drill1', },
     { id:'copperDrill2',                type:'production', itemId:'copper',             machineId:'drill2', },
+    
+    { id:'copperCableManual',           type:'production', itemId:'copperCable',        machineId:'manual', },
+    { id:'copperCableAssembler1',       type:'production', itemId:'copperCable',        machineId:'assembler1', },
+    { id:'copperCableAssembler2',       type:'production', itemId:'copperCable',        machineId:'assembler2', },
+    { id:'copperCableAssembler3',       type:'production', itemId:'copperCable',        machineId:'assembler3', },
+    
+    { id:'copperPlateFurnace1',         type:'production', itemId:'copperPlate',        machineId:'furnace1', },
+    { id:'copperPlateFurnace2',         type:'production', itemId:'copperPlate',        machineId:'furnace2', },
+    { id:'copperPlateFurnace3',         type:'production', itemId:'copperPlate',        machineId:'furnace3', },
     
     { id:'drill1Manual',                type:'production', itemId:'drill1',             machineId:'manual', },
     { id:'drill1Assembler1',            type:'production', itemId:'drill1',             machineId:'assembler1', },
@@ -749,6 +758,15 @@ var baseData = [
     { id:'ironDrill1',                  type:'production', itemId:'iron',               machineId:'drill1', },
     { id:'ironDrill2',                  type:'production', itemId:'iron',               machineId:'drill2', },
     
+    { id:'ironGearWheelManual',         type:'production', itemId:'ironGearWheel',      machineId:'manual', },
+    { id:'ironGearWheelAssembler1',     type:'production', itemId:'ironGearWheel',      machineId:'assembler1', },
+    { id:'ironGearWheelAssembler2',     type:'production', itemId:'ironGearWheel',      machineId:'assembler2', },
+    { id:'ironGearWheelAssembler3',     type:'production', itemId:'ironGearWheel',      machineId:'assembler3', },
+    
+    { id:'ironPlateFurnace1',           type:'production', itemId:'ironPlate',          machineId:'furnace1', },
+    { id:'ironPlateFurnace2',           type:'production', itemId:'ironPlate',          machineId:'furnace2', },
+    { id:'ironPlateFurnace3',           type:'production', itemId:'ironPlate',          machineId:'furnace3', },
+    
     { id:'offshorePumpManual',          type:'production', itemId:'offshorePump',       machineId:'manual', },
     { id:'offshorePumpAssembler1',      type:'production', itemId:'offshorePump',       machineId:'assembler1', },
     { id:'offshorePumpAssembler2',      type:'production', itemId:'offshorePump',       machineId:'assembler2', },
@@ -762,6 +780,11 @@ var baseData = [
     
     { id:'woodManual',                  type:'production', itemId:'wood',               machineId:'manual', },
     { id:'woodConstructionRobot',       type:'production', itemId:'wood',               machineId:'constructionRobot', },
+    
+    { id:'woodChestManual',             type:'production', itemId:'woodChest',          machineId:'manual', },
+    { id:'woodChestAssembler1',         type:'production', itemId:'woodChest',          machineId:'assembler1', },
+    { id:'woodChestAssembler2',         type:'production', itemId:'woodChest',          machineId:'assembler2', },
+    { id:'woodChestAssembler3',         type:'production', itemId:'woodChest',          machineId:'assembler3', },
     
     //---
     
@@ -1128,8 +1151,7 @@ class Production extends Base {
         
         this.count = data.count
         this.state = data.state
-        this.remainingTime = data.remainingTime
-        
+                
         let index = 0
         if (data.modules) {
             data.modules.forEach(module => {
@@ -1139,6 +1161,10 @@ class Production extends Base {
 
                 index++
             })
+        }
+        
+        if (this.state == 'running') {
+            this.remainingTime = data.remainingTime
         }
     }
     
