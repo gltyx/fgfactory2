@@ -5,6 +5,9 @@
             <div class="position-absolute start-0 top-0 small ps-1">
                 <FormatNumber class="text-shadow fw-bold" :class="{ 'text-muted':count == 0, 'text-danger':count >= max }" :value="count" />
             </div>
+            <div v-if="base.type == 'machine' || base.type == 'lab'" class="position-absolute end-0 top-0 small pe-1">
+                <FormatNumber class="text-shadow fw-bold" :class="{ 'text-muted':available == 0, 'text-success':available > 0 }" :value="available" />
+            </div>
             <div class="position-absolute end-0 bottom-0 small pe-1">
                 <span class="text-shadow fw-bold" :class="{ 'text-muted':prod == 0, 'text-danger':prod < 0, 'text-success':prod > 0 }"><FormatNumber :value="prod" /> <small>/s</small></span>                
             </div>
@@ -18,6 +21,14 @@ export default {
     props: [ 'id', 'game' ],
     
     computed: {
+        
+        base() {
+        
+            let ret = this.game.bases[this.id]
+            if (ret) return ret
+        },
+        
+        available() { return this.base.getAvailableCount() },
         
         unlocked() {
         

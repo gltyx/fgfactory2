@@ -646,7 +646,7 @@
 
 var baseData = [
     
-    { id:'manual',              type:'machine', auto:false,                                         speed:1, },
+    { id:'manual',              type:'machine', auto:false,                                         speed:.5,   },
     { id:'furnace1',            type:'machine', auto:true,  energy:{ id:'coal',        count:.04 }, speed:1,    time:.5, inputs:{ stone:5 }, outputs:{ furnace1:1 }, },
     { id:'furnace2',            type:'machine', auto:true,  energy:{ id:'coal',        count:.04 }, speed:2,    time:3,  inputs:{ steelPlate:6, stoneBrick:10 }, outputs:{ furnace2:1 }, reqs:[ 'material1' ], },
     { id:'furnace3',            type:'machine', auto:true,  energy:{ id:'electricity', count:180 }, speed:2,    time:5,  inputs:{ advancedCircuit:3, steelPlate:10, stoneBrick:10 }, outputs:{ furnace3:1 }, moduleSlots:2, reqs:[ 'material2' ], },
@@ -675,12 +675,12 @@ var baseData = [
     
     //---
     
-    { id:'wood',                type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:4, outputs:{ wood:1 }, },
-    { id:'coal',                type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:4, outputs:{ coal:1 }, },
-    { id:'stone',               type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:4, outputs:{ stone:1 }, },
-    { id:'iron',                type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:4, outputs:{ iron:1 }, },
-    { id:'copper',              type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:4, outputs:{ copper:1 }, },
-    { id:'uranium',             type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:8, outputs:{ uranium:1 }, },
+    { id:'wood',                type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1, outputs:{ wood:1 }, },
+    { id:'coal',                type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1, outputs:{ coal:1 }, },
+    { id:'stone',               type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1, outputs:{ stone:1 }, },
+    { id:'iron',                type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1, outputs:{ iron:1 }, },
+    { id:'copper',              type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1, outputs:{ copper:1 }, },
+    { id:'uranium',             type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:2, outputs:{ uranium:1 }, },
     { id:'water',               type:'item', max:1200, storages:[ 'storageTank' ],                          time:1, outputs:{ water:120 }, },
     { id:'oil',                 type:'item', max:50,   storages:[ 'barrel' ],                               time:1, outputs:{ oil:2 }, reqs:[ 'oilProcessing' ], },
     
@@ -908,13 +908,13 @@ class Item extends Base {
         for (let id in this.game.bases) {
             let base = this.game.bases[id]
             if (base.type == 'production' && base.state == 'running') {
+                                
+                let time = base.getTime()
                 
                 let energy = base.getEnergy()
                 if (energy && energy.id == this.id) {
-                    ret -= energy.count
+                    ret -= energy.count / time
                 }
-                
-                let time = base.getTime()
                 
                 let inputs = base.getInputs()
                 if (inputs) {
