@@ -138,7 +138,7 @@ export default {
             let item = this.game.bases[this.id]
             if (item) {
                 item.productions.forEach(production => {
-                    if (production.machineId != 'manual') {
+                    if (production.machineId != 'manual' && production.isUnlocked() == true) {
                         ret.push(production)
                     }
                 })
