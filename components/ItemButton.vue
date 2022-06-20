@@ -5,7 +5,7 @@
             <div class="position-absolute start-0 top-0 small ps-1">
                 <FormatNumber class="text-shadow fw-bold" :class="{ 'text-muted':count == 0, 'text-danger':count >= max }" :value="count" />
             </div>
-            <div v-if="base.type == 'machine' || base.type == 'lab'" class="position-absolute end-0 top-0 small pe-1">
+            <div v-if="base.type == 'machine' || base.type == 'lab' || base.type == 'storage' || base.type == 'module'" class="position-absolute end-0 top-0 small pe-1">
                 <FormatNumber class="text-shadow fw-bold" :class="{ 'text-muted':available == 0, 'text-success':available > 0 }" :value="available" />
             </div>
             <div class="position-absolute end-0 bottom-0 small pe-1">
