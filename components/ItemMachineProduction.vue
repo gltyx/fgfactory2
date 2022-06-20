@@ -10,7 +10,7 @@
                             </button>
                         </div>
                         <div class="col-auto">
-                            <button type="button" class="btn btn-sm btn-dark p-1" :class="{ 'disabled opacity-25':production.count < item.buildCount }" @click="production.count -= item.buildCount">
+                            <button type="button" class="btn btn-sm btn-dark p-1" :class="{ 'disabled opacity-25':production.count < item.buildCount }" @click="unassign();">
                                 <i class="fas fa-fw fa-minus"></i>
                             </button>
                         </div>
@@ -111,6 +111,20 @@ export default {
         },
         
         modulesUnlocked() { return this.game.bases['modules'].isDone() },
+    },
+    
+    methods: {
+    
+        unassign() {
+        
+            this.production.count -= this.item.buildCount
+            
+            if (this.production.count <= 0) {
+            
+                this.production.count = 0
+                this.production.pauseProducing()
+            }
+        },
     },
 }
 </script>

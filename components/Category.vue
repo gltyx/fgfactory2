@@ -1,6 +1,6 @@
 <template>
     <div class="col-12">
-        <button class="btn px-0 py-1" :class="{ 'collapsed':!show }" type="button" data-bs-toggle="collapse" :data-bs-target="'#collapse_' + id" aria-expanded="false" :aria-controls="'collapse_' + id">
+        <button class="btn px-0 py-1" :class="{ 'collapsed':!show }" type="button" data-bs-toggle="collapse" :data-bs-target="'#collapse_' + id" aria-expanded="false" :aria-controls="'collapse_' + id" @click="$emit('click')">
             <div class="subtitle mb-0"><i class="fas fa-fw fa-caret-down"></i> {{ $t('category_' + id) }}</div>
         </button>
         <div class="collapse" :class="{ 'show':show }" :id="'collapse_' + id">

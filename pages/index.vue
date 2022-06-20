@@ -260,7 +260,7 @@
                     <div v-if="currentTabId == 'production'" class="h-100 row g-3">
                         <div class="col-auto scrollbar" style="width:475px;">
                             <div class="row g-3">
-                                <Category id="machines">
+                                <Category id="machines" :show="catMachinesStart" @click="catMachinesOpen = !catMachinesOpen;">
                                     <ItemButton id="furnace1" :game="game" />
                                     <ItemButton id="furnace2" :game="game" />
                                     <ItemButton id="furnace3" :game="game" />
@@ -284,7 +284,7 @@
                                     <ItemButton id="steamTurbine" :game="game" />
                                     <ItemButton id="rocketSilo" :game="game" />
                                 </Category>
-                                <Category id="raw" show="true">
+                                <Category id="raw" :show="catRawStart" @click="catRawOpen = !catRawOpen;">
                                     <ItemButton id="wood" :game="game" />
                                     <ItemButton id="coal" :game="game" />
                                     <ItemButton id="stone" :game="game" />
@@ -294,7 +294,7 @@
                                     <ItemButton id="water" :game="game" />
                                     <ItemButton id="oil" :game="game" />
                                 </Category>
-                                <Category id="fabricated">
+                                <Category id="fabricated" :show="catFabricatedStart" @click="catFabricatedOpen = !catFabricatedOpen;">
                                     <ItemButton id="ironPlate" :game="game" />
                                     <ItemButton id="steelPlate" :game="game" />
                                     <ItemButton id="ironStick" :game="game" />
@@ -306,7 +306,7 @@
                                     <ItemButton id="stoneBrick" :game="game" />
                                     <ItemButton id="concrete" :game="game" />
                                 </Category>
-                                <Category id="items">
+                                <Category id="items" :show="catItemsStart" @click="catItemsOpen = !catItemsOpen;">
                                     <ItemButton id="heat" :game="game" />
                                     <ItemButton id="steam" :game="game" />
                                     <ItemButton id="electricity" :game="game" />
@@ -337,7 +337,7 @@
                                     <ItemButton id="portableFusionReactor" :game="game" />
                                     <ItemButton id="satellite" :game="game" />
                                 </Category>
-                                <Category id="storages">
+                                <Category id="storages" :show="catStoragesStart" @click="catStoragesOpen = !catStoragesOpen;">
                                     <ItemButton id="woodChest" :game="game" />
                                     <ItemButton id="ironChest" :game="game" />
                                     <ItemButton id="steelChest" :game="game" />
@@ -345,7 +345,7 @@
                                     <ItemButton id="barrel" :game="game" />
                                     <ItemButton id="accumulator" :game="game" />
                                 </Category>
-                                <Category id="science">
+                                <Category id="science" :show="catScienceStart" @click="catScienceOpen = !catScienceOpen;">
                                     <ItemButton id="redPack" :game="game" />
                                     <ItemButton id="greenPack" :game="game" />
                                     <ItemButton id="grayPack" :game="game" />
@@ -353,7 +353,7 @@
                                     <ItemButton id="purplePack" :game="game" />
                                     <ItemButton id="yellowPack" :game="game" />
                                 </Category>
-                                <Category id="modules">
+                                <Category id="modules" :show="catModulesStart" @click="catModulesOpen = !catModulesOpen;">
                                     <ItemButton id="speedModule1" :game="game" />
                                     <ItemButton id="speedModule2" :game="game" />
                                     <ItemButton id="speedModule3" :game="game" />
@@ -364,7 +364,7 @@
                                     <ItemButton id="productivityModule2" :game="game" />
                                     <ItemButton id="productivityModule3" :game="game" />
                                 </Category>
-                                <Category id="weapons">
+                                <Category id="weapons" :show="catWeaponsStart" @click="catWeaponsOpen = !catWeaponsOpen;">
                                     <ItemButton id="pistol" :game="game" />
                                     <ItemButton id="submachineGun" :game="game" />
                                     <ItemButton id="shotgun" :game="game" />
@@ -511,7 +511,7 @@
                     <div v-if="currentTabId == 'research'" class="h-100 row g-3">
                         <div class="col-auto scrollbar" style="width:475px;">
                             <div class="row g-3">
-                                <Category id="techs" show="true">
+                                <Category id="techs" :show="catTechsStart" @click="catTechsOpen = !catTechsOpen;">
                                     <TechButton id="automation1" :game="game" />
                                     <TechButton id="modules" :game="game" />
                                 </Category>
@@ -646,21 +646,21 @@
 
 var baseData = [
     
-    { id:'manual',              type:'machine', auto:false,                                         speed:.5,   },
-    { id:'furnace1',            type:'machine', auto:true,  energy:{ id:'coal',        count:.04 }, speed:1,    time:.5, inputs:{ stone:5 }, outputs:{ furnace1:1 }, },
-    { id:'furnace2',            type:'machine', auto:true,  energy:{ id:'coal',        count:.04 }, speed:2,    time:3,  inputs:{ steelPlate:6, stoneBrick:10 }, outputs:{ furnace2:1 }, reqs:[ 'material1' ], },
-    { id:'furnace3',            type:'machine', auto:true,  energy:{ id:'electricity', count:180 }, speed:2,    time:5,  inputs:{ advancedCircuit:3, steelPlate:10, stoneBrick:10 }, outputs:{ furnace3:1 }, moduleSlots:2, reqs:[ 'material2' ], },
-    { id:'drill1',              type:'machine', auto:true,  energy:{ id:'coal',        count:.02 }, speed:.25,  time:2,  inputs:{ ironGearWheel:3, ironPlate:3, furnace1:1 }, outputs:{ drill1:1 }, },
-    { id:'drill2',              type:'machine', auto:true,  energy:{ id:'electricity', count:90  }, speed:.5,   time:2,  inputs:{ electronicCircuit:3, ironGearWheel:5, ironPlate:10 }, outputs:{ drill2:1 }, moduleSlots:3, },    
-    { id:'assembler1',          type:'machine', auto:true,  energy:{ id:'electricity', count:75  }, speed:.5,   time:.5, inputs:{ electronicCircuit:3, ironGearWheel:5, ironPlate:9 }, outputs:{ assembler1:1 }, reqs:[ 'automation1' ], },
-    { id:'assembler2',          type:'machine', auto:true,  energy:{ id:'electricity', count:150 }, speed:.75,  time:.5, inputs:{ assembler1:1, electronicCircuit:3, ironGearWheel:5, steelPlate:2 }, outputs:{ assembler2:1 }, moduleSlots:2, reqs:[ 'automation2' ], },
-    { id:'assembler3',          type:'machine', auto:true,  energy:{ id:'electricity', count:375 }, speed:1.25, time:.5, inputs:{ assembler2:2, speedModule1:4 }, outputs:{ assembler3:1 }, moduleSlots:4, reqs:[ 'automation3' ], },
-    { id:'offshorePump',        type:'machine', auto:true,                                          speed:.1,   time:.5, inputs:{ electronicCircuit:2, ironGearWheel:1, pipe:1 }, outputs:{ offshorePump:1 }, },
-    { id:'pumpjack',            type:'machine', auto:true,  energy:{ id:'electricity', count:90  }, speed:1,    time:5,  inputs:{ electronicCircuit:5, ironGearWheel:10, pipe:10, steelPlate:5 }, outputs:{ pumpjack:1 }, moduleSlots:2, reqs:[ 'oilProcessing' ], },
+    { id:'manual',              type:'machine', auto:false,                                          speed:.5,   },
+    { id:'furnace1',            type:'machine', auto:true,  energy:{ id:'coal',        count:.04  }, speed:1,    time:.5, inputs:{ stone:5 }, outputs:{ furnace1:1 }, },
+    { id:'furnace2',            type:'machine', auto:true,  energy:{ id:'coal',        count:.04  }, speed:2,    time:3,  inputs:{ steelPlate:6, stoneBrick:10 }, outputs:{ furnace2:1 }, reqs:[ 'material1' ], },
+    { id:'furnace3',            type:'machine', auto:true,  energy:{ id:'electricity', count:180  }, speed:2,    time:5,  inputs:{ advancedCircuit:3, steelPlate:10, stoneBrick:10 }, outputs:{ furnace3:1 }, moduleSlots:2, reqs:[ 'material2' ], },
+    { id:'drill1',              type:'machine', auto:true,  energy:{ id:'coal',        count:.02  }, speed:.25,  time:2,  inputs:{ ironGearWheel:3, ironPlate:3, furnace1:1 }, outputs:{ drill1:1 }, },
+    { id:'drill2',              type:'machine', auto:true,  energy:{ id:'electricity', count:90   }, speed:.5,   time:2,  inputs:{ electronicCircuit:3, ironGearWheel:5, ironPlate:10 }, outputs:{ drill2:1 }, moduleSlots:3, },    
+    { id:'assembler1',          type:'machine', auto:true,  energy:{ id:'electricity', count:75   }, speed:.5,   time:.5, inputs:{ electronicCircuit:3, ironGearWheel:5, ironPlate:9 }, outputs:{ assembler1:1 }, reqs:[ 'automation1' ], },
+    { id:'assembler2',          type:'machine', auto:true,  energy:{ id:'electricity', count:150  }, speed:.75,  time:.5, inputs:{ assembler1:1, electronicCircuit:3, ironGearWheel:5, steelPlate:2 }, outputs:{ assembler2:1 }, moduleSlots:2, reqs:[ 'automation2' ], },
+    { id:'assembler3',          type:'machine', auto:true,  energy:{ id:'electricity', count:375  }, speed:1.25, time:.5, inputs:{ assembler2:2, speedModule1:4 }, outputs:{ assembler3:1 }, moduleSlots:4, reqs:[ 'automation3' ], },
+    { id:'offshorePump',        type:'machine', auto:true,                                           speed:.1,   time:.5, inputs:{ electronicCircuit:2, ironGearWheel:1, pipe:1 }, outputs:{ offshorePump:1 }, },
+    { id:'pumpjack',            type:'machine', auto:true,  energy:{ id:'electricity', count:90   }, speed:1,    time:5,  inputs:{ electronicCircuit:5, ironGearWheel:10, pipe:10, steelPlate:5 }, outputs:{ pumpjack:1 }, moduleSlots:2, reqs:[ 'oilProcessing' ], },
     { id:'oilRefinery',         type:'machine', auto:true,  reqs:[ 'oilProcessing' ], },
     { id:'chemicalPlant',       type:'machine', auto:true,  reqs:[ 'oilProcessing' ], },
-    { id:'boiler',              type:'machine', auto:true,  },
-    { id:'steamEngine',         type:'machine', auto:true,  },
+    { id:'boiler',              type:'machine', auto:true,  energy:{ id:'coal',        count:2.22 }, speed:1,    time:.5, inputs:{ pipe:4, furnace1:1 }, outputs:{ boiler:1 }, },
+    { id:'steamEngine',         type:'machine', auto:true,                                           speed:1,    time:.5, inputs:{ ironGearWheel:8, ironPlate:10, pipe:5 }, outputs:{ steamEngine:1 }, },
     { id:'solarPanel',          type:'machine', auto:true,  reqs:[ 'solarEnergy' ], },
     { id:'constructionRobot',   type:'machine', auto:true,  reqs:[ 'constructionRobotics' ], },
     { id:'centrifuge',          type:'machine', auto:true,  reqs:[ 'uraniumProcessing' ], },
@@ -690,12 +690,18 @@ var baseData = [
     { id:'steelPlate',          type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'steelProcessing' ], },
     { id:'ironStick',           type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], },
     { id:'ironGearWheel',       type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:.5, inputs:{ ironPlate:2 }, outputs:{ ironGearWheel:1 }, },
-    { id:'pipe',                type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], },
+    { id:'pipe',                type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:.5, inputs:{ ironPlate:1 }, outputs:{ pipe:1 }, },
     { id:'engineUnit',          type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'engineTech' ], },
     { id:'copperPlate',         type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:3.2, inputs:{ copper:1 }, outputs:{ copperPlate:1 },},
     { id:'copperCable',         type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:.5, inputs:{ copperPlate:1 }, outputs:{ copperCable:2 },},
     { id:'stoneBrick',          type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], },
     { id:'concrete',            type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'concreteTech' ], },
+    
+    //---
+    
+    { id:'steam',               type:'item', max:1200, storages:[ 'storageTank' ],                          time:1, inputs:{ water:60 }, outputs:{ steam:60 }, },
+    { id:'electricity',         type:'item', max:1200, storages:[ 'accumulator' ],                          time:1, inputs:{ steam:30 }, outputs:{ electricity:900 }, },
+    { id:'electronicCircuit',   type:'item', max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:.5, inputs:{ copperCable:3, ironPlate:1 }, outputs:{ electronicCircuit:1 }, },
     
     //---
     
@@ -721,6 +727,11 @@ var baseData = [
     { id:'accumulator',         type:'storage', value:300,   reqs:[ 'accumulatorTech' ],},
     
     //---
+    
+    { id:'boilerManual',                type:'production', itemId:'boiler',             machineId:'manual', },
+    { id:'boilerAssembler1',            type:'production', itemId:'boiler',             machineId:'assembler1', },
+    { id:'boilerAssembler2',            type:'production', itemId:'boiler',             machineId:'assembler2', },
+    { id:'boilerAssembler3',            type:'production', itemId:'boiler',             machineId:'assembler3', },
     
     { id:'coalManual',                  type:'production', itemId:'coal',               machineId:'manual', },
     { id:'coalDrill1',                  type:'production', itemId:'coal',               machineId:'drill1', },
@@ -749,6 +760,13 @@ var baseData = [
     { id:'drill2Assembler2',            type:'production', itemId:'drill2',             machineId:'assembler2', },
     { id:'drill2Assembler3',            type:'production', itemId:'drill2',             machineId:'assembler3', },
     
+    { id:'electricitySteamEngine',      type:'production', itemId:'electricity',        machineId:'steamEngine', },
+    
+    { id:'electronicCircuitManual',     type:'production', itemId:'electronicCircuit',  machineId:'manual', },
+    { id:'electronicCircuitAssembler1', type:'production', itemId:'electronicCircuit',  machineId:'assembler1', },
+    { id:'electronicCircuitAssembler2', type:'production', itemId:'electronicCircuit',  machineId:'assembler2', },
+    { id:'electronicCircuitAssembler3', type:'production', itemId:'electronicCircuit',  machineId:'assembler3', },
+    
     { id:'furnace1Manual',              type:'production', itemId:'furnace1',           machineId:'manual', },
     { id:'furnace1Assembler1',          type:'production', itemId:'furnace1',           machineId:'assembler1', },
     { id:'furnace1Assembler2',          type:'production', itemId:'furnace1',           machineId:'assembler2', },
@@ -771,6 +789,18 @@ var baseData = [
     { id:'offshorePumpAssembler1',      type:'production', itemId:'offshorePump',       machineId:'assembler1', },
     { id:'offshorePumpAssembler2',      type:'production', itemId:'offshorePump',       machineId:'assembler2', },
     { id:'offshorePumpAssembler3',      type:'production', itemId:'offshorePump',       machineId:'assembler3', },
+    
+    { id:'pipeManual',                  type:'production', itemId:'pipe',               machineId:'manual', },
+    { id:'pipeAssembler1',              type:'production', itemId:'pipe',               machineId:'assembler1', },
+    { id:'pipeAssembler2',              type:'production', itemId:'pipe',               machineId:'assembler2', },
+    { id:'pipeAssembler3',              type:'production', itemId:'pipe',               machineId:'assembler3', },
+    
+    { id:'steamBoiler',                 type:'production', itemId:'steam',              machineId:'boiler', },
+    
+    { id:'steamEngineManual',           type:'production', itemId:'steamEngine',        machineId:'manual', },
+    { id:'steamEngineAssembler1',       type:'production', itemId:'steamEngine',        machineId:'assembler1', },
+    { id:'steamEngineAssembler2',       type:'production', itemId:'steamEngine',        machineId:'assembler2', },
+    { id:'steamEngineAssembler3',       type:'production', itemId:'steamEngine',        machineId:'assembler3', },
     
     { id:'stoneManual',                 type:'production', itemId:'stone',              machineId:'manual', },
     { id:'stoneDrill1',                 type:'production', itemId:'stone',              machineId:'drill1', },
@@ -1752,6 +1782,28 @@ export default {
             currentProductionSelection: 'stone',
             currentResearchSelection: 'automation1',
             
+            catMachinesStart: true,
+            catRawStart: true,
+            catFabricatedStart: true,
+            catItemsStart: true,
+            catStoragesStart: true,
+            catScienceStart: true,
+            catModulesStart: true,
+            catWeaponsStart: true,
+            
+            catTechsStart: true,
+            
+            catMachinesOpen: true,
+            catRawOpen: true,
+            catFabricatedOpen: true,
+            catItemsOpen: true,
+            catStoragesOpen: true,
+            catScienceOpen: true,
+            catModulesOpen: true,
+            catWeaponsOpen: true,
+            
+            catTechsOpen: true,
+            
             //---
             
             game: new Game(),
@@ -1879,7 +1931,18 @@ export default {
             
                 this.load()                
                 this.update()
-                                
+                
+                this.catMachinesStart = this.catMachinesOpen
+                this.catRawStart = this.catRawOpen
+                this.catFabricatedStart = this.catFabricatedOpen
+                this.catItemsStart = this.catItemsOpen
+                this.catStoragesStart = this.catStoragesOpen
+                this.catScienceStart = this.catScienceOpen
+                this.catModulesStart = this.catModulesOpen
+                this.catWeaponsStart = this.catWeaponsOpen
+                
+                this.catTechsStart = this.catTechsOpen
+                
                 window.onbeforeunload = () => {
                 
                     if (this.resetInProgress == false) {
@@ -1940,6 +2003,22 @@ export default {
                 if (loadedData.lastFrameTimeMs != null) this.lastFrameTimeMs = loadedData.lastFrameTimeMs
                 if (loadedData.tutorialEnabled != null) this.tutorialEnabled = loadedData.tutorialEnabled
                 
+                if (loadedData.currentTabId != null) this.currentTabId = loadedData.currentTabId
+                
+                if (loadedData.currentProductionSelection != null) this.currentProductionSelection = loadedData.currentProductionSelection
+                if (loadedData.currentResearchSelection != null) this.currentResearchSelection = loadedData.currentResearchSelection
+            
+                if (loadedData.catMachinesOpen != null) this.catMachinesOpen = loadedData.catMachinesOpen
+                if (loadedData.catRawOpen != null) this.catRawOpen = loadedData.catRawOpen
+                if (loadedData.catFabricatedOpen != null) this.catFabricatedOpen = loadedData.catFabricatedOpen
+                if (loadedData.catItemsOpen != null) this.catItemsOpen = loadedData.catItemsOpen
+                if (loadedData.catStoragesOpen != null) this.catStoragesOpen = loadedData.catStoragesOpen
+                if (loadedData.catScienceOpen != null) this.catScienceOpen = loadedData.catScienceOpen
+                if (loadedData.catModulesOpen != null) this.catModulesOpen = loadedData.catModulesOpen
+                if (loadedData.catWeaponsOpen != null) this.catWeaponsOpen = loadedData.catWeaponsOpen
+                
+                if (loadedData.catTechsOpen != null) this.catTechsOpen = loadedData.catTechsOpen
+                
                 if (loadedData.tutorials) {
                     for (var id in loadedData.tutorials) {
                         let dataTut = loadedData.tutorials[id]
@@ -1959,6 +2038,22 @@ export default {
             
             savedData.lastFrameTimeMs = this.lastFrameTimeMs
             savedData.tutorialEnabled = this.tutorialEnabled
+            
+            savedData.currentTabId = this.currentTabId
+
+            savedData.currentProductionSelection = this.currentProductionSelection
+            savedData.currentResearchSelection = this.currentResearchSelection
+
+            savedData.catMachinesOpen = this.catMachinesOpen
+            savedData.catRawOpen = this.catRawOpen
+            savedData.catFabricatedOpen = this.catFabricatedOpen
+            savedData.catItemsOpen = this.catItemsOpen
+            savedData.catStoragesOpen = this.catStoragesOpen
+            savedData.catScienceOpen = this.catScienceOpen
+            savedData.catModulesOpen = this.catModulesOpen
+            savedData.catWeaponsOpen = this.catWeaponsOpen
+            
+            savedData.catTechsOpen = this.catTechsOpen
             
             savedData.tutorials = {}
             for (var id in this.tutorials) {

@@ -33,7 +33,7 @@
                             </div>
                             <div v-if="unused != null" class="col-auto">
                                 <div class="subtitle">Unused</div>
-                                <span :class="{ 'text-muted opacity-25':unused == 0 }"><FormatNumber :value="unused" /></span>
+                                <span :class="{ 'text-muted opacity-25':unused == 0, 'text-success':unused > 0 }"><FormatNumber :value="unused" /></span>
                             </div>
                             <div v-if="storages" class="col">
                                 <div class="row align-items-center justify-content-end">
