@@ -1,5 +1,6 @@
 <template>
     <div class="col-12">
+        <div class="subtitle">Electricity</div>
         <div class="card card-body py-1 pe-1 ps-2">
             <div class="row align-items-center">
                 <div class="col">
@@ -85,7 +86,7 @@ export default {
             if (this.generator.used <= 0) {
             
                 this.generator.used = 0
-                this.generator.pauseProducing()
+                this.generator.pauseGenerating()
             }
         },
     },

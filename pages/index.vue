@@ -821,8 +821,69 @@ var baseData = [
     
     //---
     
+    { id:'accumulatorTech', type:'research', },
+    { id:'artillery', type:'research', },
+    { id:'artillery', type:'research', },
+    { id:'atomicBombTech', type:'research', },
     { id:'automation1',             type:'research',    time:10, cycleCount:10,    costs:{ redPack:1 }, },
+    { id:'automation2', type:'research', },
+    { id:'automation3', type:'research', },
+    { id:'automobilism', type:'research', },
+    { id:'batteryTech', type:'research', },
+    { id:'blueScience', type:'research', },    
+    { id:'concreteTech', type:'research', },
+    { id:'constructionRobotics', type:'research', },
+    { id:'efficiency1', type:'research', },
+    { id:'efficiency2', type:'research', },
+    { id:'efficiency3', type:'research', },
+    { id:'electricEngineTech', type:'research', },
+    { id:'electronics1', type:'research', },
+    { id:'electronics2', type:'research', },
+    { id:'engineTech', type:'research', },
+    { id:'explosivesTech', type:'research', },
+    { id:'fluidHandling', type:'research', },
+    { id:'grayScience', type:'research', },    
+    { id:'greenScience', type:'research', },    
+    { id:'gunTurretTech', type:'research', },
+    { id:'kovarex', type:'research', },
+    { id:'laserTurretTech', type:'research', },
+    { id:'lowDensityStructureTech', type:'research', },
+    { id:'lubricantTech', type:'research', },
+    { id:'material1', type:'research', },
+    { id:'material2', type:'research', },
+    { id:'military1', type:'research', },
+    { id:'military2', type:'research', },
+    { id:'military3', type:'research', },
+    { id:'military4', type:'research', },
     { id:'modules',                 type:'research',    time:30, cycleCount:100,   costs:{ redPack:1, greenPack:1 }, reqs:[ 'electronics2' ], },
+    { id:'nuclearPower', type:'research', },
+    { id:'oilProcessing1', type:'research', },
+    { id:'oilProcessing2', type:'research', },
+    { id:'plastics', type:'research', },
+    { id:'portableFusionReactorTech', type:'research', },
+    { id:'productivity1', type:'research', },
+    { id:'productivity2', type:'research', },
+    { id:'productivity3', type:'research', },
+    { id:'purpleScience', type:'research', },    
+    { id:'robotics', type:'research', },   
+    { id:'rocketControlUnitTech', type:'research', },
+    { id:'rocketFuelTech', type:'research', },
+    { id:'rocketry1', type:'research', },
+    { id:'rocketry2', type:'research', },
+    { id:'rocketSiloTech', type:'research', },
+    { id:'solarEnergy', type:'research', },
+    { id:'spaceScience', type:'research', },
+    { id:'speed1', type:'research', },
+    { id:'speed2', type:'research', },
+    { id:'speed3', type:'research', },
+    { id:'spidertronTech', type:'research', },
+    { id:'steelProcessing', type:'research', },
+    { id:'sulfurProcessing', type:'research', },
+    { id:'tankTech', type:'research', },
+    { id:'uraniumAmmo', type:'research', },
+    { id:'uraniumProcessing', type:'research', },
+    { id:'kovarex', type:'research', },
+    { id:'yellowScience', type:'research', },
 ]
 
 //------------------------------------------------------------------------------
@@ -1077,7 +1138,9 @@ class Generator extends Item {
     
     getElecProd() {
     
-        let ret = this.elecProd * this.used
+        let used = this.used > 0 ? this.used : 1
+        
+        let ret = this.elecProd * used
         return ret
     }
 
@@ -1833,7 +1896,7 @@ class Game {
         let ret = 0
         for (let id in this.bases) {
             let base = this.bases[id]
-            if (base.type == 'generator') {
+            if (base.type == 'generator' && base.used > 0 && base.state == 'running') {
                 ret += base.getElecProd()
             }
         }
