@@ -646,153 +646,153 @@
 
 var baseData = [
     
-    { id:'manual',                  type:'machine', auto:false, speed:.5, },
+    { id:'manual',                  type:'machine',     auto:false, speed:.5, },
     
-    { id:'furnace1',                type:'machine', machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'coal',        count:.04  }, speed:1,    time:.5, inputs:{ stone:5 }, outputs:{ furnace1:1 }, },
-    { id:'furnace2',                type:'machine', machines:[], auto:true,  energy:{ id:'coal',        count:.04  }, speed:2,    time:3,  inputs:{ steelPlate:6, stoneBrick:10 }, outputs:{ furnace2:1 }, reqs:[ 'material1' ], },
-    { id:'furnace3',                type:'machine', machines:[], auto:true,  energy:{ id:'electricity', count:180  }, speed:2,    time:5,  inputs:{ advancedCircuit:3, steelPlate:10, stoneBrick:10 }, outputs:{ furnace3:1 }, moduleSlots:2, reqs:[ 'material2' ], },
-    { id:'drill1',                  type:'machine', machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'coal',        count:.02  }, speed:.25,  time:2,  inputs:{ ironGearWheel:3, ironPlate:3, furnace1:1 }, outputs:{ drill1:1 }, },
-    { id:'drill2',                  type:'machine', machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'electricity', count:90   }, speed:.5,   time:2,  inputs:{ electronicCircuit:3, ironGearWheel:5, ironPlate:10 }, outputs:{ drill2:1 }, moduleSlots:3, },    
-    { id:'assembler1',              type:'machine', machines:[], auto:true,  energy:{ id:'electricity', count:75   }, speed:.5,   time:.5, inputs:{ electronicCircuit:3, ironGearWheel:5, ironPlate:9 }, outputs:{ assembler1:1 }, reqs:[ 'automation1' ], },
-    { id:'assembler2',              type:'machine', machines:[], auto:true,  energy:{ id:'electricity', count:150  }, speed:.75,  time:.5, inputs:{ assembler1:1, electronicCircuit:3, ironGearWheel:5, steelPlate:2 }, outputs:{ assembler2:1 }, moduleSlots:2, reqs:[ 'automation2' ], },
-    { id:'assembler3',              type:'machine', machines:[], auto:true,  energy:{ id:'electricity', count:375  }, speed:1.25, time:.5, inputs:{ assembler2:2, speedModule1:4 }, outputs:{ assembler3:1 }, moduleSlots:4, reqs:[ 'automation3' ], },
-    { id:'offshorePump',            type:'machine', machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,                                           speed:.1,   time:.5, inputs:{ electronicCircuit:2, ironGearWheel:1, pipe:1 }, outputs:{ offshorePump:1 }, },
-    { id:'pumpjack',                type:'machine', machines:[], auto:true,  energy:{ id:'electricity', count:90   }, speed:1,    time:5,  inputs:{ electronicCircuit:5, ironGearWheel:10, pipe:10, steelPlate:5 }, outputs:{ pumpjack:1 }, moduleSlots:2, reqs:[ 'oilProcessing1' ], },
-    { id:'oilRefinery',             type:'machine', machines:[], auto:true,  reqs:[ 'oilProcessing1' ], },
-    { id:'chemicalPlant',           type:'machine', machines:[], auto:true,  reqs:[ 'oilProcessing1' ], },
-    { id:'boiler',                  type:'machine', machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'coal',        count:2.22 }, speed:1,    time:.5, inputs:{ pipe:4, furnace1:1 }, outputs:{ boiler:1 }, },
-    { id:'steamEngine',             type:'machine', machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,                                           speed:1,    time:.5, inputs:{ ironGearWheel:8, ironPlate:10, pipe:5 }, outputs:{ steamEngine:1 }, },
-    { id:'solarPanel',              type:'machine', machines:[], auto:true,  reqs:[ 'solarEnergy' ], },
-    { id:'constructionRobot',       type:'machine', machines:[], auto:true,  reqs:[ 'constructionRobotics' ], },
-    { id:'centrifuge',              type:'machine', machines:[], auto:true,  reqs:[ 'uraniumProcessing' ], },
-    { id:'nuclearReactor',          type:'machine', machines:[], auto:true,  reqs:[ 'nuclearPower' ], },
-    { id:'heatExchanger',           type:'machine', machines:[], auto:true,  reqs:[ 'nuclearPower' ], },
-    { id:'steamTurbine',            type:'machine', machines:[], auto:true,  reqs:[ 'nuclearPower' ], },
-    { id:'rocketSilo',              type:'machine', machines:[], auto:true,  reqs:[ 'rocketSiloTech' ], },
+    { id:'furnace1',                type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'coal',            count:.04   }, speed:1,    time:.5, inputs:{ stone:5 }, outputs:{ furnace1:1 }, },
+    { id:'furnace2',                type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'coal',            count:.04   }, speed:2,    time:3,  inputs:{ steelPlate:6, stoneBrick:10 }, outputs:{ furnace2:1 }, reqs:[ 'material1' ], },
+    { id:'furnace3',                type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'electricity',     count:180   }, speed:2,    time:5,  inputs:{ advancedCircuit:3, steelPlate:10, stoneBrick:10 }, outputs:{ furnace3:1 }, moduleSlots:2, reqs:[ 'material2' ], },
+    { id:'drill1',                  type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'coal',            count:.02   }, speed:.25,  time:2,  inputs:{ ironGearWheel:3, ironPlate:3, furnace1:1 }, outputs:{ drill1:1 }, },
+    { id:'drill2',                  type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'electricity',     count:90    }, speed:.5,   time:2,  inputs:{ electronicCircuit:3, ironGearWheel:5, ironPlate:10 }, outputs:{ drill2:1 }, moduleSlots:3, },    
+    { id:'assembler1',              type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'electricity',     count:75    }, speed:.5,   time:.5, inputs:{ electronicCircuit:3, ironGearWheel:5, ironPlate:9 }, outputs:{ assembler1:1 }, reqs:[ 'automation1' ], },
+    { id:'assembler2',              type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'electricity',     count:150   }, speed:.75,  time:.5, inputs:{ assembler1:1, electronicCircuit:3, ironGearWheel:5, steelPlate:2 }, outputs:{ assembler2:1 }, moduleSlots:2, reqs:[ 'automation2' ], },
+    { id:'assembler3',              type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'electricity',     count:375   }, speed:1.25, time:.5, inputs:{ assembler2:2, speedModule1:4 }, outputs:{ assembler3:1 }, moduleSlots:4, reqs:[ 'automation3' ], },
+    { id:'offshorePump',            type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,                                                speed:.1,   time:.5, inputs:{ electronicCircuit:2, ironGearWheel:1, pipe:1 }, outputs:{ offshorePump:1 }, },
+    { id:'pumpjack',                type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'electricity',     count:90    }, speed:1,    time:5,  inputs:{ electronicCircuit:5, ironGearWheel:10, pipe:10, steelPlate:5 }, outputs:{ pumpjack:1 }, moduleSlots:2, reqs:[ 'oilProcessing1' ], },
+    { id:'oilRefinery',             type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'electricity',     count:420   }, speed:1,    time:8,  inputs:{ electronicCircuit:10, ironGearWheel:10, pipe:10, steelPlate:15, stoneBrick:10 }, outputs:{ oilRefinery:1 }, moduleSlots:3, reqs:[ 'oilProcessing1' ], },
+    { id:'chemicalPlant',           type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'electricity',     count:210   }, speed:1,    time:.5, inputs:{ electronicCircuit:5, ironGearWheel:5, pipe:5, steelPlate:5 }, outputs:{ chemicalPlant:1 }, reqs:[ 'oilProcessing1' ], },
+    { id:'boiler',                  type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'coal',            count:2.22  }, speed:1,    time:.5, inputs:{ pipe:4, furnace1:1 }, outputs:{ boiler:1 }, },
+    { id:'steamEngine',             type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,                                                speed:1,    time:.5, inputs:{ ironGearWheel:8, ironPlate:10, pipe:5 }, outputs:{ steamEngine:1 }, },
+    { id:'solarPanel',              type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,                                                speed:1,    time:10, inputs:{ stone:5 }, outputs:{ solarPanel:1 }, reqs:[ 'solarEnergy' ], },
+    { id:'constructionRobot',       type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'electricity',     count:5     }, speed:1,    time:.5, inputs:{ electronicCircuit:2, flyingRobot:1 }, outputs:{ constructionRobot:1 }, reqs:[ 'constructionRobotics' ], },
+    { id:'centrifuge',              type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'electricity',     count:350   }, speed:1,    time:4,  inputs:{ advancedCircuit:100, concrete:100, ironGearWheel:100, steelPlate:50 }, outputs:{ centrifuge:1 }, reqs:[ 'uraniumProcessing' ], },
+    { id:'nuclearReactor',          type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'uraniumFuelCell', count:0.005 }, speed:1,    time:8,  inputs:{ advancedCircuit:500, concrete:500, copperPlate:500, steelPlate:500 }, outputs:{ nuclearReactor:1 }, reqs:[ 'nuclearPower' ], },
+    { id:'heatExchanger',           type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'heat',            count:50    }, speed:1,    time:3,  inputs:{ copperPlate:100, pipe:10, steelPlate:10 }, outputs:{ heatExchanger:1 }, reqs:[ 'nuclearPower' ], },
+    { id:'steamTurbine',            type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,                                                speed:1,    time:3,  inputs:{ copperPlate:50, ironGearWheel:50, pipe:20 }, outputs:{ steamTurbine:1 }, reqs:[ 'nuclearPower' ], },
+    { id:'rocketSilo',              type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'electricity',     count:4000  }, speed:1,    time:30, inputs:{ concrete:1000, electricEngineUnit:200, pipe:100, processingUnit:200, steelPlate:1000 }, outputs:{ rocketSilo:1 }, reqs:[ 'rocketSiloTech' ], },
 
     //---
     
-    { id:'lab',                     type:'lab', machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], energy:{ id:'electricity', count:60 }, time:3, inputs:{ electronicCircuit:10, ironGearWheel:12, ironPlate:2 }, outputs:{ lab:1 }, moduleSlots:2, },
+    { id:'lab',                     type:'lab',         machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], energy:{ id:'electricity', count:60 }, time:3, inputs:{ electronicCircuit:10, ironGearWheel:12, ironPlate:2 }, outputs:{ lab:1 }, moduleSlots:2, },
     
     //---
     
-    { id:'wood',                    type:'item', machines:[ 'manual', 'constructionRobot' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1, outputs:{ wood:1 }, },
-    { id:'coal',                    type:'item', machines:[ 'manual', 'drill1', 'drill2' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1, outputs:{ coal:1 }, },
-    { id:'stone',                   type:'item', machines:[ 'manual', 'drill1', 'drill2' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1, outputs:{ stone:1 }, },
-    { id:'iron',                    type:'item', machines:[ 'manual', 'drill1', 'drill2' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1, outputs:{ iron:1 }, },
-    { id:'copper',                  type:'item', machines:[ 'manual', 'drill1', 'drill2' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1, outputs:{ copper:1 }, },
-    { id:'uranium',                 type:'item', machines:[ 'drill2' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:2, outputs:{ uranium:1 }, },
-    { id:'water',                   type:'item', machines:[ 'offshorePump' ], max:1200, storages:[ 'storageTank' ],                          time:1, outputs:{ water:120 }, },
-    { id:'oil',                     type:'item', machines:[ 'pumpjack' ], max:50,   storages:[ 'barrel' ],                               time:1, outputs:{ oil:2 }, reqs:[ 'oilProcessing1' ], },
+    { id:'wood',                    type:'item',        machines:[ 'manual', 'constructionRobot' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1, outputs:{ wood:1 }, },
+    { id:'coal',                    type:'item',        machines:[ 'manual', 'drill1', 'drill2' ],  max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1, outputs:{ coal:1 }, },
+    { id:'stone',                   type:'item',        machines:[ 'manual', 'drill1', 'drill2' ],  max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1, outputs:{ stone:1 }, },
+    { id:'iron',                    type:'item',        machines:[ 'manual', 'drill1', 'drill2' ],  max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1, outputs:{ iron:1 }, },
+    { id:'copper',                  type:'item',        machines:[ 'manual', 'drill1', 'drill2' ],  max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1, outputs:{ copper:1 }, },
+    { id:'uranium',                 type:'item',        machines:[ 'drill2' ],                      max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:2, outputs:{ uranium:1 }, },
+    { id:'water',                   type:'item',        machines:[ 'offshorePump' ],                max:1200, storages:[ 'storageTank' ],                          time:1, outputs:{ water:1200 }, },
+    { id:'oil',                     type:'item',        machines:[ 'pumpjack' ],                    max:50,   storages:[ 'barrel' ],                               time:1, outputs:{ oil:2 }, reqs:[ 'oilProcessing1' ], },
     
     //---
     
-    { id:'ironPlate',               type:'item', machines:[ 'furnace1', 'furnace2', 'furnace3' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:3.2, inputs:{ iron:1 }, outputs:{ ironPlate:1 }, },
-    { id:'steelPlate',              type:'item', machines:[], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'steelProcessing' ], },
-    { id:'ironStick',               type:'item', machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:.5, inputs:{ ironPlate:1 }, outputs:{ ironStick:1 }, },
-    { id:'ironGearWheel',           type:'item', machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:.5, inputs:{ ironPlate:2 }, outputs:{ ironGearWheel:1 }, },
-    { id:'pipe',                    type:'item', machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:.5, inputs:{ ironPlate:1 }, outputs:{ pipe:1 }, },
-    { id:'engineUnit',              type:'item', machines:[], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'engineTech' ], },
-    { id:'copperPlate',             type:'item', machines:[ 'furnace1', 'furnace2', 'furnace3' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:3.2, inputs:{ copper:1 }, outputs:{ copperPlate:1 },},
-    { id:'copperCable',             type:'item', machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:.5, inputs:{ copperPlate:1 }, outputs:{ copperCable:2 },},
-    { id:'stoneBrick',              type:'item', machines:[ 'furnace1', 'furnace2', 'furnace3' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:3.2, inputs:{ stone:2 }, outputs:{ stoneBrick:1 }, },
-    { id:'concrete',                type:'item', machines:[], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'concreteTech' ], },
+    { id:'ironPlate',               type:'item',        machines:[ 'furnace1', 'furnace2', 'furnace3' ],                 max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:3.2, inputs:{ iron:1 }, outputs:{ ironPlate:1 }, },
+    { id:'steelPlate',              type:'item',        machines:[ 'furnace1', 'furnace2', 'furnace3' ],                 max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:16,  inputs:{ ironPlate:5 }, outputs:{ steelPlate:1 }, reqs:[ 'steelProcessing' ], },
+    { id:'ironStick',               type:'item',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:.5,  inputs:{ ironPlate:1 }, outputs:{ ironStick:1 }, },
+    { id:'ironGearWheel',           type:'item',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:.5,  inputs:{ ironPlate:2 }, outputs:{ ironGearWheel:1 }, },
+    { id:'pipe',                    type:'item',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:.5,  inputs:{ ironPlate:1 }, outputs:{ pipe:1 }, },
+    { id:'engineUnit',              type:'item',        machines:[ 'assembler1', 'assembler2', 'assembler3' ],           max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:.5,  inputs:{ ironGearWheel:1, pipe:2, steelPlate:1 }, outputs:{ engineUnit:1 }, reqs:[ 'engineTech' ], },
+    { id:'copperPlate',             type:'item',        machines:[ 'furnace1', 'furnace2', 'furnace3' ],                 max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:3.2, inputs:{ copper:1 }, outputs:{ copperPlate:1 },},
+    { id:'copperCable',             type:'item',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:.5,  inputs:{ copperPlate:1 }, outputs:{ copperCable:2 },},
+    { id:'stoneBrick',              type:'item',        machines:[ 'furnace1', 'furnace2', 'furnace3' ],                 max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:3.2, inputs:{ stone:2 }, outputs:{ stoneBrick:1 }, },
+    { id:'concrete',                type:'item',        machines:[ 'assembler2', 'assembler3' ],                         max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:10,  inputs:{ iron:1, stoneBrick:5, water:100 }, outputs:{ concrete:10 }, reqs:[ 'concreteTech' ], },
     
     //---
     
-    { id:'heat',                    type:'item', machines:[], reqs:[ 'nuclearPower' ], },
-    { id:'steam',                   type:'item', machines:[ 'boiler' ], max:1200, storages:[ 'storageTank' ],                          time:1, inputs:{ water:60 }, outputs:{ steam:60 }, },
-    { id:'electricity',             type:'item', machines:[ 'steamEngine' ], max:1200, storages:[ 'accumulator' ],                          time:1, inputs:{ steam:30 }, outputs:{ electricity:900 }, },
-    { id:'heavyOil',                type:'item', machines:[], reqs:[ 'oilProcessing1' ], },
-    { id:'lightOil',                type:'item', machines:[], reqs:[ 'oilProcessing1' ], },
-    { id:'lubricant',               type:'item', machines:[], reqs:[ 'lubricantTech' ], },
-    { id:'petroleumGas',            type:'item', machines:[], reqs:[ 'oilProcessing1' ], },
-    { id:'sulfur',                  type:'item', machines:[], reqs:[ 'sulfurProcessing' ], },
-    { id:'sulfuricAcid',            type:'item', machines:[], reqs:[ 'sulfurProcessing' ], },
-    { id:'solidFuel',               type:'item', machines:[], reqs:[ 'oilProcessing1', 'oilProcessing2' ], },
-    { id:'plasticBar',              type:'item', machines:[], reqs:[ 'plastics' ], },
-    { id:'battery',                 type:'item', machines:[], reqs:[ 'batteryTech' ], },
-    { id:'explosives',              type:'item', machines:[], reqs:[ 'explosivesTech' ], },
-    { id:'uranium235',              type:'item', machines:[], reqs:[ 'uraniumProcessing', 'kovarex' ], },
-    { id:'uranium238',              type:'item', machines:[], reqs:[ 'uraniumProcessing', 'kovarex' ], },
-    { id:'uraniumFuelCell',         type:'item', machines:[], reqs:[ 'uraniumProcessing' ], },
-    { id:'nuclearFuel',             type:'item', machines:[], reqs:[ 'kovarex' ], },
-    { id:'electronicCircuit',       type:'item', machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:.5, inputs:{ copperCable:3, ironPlate:1 }, outputs:{ electronicCircuit:1 }, },
-    { id:'advancedCircuit',         type:'item', machines:[], reqs:[ 'electronics1' ], },
-    { id:'processingUnit',          type:'item', machines:[], reqs:[ 'electronics2' ], },
-    { id:'electricEngineUnit',      type:'item', machines:[], reqs:[ 'electricEngineTech' ], },
-    { id:'flyingRobot',             type:'item', machines:[], reqs:[ 'robotics' ], },
-    { id:'radar',                   type:'item', machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:.5, inputs:{ electronicCircuit:5, ironGearWheel:5, ironPlate:10 }, outputs:{ radar:1 }, },
-    { id:'rocketControlUnit',       type:'item', machines:[], reqs:[ 'rocketControlUnitTech' ], },
-    { id:'lowDensityStructure',     type:'item', machines:[], reqs:[ 'lowDensityStructureTech' ], },
-    { id:'rocketFuel',              type:'item', machines:[], reqs:[ 'rocketFuelTech' ], },
-    { id:'rocketPart',              type:'item', machines:[], reqs:[ 'rocketSiloTech' ], },
-    { id:'portableFusionReactor',   type:'item', machines:[], reqs:[ 'portableFusionReactorTech' ], },
-    { id:'satellite',               type:'item', machines:[], reqs:[ 'spaceScience' ], },
+    { id:'heat',                    type:'item',        machines:[], reqs:[ 'nuclearPower' ], },
+    { id:'steam',                   type:'item',        machines:[ 'boiler' ], max:1200, storages:[ 'storageTank' ],                          time:1, inputs:{ water:60 }, outputs:{ steam:60 }, },
+    { id:'electricity',             type:'item',        machines:[ 'steamEngine' ], max:1200, storages:[ 'accumulator' ],                          time:1, inputs:{ steam:30 }, outputs:{ electricity:900 }, },
+    { id:'heavyOil',                type:'item',        machines:[], reqs:[ 'oilProcessing1' ], },
+    { id:'lightOil',                type:'item',        machines:[], reqs:[ 'oilProcessing1' ], },
+    { id:'lubricant',               type:'item',        machines:[], reqs:[ 'lubricantTech' ], },
+    { id:'petroleumGas',            type:'item',        machines:[], reqs:[ 'oilProcessing1' ], },
+    { id:'sulfur',                  type:'item',        machines:[], reqs:[ 'sulfurProcessing' ], },
+    { id:'sulfuricAcid',            type:'item',        machines:[], reqs:[ 'sulfurProcessing' ], },
+    { id:'solidFuel',               type:'item',        machines:[], reqs:[ 'oilProcessing1', 'oilProcessing2' ], },
+    { id:'plasticBar',              type:'item',        machines:[], reqs:[ 'plastics' ], },
+    { id:'battery',                 type:'item',        machines:[], reqs:[ 'batteryTech' ], },
+    { id:'explosives',              type:'item',        machines:[], reqs:[ 'explosivesTech' ], },
+    { id:'uranium235',              type:'item',        machines:[], reqs:[ 'uraniumProcessing', 'kovarex' ], },
+    { id:'uranium238',              type:'item',        machines:[], reqs:[ 'uraniumProcessing', 'kovarex' ], },
+    { id:'uraniumFuelCell',         type:'item',        machines:[], reqs:[ 'uraniumProcessing' ], },
+    { id:'nuclearFuel',             type:'item',        machines:[], reqs:[ 'kovarex' ], },
+    { id:'electronicCircuit',       type:'item',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:.5, inputs:{ copperCable:3, ironPlate:1 }, outputs:{ electronicCircuit:1 }, },
+    { id:'advancedCircuit',         type:'item',        machines:[], reqs:[ 'electronics1' ], },
+    { id:'processingUnit',          type:'item',        machines:[], reqs:[ 'electronics2' ], },
+    { id:'electricEngineUnit',      type:'item',        machines:[], reqs:[ 'electricEngineTech' ], },
+    { id:'flyingRobot',             type:'item',        machines:[], reqs:[ 'robotics' ], },
+    { id:'radar',                   type:'item',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:.5, inputs:{ electronicCircuit:5, ironGearWheel:5, ironPlate:10 }, outputs:{ radar:1 }, },
+    { id:'rocketControlUnit',       type:'item',        machines:[], reqs:[ 'rocketControlUnitTech' ], },
+    { id:'lowDensityStructure',     type:'item',        machines:[], reqs:[ 'lowDensityStructureTech' ], },
+    { id:'rocketFuel',              type:'item',        machines:[], reqs:[ 'rocketFuelTech' ], },
+    { id:'rocketPart',              type:'item',        machines:[], reqs:[ 'rocketSiloTech' ], },
+    { id:'portableFusionReactor',   type:'item',        machines:[], reqs:[ 'portableFusionReactorTech' ], },
+    { id:'satellite',               type:'item',        machines:[], reqs:[ 'spaceScience' ], },
     
     //---
     
-    { id:'woodChest',               type:'storage', machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], value:16,    time:.5, inputs:{ wood:2 }, outputs:{ woodChest:1 }, },
-    { id:'steelChest',              type:'storage', machines:[], value:48,    reqs:[ 'steelProcessing' ], },
-    { id:'ironChest',               type:'storage', machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], value:32,    time:.5, inputs:{ ironPlate:8 }, outputs:{ ironChest:1 }, },
-    { id:'storageTank',             type:'storage', machines:[], value:25000, reqs:[ 'fluidHandling' ], },
-    { id:'barrel',                  type:'storage', machines:[], value:50,    reqs:[ 'fluidHandling' ], },
-    { id:'accumulator',             type:'storage', machines:[], value:300,   reqs:[ 'accumulatorTech' ], },
+    { id:'woodChest',               type:'storage',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], value:16,    time:.5, inputs:{ wood:2 }, outputs:{ woodChest:1 }, },
+    { id:'steelChest',              type:'storage',     machines:[], value:48,    reqs:[ 'steelProcessing' ], },
+    { id:'ironChest',               type:'storage',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], value:32,    time:.5, inputs:{ ironPlate:8 }, outputs:{ ironChest:1 }, },
+    { id:'storageTank',             type:'storage',     machines:[], value:25000, reqs:[ 'fluidHandling' ], },
+    { id:'barrel',                  type:'storage',     machines:[], value:50,    reqs:[ 'fluidHandling' ], },
+    { id:'accumulator',             type:'storage',     machines:[], value:300,   reqs:[ 'accumulatorTech' ], },
     
     //---
     
-    { id:'redPack',                 type:'item', machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:5, inputs:{ copperPlate:1, ironGearWheel:1 }, outputs:{ redPack:1 }, },
-    { id:'bluePack',                type:'item', machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'greenScience' ], },    
-    { id:'grayPack',                type:'item', machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'grayScience' ], },    
-    { id:'bluePack',                type:'item', machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:24, inputs:{ advancedCircuit:3, engineUnit:2, sulfur:1 }, outputs:{ bluePack:2 }, reqs:[ 'blueScience' ], },    
-    { id:'purplePack',              type:'item', machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'purpleScience' ], },    
-    { id:'yellowPack',              type:'item', machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'yellowScience' ], },    
+    { id:'redPack',                 type:'item',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:5, inputs:{ copperPlate:1, ironGearWheel:1 }, outputs:{ redPack:1 }, },
+    { id:'bluePack',                type:'item',        machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'greenScience' ], },    
+    { id:'grayPack',                type:'item',        machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'grayScience' ], },    
+    { id:'bluePack',                type:'item',        machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:24, inputs:{ advancedCircuit:3, engineUnit:2, sulfur:1 }, outputs:{ bluePack:2 }, reqs:[ 'blueScience' ], },    
+    { id:'purplePack',              type:'item',        machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'purpleScience' ], },    
+    { id:'yellowPack',              type:'item',        machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'yellowScience' ], },    
     
     //---
     
-    { id:'efficiencyModule1',       type:'module', machines:[], coeffEnergy:.7, reqs:[ 'efficiency1' ], },
-    { id:'efficiencyModule2',       type:'module', machines:[], coeffEnergy:.6, reqs:[ 'efficiency2' ], },
-    { id:'efficiencyModule3',       type:'module', machines:[], coeffEnergy:.5, reqs:[ 'efficiency3' ], },
+    { id:'efficiencyModule1',       type:'module',      machines:[], coeffEnergy:.7, reqs:[ 'efficiency1' ], },
+    { id:'efficiencyModule2',       type:'module',      machines:[], coeffEnergy:.6, reqs:[ 'efficiency2' ], },
+    { id:'efficiencyModule3',       type:'module',      machines:[], coeffEnergy:.5, reqs:[ 'efficiency3' ], },
 
-    { id:'productivityModule1',     type:'module', machines:[], coeffTime:1.05, coeffEnergy:1.4, coeffOutputs:1.04, reqs:[ 'productivity1' ], },
-    { id:'productivityModule2',     type:'module', machines:[], coeffTime:1.10, coeffEnergy:1.6, coeffOutputs:1.06, reqs:[ 'productivity2' ], },
-    { id:'productivityModule3',     type:'module', machines:[], coeffTime:1.15, coeffEnergy:1.8, coeffOutputs:1.10, reqs:[ 'productivity3' ], },
+    { id:'productivityModule1',     type:'module',      machines:[], coeffTime:1.05, coeffEnergy:1.4, coeffOutputs:1.04, reqs:[ 'productivity1' ], },
+    { id:'productivityModule2',     type:'module',      machines:[], coeffTime:1.10, coeffEnergy:1.6, coeffOutputs:1.06, reqs:[ 'productivity2' ], },
+    { id:'productivityModule3',     type:'module',      machines:[], coeffTime:1.15, coeffEnergy:1.8, coeffOutputs:1.10, reqs:[ 'productivity3' ], },
     
-    { id:'speedModule1',            type:'module', machines:[], coeffTime:.8, coeffEnergy:1.5, reqs:[ 'speed1' ], },
-    { id:'speedModule2',            type:'module', machines:[], coeffTime:.7, coeffEnergy:1.6, reqs:[ 'speed2' ], },
-    { id:'speedModule3',            type:'module', machines:[], coeffTime:.5, coeffEnergy:1.7, reqs:[ 'speed3' ], },
+    { id:'speedModule1',            type:'module',      machines:[], coeffTime:.8, coeffEnergy:1.5, reqs:[ 'speed1' ], },
+    { id:'speedModule2',            type:'module',      machines:[], coeffTime:.7, coeffEnergy:1.6, reqs:[ 'speed2' ], },
+    { id:'speedModule3',            type:'module',      machines:[], coeffTime:.5, coeffEnergy:1.7, reqs:[ 'speed3' ], },
     
     //---
     
-    { id:'pistol',                  type:'item', machines:[], max:5,     storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:5, inputs:{ copperPlate:5, ironPlate:5 }, outputs:{ pistol:1 }, },
-    { id:'submachineGun',           type:'item', machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'military1' ], },
-    { id:'shotgun',                 type:'item', machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'military1' ], },
-    { id:'combatShotgun',           type:'item', machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'military3' ], },
-    { id:'rocketLauncher',          type:'item', machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'rocketry1' ], },
-    { id:'gunTurret',               type:'item', machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'gunTurretTech' ], },
-    { id:'laserTurret',             type:'item', machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'laserTurretTech' ], },
-    { id:'artilleryTurret',         type:'item', machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'artillery' ], },
-    { id:'car',                     type:'item', machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'automobilism' ], },
-    { id:'tank',                    type:'item', machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'tankTech' ], },
-    { id:'spidertron',              type:'item', machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'spidertronTech' ], },
+    { id:'pistol',                  type:'item',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:5,     storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:5, inputs:{ copperPlate:5, ironPlate:5 }, outputs:{ pistol:1 }, },
+    { id:'submachineGun',           type:'item',        machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'military1' ], },
+    { id:'shotgun',                 type:'item',        machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'military1' ], },
+    { id:'combatShotgun',           type:'item',        machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'military3' ], },
+    { id:'rocketLauncher',          type:'item',        machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'rocketry1' ], },
+    { id:'gunTurret',               type:'item',        machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'gunTurretTech' ], },
+    { id:'laserTurret',             type:'item',        machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'laserTurretTech' ], },
+    { id:'artilleryTurret',         type:'item',        machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'artillery' ], },
+    { id:'car',                     type:'item',        machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'automobilism' ], },
+    { id:'tank',                    type:'item',        machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'tankTech' ], },
+    { id:'spidertron',              type:'item',        machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'spidertronTech' ], },
 
-    { id:'firearmMagazine',         type:'item', machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1, inputs:{ ironPlate:4 }, outputs:{ firearmMagazine:1 }, },
-    { id:'piercingMagazine',        type:'item', machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'military2' ], },
-    { id:'uraniumMagazine',         type:'item', machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'uraniumAmmo' ], },
-    { id:'shotgunShells',           type:'item', machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'military1' ], },
-    { id:'piercingShells',          type:'item', machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'military4' ], },
-    { id:'cannonShell',             type:'item', machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'tankTech' ], },
-    { id:'explosiveCannonShell',    type:'item', machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'tankTech' ], },
-    { id:'uraniumCannonShell',      type:'item', machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'uraniumAmmo' ], },
-    { id:'artilleryShell',          type:'item', machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'artillery' ], },
-    { id:'rocket',                  type:'item', machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'rocketry1' ], },
-    { id:'explosiveRocket',         type:'item', machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'rocketry2' ], },
-    { id:'atomicBomb',              type:'item', machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'atomicBombTech' ], },
+    { id:'firearmMagazine',         type:'item',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1, inputs:{ ironPlate:4 }, outputs:{ firearmMagazine:1 }, },
+    { id:'piercingMagazine',        type:'item',        machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'military2' ], },
+    { id:'uraniumMagazine',         type:'item',        machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'uraniumAmmo' ], },
+    { id:'shotgunShells',           type:'item',        machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'military1' ], },
+    { id:'piercingShells',          type:'item',        machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'military4' ], },
+    { id:'cannonShell',             type:'item',        machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'tankTech' ], },
+    { id:'explosiveCannonShell',    type:'item',        machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'tankTech' ], },
+    { id:'uraniumCannonShell',      type:'item',        machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'uraniumAmmo' ], },
+    { id:'artilleryShell',          type:'item',        machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'artillery' ], },
+    { id:'rocket',                  type:'item',        machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'rocketry1' ], },
+    { id:'explosiveRocket',         type:'item',        machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'rocketry2' ], },
+    { id:'atomicBomb',              type:'item',        machines:[], max:200,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], reqs:[ 'atomicBombTech' ], },
     
     //---
     
-    { id:'automation1',             type:'research', time:10, cycleCount:10,    costs:{ redPack:1 }, },
-    { id:'modules',                 type:'research', time:30, cycleCount:100,   costs:{ redPack:1, greenPack:1 }, reqs:[ 'electronics2' ], },
+    { id:'automation1',             type:'research',    time:10, cycleCount:10,    costs:{ redPack:1 }, },
+    { id:'modules',                 type:'research',    time:30, cycleCount:100,   costs:{ redPack:1, greenPack:1 }, reqs:[ 'electronics2' ], },
 ]
 
 //------------------------------------------------------------------------------
@@ -1440,7 +1440,6 @@ class Research extends Base {
         
         this.energy = { id:game.bases['lab'].energy.id, count:game.bases['lab'].energy.count }
         
-        this.done = false
         this.count = 0
         this.state = 'paused'
     }
@@ -1450,7 +1449,6 @@ class Research extends Base {
     onLoad(data) {
         super.onLoad(data)
         
-        this.done = data.done
         this.count = data.count
         this.state = data.state
         this.cycleCount = data.cycleCount
@@ -1460,7 +1458,6 @@ class Research extends Base {
     onSave(data) {
         super.onSave(data)
         
-        data.done = this.done
         data.count = this.count
         data.state = this.state
         data.cycleCount = this.cycleCount
@@ -1469,7 +1466,7 @@ class Research extends Base {
     
     //---
     
-    isDone() { return this.done }
+    isDone() { return this.cycleCount <= 0 }
     
     getEnergy() {
         
@@ -1504,13 +1501,13 @@ class Research extends Base {
     
     canResearch() {
     
-        if (this.done == true) return false
+        if (this.isDone() == true) return false
         if (this.count <= 0) return false
         
         let energy = this.getEnergy()
         if (this.game.bases[energy.id].count < energy.count) return false
         
-        let inputs = this.getCosts()
+        let costs = this.getCosts()
         for (let id in costs) {
             let cost = costs[id]            
             if (cost > this.game.bases[id].getAvailableCount()) {
