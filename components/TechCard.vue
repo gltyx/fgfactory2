@@ -1,5 +1,5 @@
 <template>
-    <div v-if="$parent.currentResearchSelection == id" class="flex-grow-1 scrollbar">
+    <div v-if="$parent.currentResearchSelection == id && done == false" class="flex-grow-1 scrollbar">
         <div class="card" style="max-height: 100%;">
             <div class="card-header">
                 <div class="row align-item-center">
@@ -91,6 +91,8 @@ export default {
         research() { return this.game.bases[this.id] },
         
         labAvailableCount() { return this.game.bases['lab'].getAvailableCount() },
+        
+        done() { return this.research.isDone() },
         
         energy() { return this.research.getEnergy() },
         

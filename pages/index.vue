@@ -656,18 +656,18 @@ var baseData = [
     { id:'assembler1',              type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'electricity',     count:75    }, speed:.5,   time:.5, inputs:{ electronicCircuit:3, ironGearWheel:5, ironPlate:9 }, outputs:{ assembler1:1 }, reqs:[ 'automation1' ], },
     { id:'assembler2',              type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'electricity',     count:150   }, speed:.75,  time:.5, inputs:{ assembler1:1, electronicCircuit:3, ironGearWheel:5, steelPlate:2 }, outputs:{ assembler2:1 }, moduleSlots:2, reqs:[ 'automation2' ], },
     { id:'assembler3',              type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'electricity',     count:375   }, speed:1.25, time:.5, inputs:{ assembler2:2, speedModule1:4 }, outputs:{ assembler3:1 }, moduleSlots:4, reqs:[ 'automation3' ], },
-    { id:'offshorePump',            type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,                                                speed:.1,   time:.5, inputs:{ electronicCircuit:2, ironGearWheel:1, pipe:1 }, outputs:{ offshorePump:1 }, },
+    { id:'offshorePump',            type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,                                                speed:1,    time:.5, inputs:{ electronicCircuit:2, ironGearWheel:1, pipe:1 }, outputs:{ offshorePump:1 }, },
     { id:'pumpjack',                type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'electricity',     count:90    }, speed:1,    time:5,  inputs:{ electronicCircuit:5, ironGearWheel:10, pipe:10, steelPlate:5 }, outputs:{ pumpjack:1 }, moduleSlots:2, reqs:[ 'oilProcessing1' ], },
     { id:'oilRefinery',             type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'electricity',     count:420   }, speed:1,    time:8,  inputs:{ electronicCircuit:10, ironGearWheel:10, pipe:10, steelPlate:15, stoneBrick:10 }, outputs:{ oilRefinery:1 }, moduleSlots:3, reqs:[ 'oilProcessing1' ], },
     { id:'chemicalPlant',           type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'electricity',     count:210   }, speed:1,    time:.5, inputs:{ electronicCircuit:5, ironGearWheel:5, pipe:5, steelPlate:5 }, outputs:{ chemicalPlant:1 }, reqs:[ 'oilProcessing1' ], },
     { id:'boiler',                  type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'coal',            count:2.22  }, speed:1,    time:.5, inputs:{ pipe:4, furnace1:1 }, outputs:{ boiler:1 }, },
-    { id:'steamEngine',             type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,                                                speed:1,    time:.5, inputs:{ ironGearWheel:8, ironPlate:10, pipe:5 }, outputs:{ steamEngine:1 }, },
-    { id:'solarPanel',              type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,                                                speed:1,    time:10, inputs:{ stone:5 }, outputs:{ solarPanel:1 }, reqs:[ 'solarEnergy' ], },
+    { id:'steamEngine',             type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'coal',            count:30    }, speed:1,    time:.5, inputs:{ ironGearWheel:8, ironPlate:10, pipe:5 }, outputs:{ steamEngine:1 }, },
+    { id:'solarPanel',              type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,                                                speed:0.05, time:10, inputs:{ stone:5 }, outputs:{ solarPanel:1 }, reqs:[ 'solarEnergy' ], },
     { id:'constructionRobot',       type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'electricity',     count:5     }, speed:1,    time:.5, inputs:{ electronicCircuit:2, flyingRobot:1 }, outputs:{ constructionRobot:1 }, reqs:[ 'constructionRobotics' ], },
     { id:'centrifuge',              type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'electricity',     count:350   }, speed:1,    time:4,  inputs:{ advancedCircuit:100, concrete:100, ironGearWheel:100, steelPlate:50 }, outputs:{ centrifuge:1 }, reqs:[ 'uraniumProcessing' ], },
     { id:'nuclearReactor',          type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'uraniumFuelCell', count:0.005 }, speed:1,    time:8,  inputs:{ advancedCircuit:500, concrete:500, copperPlate:500, steelPlate:500 }, outputs:{ nuclearReactor:1 }, reqs:[ 'nuclearPower' ], },
-    { id:'heatExchanger',           type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'heat',            count:50    }, speed:1,    time:3,  inputs:{ copperPlate:100, pipe:10, steelPlate:10 }, outputs:{ heatExchanger:1 }, reqs:[ 'nuclearPower' ], },
-    { id:'steamTurbine',            type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,                                                speed:1,    time:3,  inputs:{ copperPlate:50, ironGearWheel:50, pipe:20 }, outputs:{ steamTurbine:1 }, reqs:[ 'nuclearPower' ], },
+    { id:'heatExchanger',           type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'heat',            count:50    }, speed:2,    time:3,  inputs:{ copperPlate:100, pipe:10, steelPlate:10 }, outputs:{ heatExchanger:1 }, reqs:[ 'nuclearPower' ], },
+    { id:'steamTurbine',            type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'coal',            count:30    }, speed:1,    time:3,  inputs:{ copperPlate:50, ironGearWheel:50, pipe:20 }, outputs:{ steamTurbine:1 }, reqs:[ 'nuclearPower' ], },
     { id:'rocketSilo',              type:'machine',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], auto:true,  energy:{ id:'electricity',     count:4000  }, speed:1,    time:30, inputs:{ concrete:1000, electricEngineUnit:200, pipe:100, processingUnit:200, steelPlate:1000 }, outputs:{ rocketSilo:1 }, reqs:[ 'rocketSiloTech' ], },
 
     //---
@@ -676,14 +676,14 @@ var baseData = [
     
     //---
     
-    { id:'wood',                    type:'item',        machines:[ 'manual', 'constructionRobot' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1, outputs:{ wood:1 }, },
-    { id:'coal',                    type:'item',        machines:[ 'manual', 'drill1', 'drill2' ],  max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1, outputs:{ coal:1 }, },
-    { id:'stone',                   type:'item',        machines:[ 'manual', 'drill1', 'drill2' ],  max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1, outputs:{ stone:1 }, },
-    { id:'iron',                    type:'item',        machines:[ 'manual', 'drill1', 'drill2' ],  max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1, outputs:{ iron:1 }, },
-    { id:'copper',                  type:'item',        machines:[ 'manual', 'drill1', 'drill2' ],  max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1, outputs:{ copper:1 }, },
-    { id:'uranium',                 type:'item',        machines:[ 'drill2' ],                      max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:2, outputs:{ uranium:1 }, },
-    { id:'water',                   type:'item',        machines:[ 'offshorePump' ],                max:1200, storages:[ 'storageTank' ],                          time:1, outputs:{ water:1200 }, },
-    { id:'oil',                     type:'item',        machines:[ 'pumpjack' ],                    max:50,   storages:[ 'barrel' ],                               time:1, outputs:{ oil:2 }, reqs:[ 'oilProcessing1' ], },
+    { id:'wood',                    type:'item',        machines:[ 'manual', 'constructionRobot' ],                      max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1, outputs:{ wood:1 }, },
+    { id:'coal',                    type:'item',        machines:[ 'manual', 'drill1', 'drill2' ],                       max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1, outputs:{ coal:1 }, },
+    { id:'stone',                   type:'item',        machines:[ 'manual', 'drill1', 'drill2' ],                       max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1, outputs:{ stone:1 }, },
+    { id:'iron',                    type:'item',        machines:[ 'manual', 'drill1', 'drill2' ],                       max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1, outputs:{ iron:1 }, },
+    { id:'copper',                  type:'item',        machines:[ 'manual', 'drill1', 'drill2' ],                       max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1, outputs:{ copper:1 }, },
+    { id:'uranium',                 type:'item',        machines:[ 'drill2' ],                                           max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:2, outputs:{ uranium:1 }, },
+    { id:'water',                   type:'item',        machines:[ 'offshorePump' ],                                     max:1200, storages:[ 'storageTank' ],                          time:1, outputs:{ water:1200 }, },
+    { id:'oil',                     type:'item',        machines:[ 'pumpjack' ],                                         max:50,   storages:[ 'barrel' ],                               time:1, outputs:{ oil:2 }, reqs:[ 'oilProcessing1' ], },
     
     //---
     
@@ -700,40 +700,40 @@ var baseData = [
     
     //---
     
-    { id:'heat',                    type:'item',        machines:[], reqs:[ 'nuclearPower' ], },
-    { id:'steam',                   type:'item',        machines:[ 'boiler' ], max:1200, storages:[ 'storageTank' ],                          time:1, inputs:{ water:60 }, outputs:{ steam:60 }, },
-    { id:'electricity',             type:'item',        machines:[ 'steamEngine' ], max:1200, storages:[ 'accumulator' ],                          time:1, inputs:{ steam:30 }, outputs:{ electricity:900 }, },
-    { id:'heavyOil',                type:'item',        machines:[], reqs:[ 'oilProcessing1' ], },
-    { id:'lightOil',                type:'item',        machines:[], reqs:[ 'oilProcessing1' ], },
-    { id:'lubricant',               type:'item',        machines:[], reqs:[ 'lubricantTech' ], },
-    { id:'petroleumGas',            type:'item',        machines:[], reqs:[ 'oilProcessing1' ], },
-    { id:'sulfur',                  type:'item',        machines:[], reqs:[ 'sulfurProcessing' ], },
-    { id:'sulfuricAcid',            type:'item',        machines:[], reqs:[ 'sulfurProcessing' ], },
-    { id:'solidFuel',               type:'item',        machines:[], reqs:[ 'oilProcessing1', 'oilProcessing2' ], },
-    { id:'plasticBar',              type:'item',        machines:[], reqs:[ 'plastics' ], },
-    { id:'battery',                 type:'item',        machines:[], reqs:[ 'batteryTech' ], },
-    { id:'explosives',              type:'item',        machines:[], reqs:[ 'explosivesTech' ], },
-    { id:'uranium235',              type:'item',        machines:[], reqs:[ 'uraniumProcessing', 'kovarex' ], },
-    { id:'uranium238',              type:'item',        machines:[], reqs:[ 'uraniumProcessing', 'kovarex' ], },
-    { id:'uraniumFuelCell',         type:'item',        machines:[], reqs:[ 'uraniumProcessing' ], },
-    { id:'nuclearFuel',             type:'item',        machines:[], reqs:[ 'kovarex' ], },
-    { id:'electronicCircuit',       type:'item',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:.5, inputs:{ copperCable:3, ironPlate:1 }, outputs:{ electronicCircuit:1 }, },
-    { id:'advancedCircuit',         type:'item',        machines:[], reqs:[ 'electronics1' ], },
-    { id:'processingUnit',          type:'item',        machines:[], reqs:[ 'electronics2' ], },
-    { id:'electricEngineUnit',      type:'item',        machines:[], reqs:[ 'electricEngineTech' ], },
-    { id:'flyingRobot',             type:'item',        machines:[], reqs:[ 'robotics' ], },
-    { id:'radar',                   type:'item',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:.5, inputs:{ electronicCircuit:5, ironGearWheel:5, ironPlate:10 }, outputs:{ radar:1 }, },
-    { id:'rocketControlUnit',       type:'item',        machines:[], reqs:[ 'rocketControlUnitTech' ], },
-    { id:'lowDensityStructure',     type:'item',        machines:[], reqs:[ 'lowDensityStructureTech' ], },
-    { id:'rocketFuel',              type:'item',        machines:[], reqs:[ 'rocketFuelTech' ], },
-    { id:'rocketPart',              type:'item',        machines:[], reqs:[ 'rocketSiloTech' ], },
-    { id:'portableFusionReactor',   type:'item',        machines:[], reqs:[ 'portableFusionReactorTech' ], },
-    { id:'satellite',               type:'item',        machines:[], reqs:[ 'spaceScience' ], },
+    { id:'heat',                    type:'item',        machines:[ 'nuclearReactor' ],                                   max:1200, storages:[ 'storageTank' ],                          time:1,   outputs:{ heat:4 }, reqs:[ 'nuclearPower' ], },
+    { id:'steam',                   type:'item',        machines:[ 'boiler', 'heatExchanger' ],                          max:1200, storages:[ 'storageTank' ],                          time:1,   inputs:{ water:60 }, outputs:{ steam:60 }, },
+    { id:'electricity',             type:'item',        machines:[ 'steamEngine', 'solarPanel', 'steamTurbine' ],        max:1200, storages:[ 'accumulator' ],                          time:1,   outputs:{ electricity:900 }, },
+    { id:'heavyOil',                type:'item',        machines:[ 'oilRefinery' ],                                      max:50,   storages:[ 'barrel' ],                               time:5,   inputs:{ oil:100, water:50 }, outputs:{ heavyOil:25 }, reqs:[ 'oilProcessing1' ], },
+    { id:'lightOil',                type:'item',        machines:[ 'chemicalPlant' ],                                    max:50,   storages:[ 'barrel' ],                               time:2,   inputs:{ heavyOil:40, water:30 }, outputs:{ lightOil:30 }, reqs:[ 'oilProcessing1' ], },
+    { id:'lubricant',               type:'item',        machines:[ 'chemicalPlant' ],                                    max:50,   storages:[ 'barrel' ],                               time:1,   inputs:{ heavyOil:10 }, outputs:{ lubricant:10 }, reqs:[ 'lubricantTech' ], },
+    { id:'petroleumGas',            type:'item',        machines:[ 'oilRefinery' ],                                      max:50,   storages:[ 'barrel' ],                               time:5,   inputs:{ oil:100 }, outputs:{ petroleumGas:45 }, reqs:[ 'oilProcessing1' ], },
+    { id:'sulfur',                  type:'item',        machines:[ 'chemicalPlant' ],                                    max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1,   inputs:{ petroleumGas:30, water:30 }, outputs:{ sulfur:2 }, reqs:[ 'sulfurProcessing' ], },
+    { id:'sulfuricAcid',            type:'item',        machines:[ 'chemicalPlant' ],                                    max:50,   storages:[ 'barrel' ],                               time:1,   inputs:{ ironPlate:1, sulfur:5, water:100 }, outputs:{ sulfuricAcid:50 }, reqs:[ 'sulfurProcessing' ], },
+    { id:'solidFuel',               type:'item',        machines:[ 'chemicalPlant' ],                                    max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:2,   inputs:{ petroleumGas:20 }, outputs:{ solidFuel:1 }, reqs:[ 'oilProcessing1', 'oilProcessing2' ], },
+    { id:'plasticBar',              type:'item',        machines:[ 'chemicalPlant' ],                                    max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1,   inputs:{ coal:1, petroleumGas:20 }, outputs:{ plasticBar:2 }, reqs:[ 'plastics' ], },
+    { id:'battery',                 type:'item',        machines:[ 'chemicalPlant' ],                                    max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:4,   inputs:{ copperPlare:1, ironPlate:1, sulfuricAcid:20 }, outputs:{ battery:1 }, reqs:[ 'batteryTech' ], },
+    { id:'explosives',              type:'item',        machines:[ 'chemicalPlant' ],                                    max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:4,   inputs:{ coal:1, sulfur:1, water:10 }, outputs:{ explosives:2 }, reqs:[ 'explosivesTech' ], },
+    { id:'uranium235',              type:'item',        machines:[ 'centrifuge' ],                                       max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:12,  inputs:{ uranium:10 }, outputs:{ uranium235:0.007 }, reqs:[ 'uraniumProcessing', 'kovarex' ], },
+    { id:'uranium238',              type:'item',        machines:[ 'centrifuge' ],                                       max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:12,  inputs:{ uranium:10 }, outputs:{ uranium239:0.993 }, reqs:[ 'uraniumProcessing', 'kovarex' ], },
+    { id:'uraniumFuelCell',         type:'item',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1,   inputs:{ ironPlate:10, uranium235:1, uranium238:19 }, outputs:{ uraniumFuelCell:10 }, reqs:[ 'uraniumProcessing' ], },
+    { id:'nuclearFuel',             type:'item',        machines:[ 'centrifuge' ],                                       max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:90,  inputs:{ rocketFuel:1, uranium235:1 }, outputs:{ nuclearFuel:1 }, reqs:[ 'kovarex' ], },
+    { id:'electronicCircuit',       type:'item',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:.5,  inputs:{ copperCable:3, ironPlate:1 }, outputs:{ electronicCircuit:1 }, },
+    { id:'advancedCircuit',         type:'item',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:6,   inputs:{ copperCable:4, electronicCircuit:2, plasticBar:2 }, outputs:{ advancedCircuit:1 }, reqs:[ 'electronics1' ], },
+    { id:'processingUnit',          type:'item',        machines:[ 'assembler2', 'assembler3' ],                         max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:10,  inputs:{ advancedCircuit:2, electronicCircuit:20, sulfuricAcid:5 }, outputs:{ processingUnit:1 }, reqs:[ 'electronics2' ], },
+    { id:'electricEngineUnit',      type:'item',        machines:[ 'assembler2', 'assembler3' ],                         max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1,   inputs:{ electronicCircuit:2, engine:1, lubricant:15 }, outputs:{ electricEngineUnit:1 }, reqs:[ 'electricEngineTech' ], },
+    { id:'flyingRobot',             type:'item',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:20,  inputs:{ battery:2, electricEngineUnit:1, electronicCircuit:3, steelPlate:1 }, outputs:{ flyingRobot:1 },reqs:[ 'robotics' ], },
+    { id:'radar',                   type:'item',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:.5,  inputs:{ electronicCircuit:5, ironGearWheel:5, ironPlate:10 }, outputs:{ radar:1 }, },
+    { id:'rocketControlUnit',       type:'item',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:10,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:30,  inputs:{ processingUnit:1,speedModule1:1 }, outputs:{ rocketControlUnit:1 }, reqs:[ 'rocketControlUnitTech' ], },
+    { id:'lowDensityStructure',     type:'item',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:10,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:20,  inputs:{ copperPlate:20, plasticBar:5, steelPlate:2 }, outputs:{ lowDensityStructure:1 }, reqs:[ 'lowDensityStructureTech' ], },
+    { id:'rocketFuel',              type:'item',        machines:[ 'assembler2', 'assembler3' ],                         max:10,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:30,  inputs:{ lightOil:10, solidFuel:10 }, outputs:{ rocketFuel:1 }, reqs:[ 'rocketFuelTech' ], },
+    { id:'rocketPart',              type:'item',        machines:[ 'rocketSilo' ],                                       max:5,    storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:3,   inputs:{ lowDensityStructure:10, rocketControlUnit:10, rocketFuel:10 }, outputs:{ rocketPart:1 }, reqs:[ 'rocketSiloTech' ], },
+    { id:'portableFusionReactor',   type:'item',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:20,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:10,  inputs:{ lowDensityStructure:50, processingUnit:200 }, outputs:{ portableFusionReactor:1 }, reqs:[ 'portableFusionReactorTech' ], },
+    { id:'satellite',               type:'item',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:1,    storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:5,   inputs:{ accumulator:100, lowDensityStructure:100, processingUnit:100, radar:5, rocketFuel:50, solarPanel:100 }, outputs:{ satellite:1 }, reqs:[ 'spaceScience' ], },
     
     //---
     
     { id:'woodChest',               type:'storage',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], value:16,    time:.5, inputs:{ wood:2 }, outputs:{ woodChest:1 }, },
-    { id:'steelChest',              type:'storage',     machines:[], value:48,    reqs:[ 'steelProcessing' ], },
+    { id:'steelChest',              type:'storage',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], value:48,    time:.5, inputs:{ steelPlate:8 }, outputs:{ steelChest:1 }, reqs:[ 'steelProcessing' ], },
     { id:'ironChest',               type:'storage',     machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], value:32,    time:.5, inputs:{ ironPlate:8 }, outputs:{ ironChest:1 }, },
     { id:'storageTank',             type:'storage',     machines:[], value:25000, reqs:[ 'fluidHandling' ], },
     { id:'barrel',                  type:'storage',     machines:[], value:50,    reqs:[ 'fluidHandling' ], },
@@ -1099,6 +1099,19 @@ class Lab extends Item {
         
         return ret
     }
+
+    getUsedCount() {
+        
+        let ret = 0
+        for (let id in this.game.bases) {
+            let base = this.game.bases[id]
+            if (base.type == 'research') {
+                ret += base.count
+            }
+        }
+        
+        return ret
+    }
 }
 
 //------------------------------------------------------------------------------
@@ -1110,7 +1123,6 @@ class Production extends Base {
         
         item.productions.push(this)
         
-        this.reqs = machine.reqs
         this.auto = machine.auto
         this.machineId = machine.id        
         this.moduleSlots = machine.moduleSlots
@@ -1119,6 +1131,15 @@ class Production extends Base {
         this.inputs = item.inputs
         this.outputs = item.outputs
         
+        if (machine.reqs) {
+
+            if (this.reqs == null) {
+                this.reqs = []
+            }
+            
+            machine.reqs.forEach(techId => { this.reqs.push(techId) })
+        }
+
         if (item.reqs) {
 
             if (this.reqs == null) {
