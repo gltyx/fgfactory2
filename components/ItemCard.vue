@@ -42,6 +42,7 @@
                             </div>
                         </div>
                     </div>
+                    <ItemElecProduction v-if="item.type == 'generator'" :generator="item" :game="game" />
                     <ItemManualProduction v-if="manualProduction" :production="manualProduction" :game="game" />
                     <div v-if="machineProductions.length > 0" class="col-12">
                         <div class="subtitle">Production</div>

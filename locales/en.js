@@ -6,8 +6,8 @@ export default {
     'menuTab_research': 'Research',
     'menuTab_settings': 'Settings',
     
-    'category_boosters': 'Boosters',
     'category_fabricated': 'Fabricated',
+    'category_generators': 'Generators',
     'category_items': 'Items',
     'category_machines': 'Machines',
     'category_modules': 'Modules',
