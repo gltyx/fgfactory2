@@ -544,6 +544,7 @@ var cnRegReplace = new Map([
     [/^([\d\.,]+) physical \+ ([\d\.,]+) explosion damages$/, '$1 物理 \+ $2 爆炸伤害'],
     [/^Military ([\d\.,]+)$/, '军事 $1'],
     [/^Robotics ([\d\.,]+)$/, '机器人学 $1'],
+    [/^Assembler ([\d\.,]+)$/, '组装机 $1'],
     [/^Build ([\d\.,]+)$/, '建造 $1'],
     [/^Automation ([\d\.,]+)$/, '自动化 $1'],
     [/^([\d\.,]+) elves$/, '$1 精灵'],
