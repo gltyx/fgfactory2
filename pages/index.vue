@@ -360,6 +360,7 @@
                                     <ItemButton id="electricEngineUnit" :game="game" />
                                     <ItemButton id="flyingRobot" :game="game" />
                                     <ItemButton id="radar" :game="game" />
+                                    <ItemButton id="exoskeleton" :game="game" />
                                     <ItemButton id="rocketControlUnit" :game="game" />
                                     <ItemButton id="lowDensityStructure" :game="game" />
                                     <ItemButton id="rocketFuel" :game="game" />
@@ -485,6 +486,7 @@
                             <ItemCard id="electricEngineUnit" :game="game" />
                             <ItemCard id="flyingRobot" :game="game" />
                             <ItemCard id="radar" :game="game" />
+                            <ItemCard id="exoskeleton" :game="game" />
                             <ItemCard id="rocketControlUnit" :game="game" />
                             <ItemCard id="lowDensityStructure" :game="game" />
                             <ItemCard id="rocketFuel" :game="game" />
@@ -542,13 +544,158 @@
                         <div class="col-auto scrollbar" style="width:475px;">
                             <div class="row g-3">
                                 <Category id="techs" :show="catTechsStart" @click="catTechsOpen = !catTechsOpen;">
-                                    <TechButton id="automation1" :game="game" />
-                                    <TechButton id="modules" :game="game" />
+                                    <TechButton id="accumulatorTech" :game="game" />            
+                                    <TechButton id="artillery" :game="game" />                  
+                                    <TechButton id="atomicBombTech" :game="game" />             
+                                    <TechButton id="automation1" :game="game" />                
+                                    <TechButton id="automation2" :game="game" />                
+                                    <TechButton id="automation3" :game="game" />                
+                                    <TechButton id="automobilism" :game="game" />               
+                                    <TechButton id="batteryTech" :game="game" />                
+                                    <TechButton id="blueScience" :game="game" />                
+                                    <TechButton id="concreteTech" :game="game" />               
+                                    <TechButton id="constructionRobotics" :game="game" />       
+                                    <TechButton id="efficiency1" :game="game" />                
+                                    <TechButton id="efficiency2" :game="game" />                
+                                    <TechButton id="efficiency3" :game="game" />                
+                                    <TechButton id="electricEnergy" :game="game" />             
+                                    <TechButton id="electricEngineTech" :game="game" />         
+                                    <TechButton id="electronics1" :game="game" />               
+                                    <TechButton id="electronics2" :game="game" />               
+                                    <TechButton id="electronics3" :game="game" />               
+                                    <TechButton id="engineTech" :game="game" />                 
+                                    <TechButton id="exoskeletonTech" :game="game" />            
+                                    <TechButton id="explosivesTech" :game="game" />             
+                                    <TechButton id="flammables" :game="game" />                 
+                                    <TechButton id="fluidHandling" :game="game" />              
+                                    <TechButton id="grayScience" :game="game" />                
+                                    <TechButton id="greenScience" :game="game" />               
+                                    <TechButton id="gunTurretTech" :game="game" />              
+                                    <TechButton id="heavyArmor" :game="game" />                 
+                                    <TechButton id="kovarex" :game="game" />                    
+                                    <TechButton id="laser" :game="game" />                      
+                                    <TechButton id="laserTurretTech" :game="game" />            
+                                    <TechButton id="logistics1" :game="game" />                 
+                                    <TechButton id="logistics2" :game="game" />                 
+                                    <TechButton id="lowDensityStructureTech" :game="game" />    
+                                    <TechButton id="lubricantTech" :game="game" />              
+                                    <TechButton id="material1" :game="game" />                  
+                                    <TechButton id="material2" :game="game" />                  
+                                    <TechButton id="military1" :game="game" />                  
+                                    <TechButton id="military2" :game="game" />                  
+                                    <TechButton id="military3" :game="game" />                  
+                                    <TechButton id="military4" :game="game" />                  
+                                    <TechButton id="modularArmor" :game="game" />               
+                                    <TechButton id="modules" :game="game" />                    
+                                    <TechButton id="nuclearPower" :game="game" />               
+                                    <TechButton id="oilProcessing1" :game="game" />             
+                                    <TechButton id="oilProcessing2" :game="game" />             
+                                    <TechButton id="optics" :game="game" />                     
+                                    <TechButton id="plastics" :game="game" />                   
+                                    <TechButton id="portableFusionReactorTech" :game="game" />  
+                                    <TechButton id="powerArmor" :game="game" />                 
+                                    <TechButton id="productivity1" :game="game" />              
+                                    <TechButton id="productivity2" :game="game" />              
+                                    <TechButton id="productivity3" :game="game" />              
+                                    <TechButton id="purpleScience" :game="game" />              
+                                    <TechButton id="railway" :game="game" />                    
+                                    <TechButton id="robotics" :game="game" />                   
+                                    <TechButton id="rocketControlUnitTech" :game="game" />      
+                                    <TechButton id="rocketFuelTech" :game="game" />             
+                                    <TechButton id="rocketry1" :game="game" />                  
+                                    <TechButton id="rocketry2" :game="game" />                  
+                                    <TechButton id="rocketSiloTech" :game="game" />             
+                                    <TechButton id="solarEnergy" :game="game" />                
+                                    <TechButton id="spaceScience" :game="game" />               
+                                    <TechButton id="speed1" :game="game" />                     
+                                    <TechButton id="speed2" :game="game" />                     
+                                    <TechButton id="speed3" :game="game" />                     
+                                    <TechButton id="spidertronTech" :game="game" />             
+                                    <TechButton id="steelProcessing" :game="game" />            
+                                    <TechButton id="sulfurProcessing" :game="game" />           
+                                    <TechButton id="tankTech" :game="game" />                   
+                                    <TechButton id="uraniumAmmo" :game="game" />                
+                                    <TechButton id="uraniumProcessing" :game="game" />          
+                                    <TechButton id="wall" :game="game" />                       
+                                    <TechButton id="yellowScience" :game="game" />              
                                 </Category>
                             </div>
                         </div>
                         <div class="h-100 col d-flex flex-column">
-                            <TechCard id="automation1" :game="game" />
+                            <TechCard id="accumulatorTech" :game="game" />            
+                            <TechCard id="artillery" :game="game" />                  
+                            <TechCard id="atomicBombTech" :game="game" />             
+                            <TechCard id="automation1" :game="game" />                
+                            <TechCard id="automation2" :game="game" />                
+                            <TechCard id="automation3" :game="game" />                
+                            <TechCard id="automobilism" :game="game" />               
+                            <TechCard id="batteryTech" :game="game" />                
+                            <TechCard id="blueScience" :game="game" />                
+                            <TechCard id="concreteTech" :game="game" />               
+                            <TechCard id="constructionRobotics" :game="game" />       
+                            <TechCard id="efficiency1" :game="game" />                
+                            <TechCard id="efficiency2" :game="game" />                
+                            <TechCard id="efficiency3" :game="game" />                
+                            <TechCard id="electricEnergy" :game="game" />             
+                            <TechCard id="electricEngineTech" :game="game" />         
+                            <TechCard id="electronics1" :game="game" />               
+                            <TechCard id="electronics2" :game="game" />               
+                            <TechCard id="electronics3" :game="game" />               
+                            <TechCard id="engineTech" :game="game" />                 
+                            <TechCard id="exoskeletonTech" :game="game" />            
+                            <TechCard id="explosivesTech" :game="game" />             
+                            <TechCard id="flammables" :game="game" />                 
+                            <TechCard id="fluidHandling" :game="game" />              
+                            <TechCard id="grayScience" :game="game" />                
+                            <TechCard id="greenScience" :game="game" />               
+                            <TechCard id="gunTurretTech" :game="game" />              
+                            <TechCard id="heavyArmor" :game="game" />                 
+                            <TechCard id="kovarex" :game="game" />                    
+                            <TechCard id="laser" :game="game" />                      
+                            <TechCard id="laserTurretTech" :game="game" />            
+                            <TechCard id="logistics1" :game="game" />                 
+                            <TechCard id="logistics2" :game="game" />                 
+                            <TechCard id="lowDensityStructureTech" :game="game" />    
+                            <TechCard id="lubricantTech" :game="game" />              
+                            <TechCard id="material1" :game="game" />                  
+                            <TechCard id="material2" :game="game" />                  
+                            <TechCard id="military1" :game="game" />                  
+                            <TechCard id="military2" :game="game" />                  
+                            <TechCard id="military3" :game="game" />                  
+                            <TechCard id="military4" :game="game" />                  
+                            <TechCard id="modularArmor" :game="game" />               
+                            <TechCard id="modules" :game="game" />                    
+                            <TechCard id="nuclearPower" :game="game" />               
+                            <TechCard id="oilProcessing1" :game="game" />             
+                            <TechCard id="oilProcessing2" :game="game" />             
+                            <TechCard id="optics" :game="game" />                     
+                            <TechCard id="plastics" :game="game" />                   
+                            <TechCard id="portableFusionReactorTech" :game="game" />  
+                            <TechCard id="powerArmor" :game="game" />                 
+                            <TechCard id="productivity1" :game="game" />              
+                            <TechCard id="productivity2" :game="game" />              
+                            <TechCard id="productivity3" :game="game" />              
+                            <TechCard id="purpleScience" :game="game" />              
+                            <TechCard id="railway" :game="game" />                    
+                            <TechCard id="robotics" :game="game" />                   
+                            <TechCard id="rocketControlUnitTech" :game="game" />      
+                            <TechCard id="rocketFuelTech" :game="game" />             
+                            <TechCard id="rocketry1" :game="game" />                  
+                            <TechCard id="rocketry2" :game="game" />                  
+                            <TechCard id="rocketSiloTech" :game="game" />             
+                            <TechCard id="solarEnergy" :game="game" />                
+                            <TechCard id="spaceScience" :game="game" />               
+                            <TechCard id="speed1" :game="game" />                     
+                            <TechCard id="speed2" :game="game" />                     
+                            <TechCard id="speed3" :game="game" />                     
+                            <TechCard id="spidertronTech" :game="game" />             
+                            <TechCard id="steelProcessing" :game="game" />            
+                            <TechCard id="sulfurProcessing" :game="game" />           
+                            <TechCard id="tankTech" :game="game" />                   
+                            <TechCard id="uraniumAmmo" :game="game" />                
+                            <TechCard id="uraniumProcessing" :game="game" />          
+                            <TechCard id="wall" :game="game" />                       
+                            <TechCard id="yellowScience" :game="game" />
                         </div>
                     </div>
 
@@ -756,7 +903,8 @@ var baseData = [
     { id:'electricEngineUnit',          type:'item',        machines:[ 'assembler2', 'assembler3' ],                         max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:1,   inputs:{ electronicCircuit:2, engine:1, lubricant:15 }, outputs:{ electricEngineUnit:1 }, reqs:[ 'electricEngineTech' ], },
     { id:'flyingRobot',                 type:'item',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:20,  inputs:{ battery:2, electricEngineUnit:1, electronicCircuit:3, steelPlate:1 }, outputs:{ flyingRobot:1 },reqs:[ 'robotics' ], },
     { id:'radar',                       type:'item',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:50,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:.5,  inputs:{ electronicCircuit:5, ironGearWheel:5, ironPlate:10 }, outputs:{ radar:1 }, },
-    { id:'rocketControlUnit',           type:'item',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:10,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:30,  inputs:{ processingUnit:1,speedModule1:1 }, outputs:{ rocketControlUnit:1 }, reqs:[ 'rocketControlUnitTech' ], },
+    { id:'exoskeleton',                 type:'item',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:20,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:10,  inputs:{ electricEngineUnit:30, processingUnit:10, steelPlate:20 }, outputs:{ exoskeleton:1 }, reqs:[ 'exoskeletonTech' ], },
+    { id:'rocketControlUnit',           type:'item',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:10,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:30,  inputs:{ processingUnit:1, speedModule1:1 }, outputs:{ rocketControlUnit:1 }, reqs:[ 'rocketControlUnitTech' ], },
     { id:'lowDensityStructure',         type:'item',        machines:[ 'manual', 'assembler1', 'assembler2', 'assembler3' ], max:10,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:20,  inputs:{ copperPlate:20, plasticBar:5, steelPlate:2 }, outputs:{ lowDensityStructure:1 }, reqs:[ 'lowDensityStructureTech' ], },
     { id:'rocketFuel',                  type:'item',        machines:[ 'assembler2', 'assembler3' ],                         max:10,   storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:30,  inputs:{ lightOil:10, solidFuel:10 }, outputs:{ rocketFuel:1 }, reqs:[ 'rocketFuelTech' ], },
     { id:'rocketPart',                  type:'item',        machines:[ 'rocketSilo' ],                                       max:5,    storages:[ 'woodChest', 'ironChest', 'steelChest' ], time:3,   inputs:{ lowDensityStructure:10, rocketControlUnit:10, rocketFuel:10 }, outputs:{ rocketPart:1 }, reqs:[ 'rocketSiloTech' ], },
@@ -824,70 +972,80 @@ var baseData = [
     
     //---
     
-    { id:'accumulatorTech',             type:'research', },
-    { id:'artillery',                   type:'research', },
-    { id:'artillery',                   type:'research', },
-    { id:'atomicBombTech',              type:'research', },
-    { id:'automation1',                 type:'research',    time:10, cycleCount:10,    costs:{ redPack:1 }, },
-    { id:'automation2',                 type:'research', },
-    { id:'automation3',                 type:'research', },
-    { id:'automobilism',                type:'research', },
-    { id:'batteryTech',                 type:'research', },
-    { id:'blueScience',                 type:'research', },    
-    { id:'concreteTech',                type:'research', },
-    { id:'constructionRobotics',        type:'research', },
-    { id:'efficiency1',                 type:'research', },
-    { id:'efficiency2',                 type:'research', },
-    { id:'efficiency3',                 type:'research', },
-    { id:'electricEngineTech',          type:'research', },
-    { id:'electronics1',                type:'research', },
-    { id:'electronics2',                type:'research', },
-    { id:'engineTech',                  type:'research', },
-    { id:'explosivesTech',              type:'research', },
-    { id:'fluidHandling',               type:'research', },
-    { id:'grayScience',                 type:'research', },    
-    { id:'greenScience',                type:'research', },    
-    { id:'gunTurretTech',               type:'research', },
-    { id:'kovarex',                     type:'research', },
-    { id:'laserTurretTech',             type:'research', },
-    { id:'lowDensityStructureTech',     type:'research', },
-    { id:'lubricantTech',               type:'research', },
-    { id:'material1',                   type:'research', },
-    { id:'material2',                   type:'research', },
-    { id:'military1',                   type:'research', },
-    { id:'military2',                   type:'research', },
-    { id:'military3',                   type:'research', },
-    { id:'military4',                   type:'research', },
-    { id:'modules',                     type:'research',    time:30, cycleCount:100,   costs:{ redPack:1, greenPack:1 }, reqs:[ 'electronics2' ], },
-    { id:'nuclearPower',                type:'research', },
-    { id:'oilProcessing1',              type:'research', },
-    { id:'oilProcessing2',              type:'research', },
-    { id:'plastics',                    type:'research', },
-    { id:'portableFusionReactorTech',   type:'research', },
-    { id:'productivity1',               type:'research', },
-    { id:'productivity2',               type:'research', },
-    { id:'productivity3',               type:'research', },
-    { id:'purpleScience',               type:'research', },    
-    { id:'railway',                     type:'research', },   
-    { id:'robotics',                    type:'research', },   
-    { id:'rocketControlUnitTech',       type:'research', },
-    { id:'rocketFuelTech',              type:'research', },
-    { id:'rocketry1',                   type:'research', },
-    { id:'rocketry2',                   type:'research', },
-    { id:'rocketSiloTech',              type:'research', },
-    { id:'solarEnergy',                 type:'research', },
-    { id:'spaceScience',                type:'research', },
-    { id:'speed1',                      type:'research', },
-    { id:'speed2',                      type:'research', },
-    { id:'speed3',                      type:'research', },
-    { id:'spidertronTech',              type:'research', },
-    { id:'steelProcessing',             type:'research', },
-    { id:'sulfurProcessing',            type:'research', },
-    { id:'tankTech',                    type:'research', },
-    { id:'uraniumAmmo',                 type:'research', },
-    { id:'uraniumProcessing',           type:'research', },
-    { id:'kovarex',                     type:'research', },
-    { id:'yellowScience',               type:'research', },
+    { id:'accumulatorTech',             type:'research',    reqs:[ 'batteryTech', 'electricEnergy' ],                               time:30, cycleCount:150,  costs:{ redPack:1, greenPack:1 },   },
+    { id:'artillery',                   type:'research',    reqs:[ 'military4', 'tankTech' ],                                       time:30, cycleCount:2000, costs:{ redPack:1, greenPack:1, grayPack:1, bluePack:1, yellowPack:1 },   },
+    { id:'atomicBombTech',              type:'research',    reqs:[ 'kovarex', 'military4', 'rocketControlUnitTech', 'rocketry1' ],  time:45, cycleCount:5000, costs:{ redPack:1, greenPack:1, grayPack:1, bluePack:1, purplePack:1, yellowPack:1 },   },
+    { id:'automation1',                 type:'research',                                                                            time:10, cycleCount:10,   costs:{ redPack:1 }, },
+    { id:'automation2',                 type:'research',    reqs:[ 'electronics1', 'greenScience', 'steelProcessing' ],             time:15, cycleCount:40,   costs:{ redPack:1, greenPack:1 },   },
+    { id:'automation3',                 type:'research',    reqs:[ 'purpleScience', 'speed1' ],                                     time:60, cycleCount:150,  costs:{ redPack:1, greenPack:1, bluePack:1, purplePack:1 },   },
+    { id:'automobilism',                type:'research',    reqs:[ 'engineTech', 'logistics2' ],                                    time:30, cycleCount:100,  costs:{ redPack:1, greenPack:1 },   },
+    { id:'batteryTech',                 type:'research',    reqs:[ 'sulfurProcessing' ],                                            time:30, cycleCount:150,  costs:{ redPack:1, greenPack:1 },   },
+    { id:'blueScience',                 type:'research',    reqs:[ 'electronics2', 'sulfurProcessing' ],                            time:10, cycleCount:75,   costs:{ redPack:1, greenPack:1 },   },   
+    { id:'concreteTech',                type:'research',    reqs:[ 'material1', 'automation2' ],                                    time:30, cycleCount:250,  costs:{ redPack:1, greenPack:1 },   },
+    { id:'constructionRobotics',        type:'research',    reqs:[ 'robotics' ],                                                    time:30, cycleCount:100,  costs:{ redPack:1, greenPack:1, bluePack:1 },   },
+    { id:'efficiency1',                 type:'research',    reqs:[ 'modules' ],                                                     time:30, cycleCount:50,   costs:{ redPack:1, greenPack:1 },   },
+    { id:'efficiency2',                 type:'research',    reqs:[ 'electronics3', 'efficiency1' ],                                 time:30, cycleCount:75,   costs:{ redPack:1, greenPack:1, bluePack:1 },   },
+    { id:'efficiency3',                 type:'research',    reqs:[ 'efficiency2', 'purpleScience' ],                                time:60, cycleCount:300,  costs:{ redPack:1, greenPack:1, bluePack:1, purplePack:1 },   },
+    { id:'electricEnergy',              type:'research',    reqs:[ 'electronics', 'greenScience', 'steelProcessing' ],              time:30, cycleCount:120,  costs:{ redPack:1, greenPack:1 },   },
+    { id:'electricEngineTech',          type:'research',    reqs:[ 'lubricantTech' ],                                               time:30, cycleCount:50,   costs:{ redPack:1, greenPack:1, bluePack:1 },   },
+    { id:'electronics1',                type:'research',    reqs:[ 'automation1' ],                                                 time:15, cycleCount:30,   costs:{ redPack:1 },   },
+    { id:'electronics2',                type:'research',    reqs:[ 'plastics' ],                                                    time:15, cycleCount:200,  costs:{ redPack:1, greenPack:1 },   },
+    { id:'electronics3',                type:'research',    reqs:[ 'blueScience' ],                                                 time:30, cycleCount:300,  costs:{ redPack:1, greenPack:1, bluePack:1 },   },
+    { id:'engineTech',                  type:'research',    reqs:[ 'greenScience', 'steelProcessing' ],                             time:15, cycleCount:100,  costs:{ redPack:1, greenPack:1 },   },
+    { id:'exoskeletonTech',             type:'research',    reqs:[ 'electronics3', 'electricEngineTech', 'solarEnergy2' ],          time:30, cycleCount:50,   costs:{ redPack:1, greenPack:1, bluePack:1 },   },
+    { id:'explosivesTech',              type:'research',    reqs:[ 'sulfurProcessing' ],                                            time:15, cycleCount:100,  costs:{ redPack:1, greenPack:1 },   },
+    { id:'flammables',                  type:'research',    reqs:[ 'oilProcessing1' ],                                              time:30, cycleCount:50,   costs:{ redPack:1, greenPack:1 },   },
+    { id:'fluidHandling',               type:'research',    reqs:[ 'automation2', 'engineTech' ],                                   time:15, cycleCount:50,   costs:{ redPack:1, greenPack:1 },   },
+    { id:'grayScience',                 type:'research',    reqs:[ 'military2', 'wall' ],                                           time:15, cycleCount:30,   costs:{ redPack:1, greenPack:1 },   },    
+    { id:'greenScience',                type:'research',                                                                            time:5,  cycleCount:75,   costs:{ redPack:1 },   },    
+    { id:'gunTurretTech',               type:'research',                                                                            time:10, cycleCount:10,   costs:{ redPack:1 },   },
+    { id:'heavyArmor',                  type:'research',    reqs:[ 'military1', 'steelProcessing' ],                                time:30, cycleCount:30,   costs:{ redPack:1 },   },
+    { id:'kovarex',                     type:'research',    reqs:[ 'purpleScience', 'rocketFuelTech', 'uraniumProcessing' ],        time:30, cycleCount:1500, costs:{ redPack:1, greenPack:1, bluePack:1, purplePack:1 },   },
+    { id:'laser',                       type:'research',    reqs:[ 'batteryTech', 'blueScience', 'optics' ],                        time:30, cycleCount:100,  costs:{ redPack:1, greenPack:1, bluePack:1 },   },
+    { id:'laserTurretTech',             type:'research',    reqs:[ 'laser', 'grayScience' ],                                        time:30, cycleCount:150,  costs:{ redPack:1, greenPack:1, grayPack:1, bluePack:1 },   },
+    { id:'logistics1',                  type:'research',                                                                            time:15, cycleCount:20,   costs:{ redPack:1 },   },
+    { id:'logistics2',                  type:'research',    reqs:[ 'greenScience', 'logistics1' ],                                  time:30, cycleCount:200,  costs:{ redPack:1, greenPack:1 },   },
+    { id:'lowDensityStructureTech',     type:'research',    reqs:[ 'material1', 'blueScience' ],                                    time:45, cycleCount:300,  costs:{ redPack:1, greenPack:1, bluePack:1 },   },
+    { id:'lubricantTech',               type:'research',    reqs:[ 'oilProcessing2' ],                                              time:30, cycleCount:50,   costs:{ redPack:1, greenPack:1, bluePack:1 },   },
+    { id:'material1',                   type:'research',    reqs:[ 'greenScience', 'steelProcessing' ],                             time:30, cycleCount:75,   costs:{ redPack:1, greenPack:1 },   },
+    { id:'material2',                   type:'research',    reqs:[ 'material1', 'blueScience' ],                                    time:30, cycleCount:250,  costs:{ redPack:1, greenPack:1, bluePack:1 },   },
+    { id:'military1',                   type:'research',                                                                            time:15, cycleCount:10,   costs:{ redPack:1 },   },
+    { id:'military2',                   type:'research',    reqs:[ 'military1', 'greenScience', 'steelProcessing' ],                time:15, cycleCount:20,   costs:{ redPack:1, greenPack:1 },   },
+    { id:'military3',                   type:'research',    reqs:[ 'blueScience', 'grayScience' ],                                  time:30, cycleCount:100,  costs:{ redPack:1, greenPack:1, grayPack:1, bluePack:1 },   },
+    { id:'military4',                   type:'research',    reqs:[ 'explosivesTech', 'military3', 'yellowScience' ],                time:45, cycleCount:150,  costs:{ redPack:1, greenPack:1, grayPack:1, bluePack:1, purplePack:1, yellowPack:1 },   },
+    { id:'modularArmor',                type:'research',    reqs:[ 'electronics2', 'heavyArmor' ],                                  time:30, cycleCount:100,  costs:{ redPack:1, greenPack:1 },   },
+    { id:'modules',                     type:'research',                                                                            time:30, cycleCount:100,  costs:{ redPack:1, greenPack:1 }, reqs:[ 'electronics2' ], },
+    { id:'nuclearPower',                type:'research',    reqs:[ 'uraniumProcessing' ],                                           time:30, cycleCount:800,  costs:{ redPack:1, greenPack:1, bluePack:1 },   },
+    { id:'oilProcessing1',              type:'research',    reqs:[ 'fluidHandling' ],                                               time:30, cycleCount:100,  costs:{ redPack:1, greenPack:1 },   },
+    { id:'oilProcessing2',              type:'research',    reqs:[ 'blueScience' ],                                                 time:30, cycleCount:75,   costs:{ redPack:1, greenPack:1, bluePack:1 },   },
+    { id:'optics',                      type:'research',                                                                            time:15, cycleCount:10,   costs:{ redPack:1 },   },
+    { id:'plastics',                    type:'research',    reqs:[ 'oilProcessing1' ],                                              time:30, cycleCount:200,  costs:{ redPack:1, greenPack:1 },   },
+    { id:'portableFusionReactorTech',   type:'research',    reqs:[ 'grayScience', 'powerArmor', 'yellowScience' ],                  time:30, cycleCount:200,  costs:{ redPack:1, greenPack:1, grayPack:1, bluePack:1, yellowPack:1 },   },
+    { id:'powerArmor',                  type:'research',    reqs:[ 'electronics3', 'electricEngineTech', 'modularArmor' ],          time:30, cycleCount:200,  costs:{ redPack:1, greenPack:1, bluePack:1 },   },
+    { id:'productivity1',               type:'research',    reqs:[ 'modules' ],                                                     time:30, cycleCount:50,   costs:{ redPack:1, greenPack:1 },   },
+    { id:'productivity2',               type:'research',    reqs:[ 'productivity1', 'electronics3' ],                               time:30, cycleCount:75,   costs:{ redPack:1, greenPack:1, bluePack:1 },   },
+    { id:'productivity3',               type:'research',    reqs:[ 'purpleScience', 'productivity2' ],                              time:60, cycleCount:300,  costs:{ redPack:1, greenPack:1, bluePack:1, purplePack:1 },   },
+    { id:'purpleScience',               type:'research',    reqs:[ 'material2', 'productivity1', 'railway' ],                       time:30, cycleCount:100,  costs:{ redPack:1, greenPack:1, bluePack:1 },   },    
+    { id:'railway',                     type:'research',    reqs:[ 'engineTech', 'logistics2' ],                                    time:30, cycleCount:75,   costs:{ redPack:1, greenPack:1 },   },   
+    { id:'robotics',                    type:'research',    reqs:[ 'batteryTech', 'electricEngineTech' ],                           time:30, cycleCount:75,   costs:{ redPack:1, greenPack:1, bluePack:1 },   },   
+    { id:'rocketControlUnitTech',       type:'research',    reqs:[ 'speed1', 'yellowScience' ],                                     time:45, cycleCount:300,  costs:{ redPack:1, greenPack:1, bluePack:1, yellowPack:1 },   },
+    { id:'rocketFuelTech',              type:'research',    reqs:[ 'oilProcessing2', 'flammables' ],                                time:45, cycleCount:300,  costs:{ redPack:1, greenPack:1, bluePack:1 },   },
+    { id:'rocketry1',                   type:'research',    reqs:[ 'explosivesTech', 'flammables', 'grayScience' ],                 time:15, cycleCount:120,  costs:{ redPack:1, greenPack:1, grayPack:1 },   },
+    { id:'rocketry2',                   type:'research',    reqs:[ 'rocketry1', 'military3' ],                                      time:30, cycleCount:100,  costs:{ redPack:1, greenPack:1, grayPack:1, bluePack:1 },   },
+    { id:'rocketSiloTech',              type:'research',    reqs:[ 'concreteTech', 'productivity3', 'rocketControlUnitTech', 'rocketFuelTech', 'speed3' ], time:60, cycleCount:1000, costs:{ redPack:1, greenPack:1, bluePack:1, purplePack:1, yellowPack:1 },   },
+    { id:'solarEnergy',                 type:'research',    reqs:[ 'electronics', 'greenScience', 'optics', 'steelProcessing' ],    time:30, cycleCount:250,  costs:{ redPack:1, greenPack:1 },   },
+    { id:'spaceScience',                type:'research',    reqs:[ 'electricEnergy', 'rocketSiloTech', 'solarEnergy' ],             time:30, cycleCount:2000, costs:{ redPack:1, greenPack:1, bluePack:1, purplePack:1, yellowPack:1 },   },
+    { id:'speed1',                      type:'research',    reqs:[ 'modules' ],                                                     time:30, cycleCount:50,   costs:{ redPack:1, greenPack:1 },   },
+    { id:'speed2',                      type:'research',    reqs:[ 'speed1', 'electronics3' ],                                      time:30, cycleCount:75,   costs:{ redPack:1, greenPack:1, bluePack:1 },   },
+    { id:'speed3',                      type:'research',    reqs:[ 'purpleScience', 'speed2' ],                                     time:60, cycleCount:300,  costs:{ redPack:1, greenPack:1, bluePack:1, purplePack:1 },   },
+    { id:'spidertronTech',              type:'research',    reqs:[ 'efficiency3', 'exoskeletonTech', 'portableFusionReactorTech', 'military4', 'rocketControlUnitTech', 'rocketry1' ], time:30, cycleCount:2500, costs:{ redPack:1, greenPack:1, grayPack:1, bluePack:1, purplePack:1, yellowPack:1 },   },
+    { id:'steelProcessing',             type:'research',                                                                            time:5,  cycleCount:50,   costs:{ redPack:1 },   },
+    { id:'sulfurProcessing',            type:'research',    reqs:[ 'oilProcessing1' ],                                              time:30, cycleCount:150,  costs:{ redPack:1, greenPack:1 },   },
+    { id:'tankTech',                    type:'research',    reqs:[ 'automobilism', 'explosivesTech', 'military3' ],                 time:30, cycleCount:250,  costs:{ redPack:1, greenPack:1, grayPack:1, bluePack:1 },   },
+    { id:'uraniumAmmo',                 type:'research',    reqs:[ 'military4', 'tankTech', 'uraniumProcessing' ],                  time:45, cycleCount:1000, costs:{ redPack:1, greenPack:1, grayPack:1, bluePack:1, yellowPack:1 },   },
+    { id:'uraniumProcessing',           type:'research',    reqs:[ 'blueScience', 'concreteTech' ],                                 time:30, cycleCount:200,  costs:{ redPack:1, greenPack:1, bluePack:1 },   },
+    { id:'wall',                        type:'research',                                                                            time:10, cycleCount:10,   costs:{ redPack:1 },   },
+    { id:'yellowScience',               type:'research',    reqs:[ 'electronics3', 'lowDensityStructureTech', 'robotics' ],         time:30, cycleCount:100,  costs:{ redPack:1, greenPack:1, bluePack:1 },   },
 ]
 
 //------------------------------------------------------------------------------
@@ -1522,8 +1680,11 @@ class Production extends Base {
     
     getTime() {
         
+        let coeff = 1
+        if (this.elecConsum > 0) coeff = this.game.getProdEfficiency()
+        
         let ret = this.time
-        ret *= this.getCoeffTime() / this.game.getProdEfficiency()
+        ret *= this.getCoeffTime() / coeff
         
         return ret
     }
@@ -1712,7 +1873,7 @@ class Research extends Base {
         
         this.count = data.count
         
-        this.cycleCount = data.cycleCount
+        if (data.cycleCount) this.cycleCount = data.cycleCount
         if (this.cycleCount <= 0) {
             this.count = 0
         }

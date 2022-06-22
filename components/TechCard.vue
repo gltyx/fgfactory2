@@ -6,7 +6,7 @@
                     <div class="col">
                         <div class="row gx-2 align-item-center">
                             <div class="col-auto">
-                                <img :src="require(`~/assets/items/${id}.png`)" width="18px" height="18px" :title="$t('name_' + id)" :alt="$t('name_' + id)" />
+                                <img :src="require(`~/assets/techs/${id}.png`)" width="18px" height="18px" :title="$t('name_' + id)" :alt="$t('name_' + id)" />
                             </div>
                             <div class="col-auto">
                                 <span class="fw-bold">{{ $t('name_' + id) }}</span>
@@ -24,12 +24,12 @@
                                 <div class="col">
                                     <div class="row gx-2 align-items-center">
                                         <div class="col-auto">
-                                            <button type="button" class="btn btn-sm btn-dark p-1" :class="{ 'disabled opacity-25':labAvailableCount < 1 }" @click="research.count += 1">
+                                            <button type="button" class="btn btn-sm btn-dark p-1" :class="{ 'disabled opacity-25':labAvailableCount < 1 }" @click="assign();">
                                                 <i class="fas fa-fw fa-plus"></i>
                                             </button>
                                         </div>
                                         <div class="col-auto">
-                                            <button type="button" class="btn btn-sm btn-dark p-1" :class="{ 'disabled opacity-25':research.count < 1 }" @click="research.count -= 1">
+                                            <button type="button" class="btn btn-sm btn-dark p-1" :class="{ 'disabled opacity-25':research.count < 1 }" @click="unassign();">
                                                 <i class="fas fa-fw fa-minus"></i>
                                             </button>
                                         </div>
@@ -39,11 +39,6 @@
                                         <div class="col-auto">
                                             <span :class="{ 'text-muted opacity-25':research.count < 1 }"><small>x</small> <FormatNumber :value="research.count" /></span>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="row gx-2 align-items-center">
-                                        <div class="col-auto"><RecipeInput :id="energy.id" :count="energy.count" :game="game" /></div>
                                     </div>
                                 </div>
                                 <div class="col-auto">
@@ -94,8 +89,6 @@ export default {
         
         done() { return this.research.isDone() },
         
-        energy() { return this.research.getEnergy() },
-        
         costs() { return this.research.getCosts() },
         
         cycleCount() {
@@ -111,6 +104,23 @@ export default {
         
             if (this.research.remainingTime > 0) return 100 - 100 * (this.research.remainingTime / this.research.getTime())
             else return 0
+        },
+    },
+    
+    methods: {
+    
+        assign() {
+            
+            if (this.labAvailableCount >= 1) {
+                this.research.count += 1
+            }
+        },
+        
+        unassign() {
+            
+            if (this.research.count >= 1) {
+                this.research.count -= 1
+            }
         },
     },
 }

@@ -5,7 +5,7 @@
                 <div class="col">
                     <div class="row gx-2 align-items-center">
                         <div class="col-auto">
-                            <button type="button" class="btn btn-sm btn-dark p-1" :class="{ 'disabled opacity-25':machineAvailableCount < item.buildCount }" @click="production.count += item.buildCount">
+                            <button type="button" class="btn btn-sm btn-dark p-1" :class="{ 'disabled opacity-25':machineAvailableCount < item.buildCount }" @click="assign();">
                                 <i class="fas fa-fw fa-plus"></i>
                             </button>
                         </div>
@@ -115,14 +115,25 @@ export default {
     
     methods: {
     
-        unassign() {
+        assign() {
+            
+            if (this.machineAvailableCount >= this.item.buildCount) {
+            
+                this.production.count += this.item.buildCount
+            }
+        },
         
-            this.production.count -= this.item.buildCount
+        unassign() {
             
-            if (this.production.count <= 0) {
+            if (this.production.count >= this.item.buildCount) {
             
-                this.production.count = 0
-                this.production.pauseProducing()
+                this.production.count -= this.item.buildCount
+                
+                if (this.production.count <= 0) {
+                
+                    this.production.count = 0
+                    this.production.pauseProducing()
+                }
             }
         },
     },

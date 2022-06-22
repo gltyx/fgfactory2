@@ -9,7 +9,7 @@
                     <span :class="{ 'text-muted opacity-25':storage.count < 1 }"><small>x</small> <FormatNumber :value="storage.count" /></span>
                 </div>
                 <div class="col-auto">
-                    <button type="button" class="btn btn-sm btn-dark p-1" :class="{ 'disabled opacity-25':availableCount < 1 }" @click="storage.count += 1">
+                    <button type="button" class="btn btn-sm btn-dark p-1" :class="{ 'disabled opacity-25':availableCount < 1 }" @click="assign()">
                         <i class="fas fa-fw fa-plus"></i>
                     </button>
                 </div>
@@ -36,6 +36,16 @@ export default {
             let base = this.game.bases[this.storage.id]
             return base.getAvailableCount()
         },
-    }
+    },
+    
+    methods: {
+    
+        assign() {
+            
+            if (this.availableCount >= 1) {
+                this.storage.count += 1
+            }
+        },
+    },
 }
 </script>

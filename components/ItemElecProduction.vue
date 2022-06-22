@@ -6,7 +6,7 @@
                 <div class="col">
                     <div class="row gx-2 align-items-center">
                         <div class="col-auto">
-                            <button type="button" class="btn btn-sm btn-dark p-1" :class="{ 'disabled opacity-25':machineAvailableCount < 1 }" @click="generator.used += 1">
+                            <button type="button" class="btn btn-sm btn-dark p-1" :class="{ 'disabled opacity-25':machineAvailableCount < 1 }" @click="assign();">
                                 <i class="fas fa-fw fa-plus"></i>
                             </button>
                         </div>
@@ -79,14 +79,25 @@ export default {
     
     methods: {
     
-        unassign() {
+        assign() {
+            
+            if (machineAvailableCount >= 1) {
+            
+                this.generator.used += 1
+            }
+        },
         
-            this.generator.used -= 1
+        unassign() {
             
-            if (this.generator.used <= 0) {
+            if (this.generator.used >= 1) {
             
-                this.generator.used = 0
-                this.generator.pauseGenerating()
+                this.generator.used -= 1
+                
+                if (this.generator.used <= 0) {
+                
+                    this.generator.used = 0
+                    this.generator.pauseGenerating()
+                }
             }
         },
     },
