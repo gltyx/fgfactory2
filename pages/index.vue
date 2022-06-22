@@ -1014,7 +1014,7 @@ var baseData = [
     { id:'military3',                   type:'research',    reqs:[ 'blueScience', 'grayScience' ],                                  time:30, cycleCount:100,  costs:{ redPack:1, greenPack:1, grayPack:1, bluePack:1 },   },
     { id:'military4',                   type:'research',    reqs:[ 'explosivesTech', 'military3', 'yellowScience' ],                time:45, cycleCount:150,  costs:{ redPack:1, greenPack:1, grayPack:1, bluePack:1, purplePack:1, yellowPack:1 },   },
     { id:'modularArmor',                type:'research',    reqs:[ 'electronics2', 'heavyArmor' ],                                  time:30, cycleCount:100,  costs:{ redPack:1, greenPack:1 },   },
-    { id:'modules',                     type:'research',                                                                            time:30, cycleCount:100,  costs:{ redPack:1, greenPack:1 }, reqs:[ 'electronics2' ], },
+    { id:'modules',                     type:'research',    reqs:[ 'electronics2' ],                                                time:30, cycleCount:100,  costs:{ redPack:1, greenPack:1 },   },
     { id:'nuclearPower',                type:'research',    reqs:[ 'uraniumProcessing' ],                                           time:30, cycleCount:800,  costs:{ redPack:1, greenPack:1, bluePack:1 },   },
     { id:'oilProcessing1',              type:'research',    reqs:[ 'fluidHandling' ],                                               time:30, cycleCount:100,  costs:{ redPack:1, greenPack:1 },   },
     { id:'oilProcessing2',              type:'research',    reqs:[ 'blueScience' ],                                                 time:30, cycleCount:75,   costs:{ redPack:1, greenPack:1, bluePack:1 },   },
@@ -1881,6 +1881,9 @@ class Research extends Base {
         this.state = data.state
         if (this.state == 'running') {
             this.remainingTime = data.remainingTime
+        }
+        else if (this.state == 'paused') {
+            this.count = 0
         }
     }
     

@@ -24,7 +24,7 @@
                                 <div class="col">
                                     <div class="row gx-2 align-items-center">
                                         <div class="col-auto">
-                                            <button type="button" class="btn btn-sm btn-dark p-1" :class="{ 'disabled opacity-25':labAvailableCount < 1 }" @click="assign();">
+                                            <button type="button" class="btn btn-sm btn-dark p-1" :class="{ 'disabled opacity-25':labAvailableCount <= 0 }" @click="assign();">
                                                 <i class="fas fa-fw fa-plus"></i>
                                             </button>
                                         </div>
