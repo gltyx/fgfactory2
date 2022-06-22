@@ -288,6 +288,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                <Category id="generators" :show="catGeneratorsStart" @click="catGeneratorsOpen = !catGeneratorsOpen;">
+                                    <ItemButton id="steamEngine" :game="game" />
+                                    <ItemButton id="solarPanel" :game="game" />
+                                    <ItemButton id="steamTurbine" :game="game" />
+                                </Category>
                                 <Category id="machines" :show="catMachinesStart" @click="catMachinesOpen = !catMachinesOpen;">
                                     <ItemButton id="furnace1" :game="game" />
                                     <ItemButton id="furnace2" :game="game" />
@@ -308,11 +313,6 @@
                                     <ItemButton id="nuclearReactor" :game="game" />
                                     <ItemButton id="heatExchanger" :game="game" />
                                     <ItemButton id="rocketSilo" :game="game" />
-                                </Category>
-                                <Category id="generators" :show="catGeneratorsStart" @click="catGeneratorsOpen = !catGeneratorsOpen;">
-                                    <ItemButton id="steamEngine" :game="game" />
-                                    <ItemButton id="solarPanel" :game="game" />
-                                    <ItemButton id="steamTurbine" :game="game" />
                                 </Category>
                                 <Category id="raw" :show="catRawStart" @click="catRawOpen = !catRawOpen;">
                                     <ItemButton id="wood" :game="game" />
@@ -1873,7 +1873,7 @@ class Research extends Base {
         
         this.count = data.count
         
-        if (data.cycleCount) this.cycleCount = data.cycleCount
+        if (data.cycleCount != null) this.cycleCount = data.cycleCount
         if (this.cycleCount <= 0) {
             this.count = 0
         }
@@ -1898,7 +1898,9 @@ class Research extends Base {
     isDone() { return this.cycleCount <= 0 }
     
     getElecConsum() {
-    
+        
+        let count = this.count > 0 ? this.count : 1
+        
         let ret = 0
         ret = this.elecConsum * count * this.game.bases['lab'].getCoeffTime()
         

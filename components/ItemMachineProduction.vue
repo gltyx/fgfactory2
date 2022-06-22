@@ -27,12 +27,17 @@
                         <div class="col-auto"><RecipeInput :id="energy.id" :count="energy.count" :game="game" /></div>
                     </div>
                 </div>
+                <div v-if="elecConsum > 0" class="col-auto">
+                    <div class="row gx-2 align-items-center">
+                        <div class="col-auto"><RecipeOutput :id="'electricity'" :count="elecConsum" :game="game" /></div>
+                    </div>
+                </div>
                 <div v-if="inputs" class="col-auto">
                     <div class="row gx-2 align-items-center">
                         <div v-for="(count, id) in inputs" :key="id" class="col-auto"><RecipeInput :id="id" :count="count" :game="game" /></div>
                     </div>
                 </div>
-                <div v-if="energy || inputs" class="col-auto small">
+                <div v-if="energy || elecConsum > 0 || inputs" class="col-auto small">
                     <i class="fas fa-fw fa-long-arrow-alt-right"></i>
                 </div>
                 <div v-if="outputs" class="col-auto">
@@ -97,6 +102,8 @@ export default {
         machineAvailableCount() { return this.game.bases[this.production.machineId].getAvailableCount() },
         
         energy() { return this.production.getEnergy() },
+        
+        elecConsum() { return this.production.getElecConsum() },
         
         inputs() { return this.production.getInputs() },
         

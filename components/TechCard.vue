@@ -16,9 +16,9 @@
                 </div>
             </div>
             <div class="card-body scrollbar">
-                <div class="subtitle">Research</div>
                 <div class="row g-3">
                     <div class="col-12">
+                        <div class="subtitle">Research</div>
                         <div class="card card-body py-1 pe-1 ps-2">
                             <div class="row align-items-center">
                                 <div class="col">
@@ -39,6 +39,11 @@
                                         <div class="col-auto">
                                             <span :class="{ 'text-muted opacity-25':research.count < 1 }"><small>x</small> <FormatNumber :value="research.count" /></span>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="row gx-2 align-items-center">
+                                        <div class="col-auto"><RecipeOutput :id="'electricity'" :count="elecConsum" :game="game" /></div>
                                     </div>
                                 </div>
                                 <div class="col-auto">
@@ -70,6 +75,26 @@
                             </div>
                         </div>
                     </div>
+                    <div v-if="allows.length > 0" class="col-6">
+                        <div class="subtitle">Allows</div>
+                        <div class="row g-2">
+                            <div v-for="(techId, index) in allows" class="col-auto">
+                                <div class="card card-body p-2">
+                                    <img :src="require(`~/assets/techs/${techId}.png`)" width="24px" height="24px" :title="$t('name_' + techId)" :alt="$t('name_' + techId)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-if="effects.length > 0" class="col-6">
+                        <div class="subtitle">Effects</div>
+                        <div class="row g-2">
+                            <div v-for="(itemId, index) in effects" class="col-auto">
+                                <div class="card card-body p-2">
+                                    <img :src="require(`~/assets/items/${itemId}.png`)" width="24px" height="24px" :title="$t('name_' + itemId)" :alt="$t('name_' + itemId)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -85,18 +110,15 @@ export default {
         
         research() { return this.game.bases[this.id] },
         
+        elecConsum() { return this.research.getElecConsum() },
+        
         labAvailableCount() { return this.game.bases['lab'].getAvailableCount() },
         
         done() { return this.research.isDone() },
         
         costs() { return this.research.getCosts() },
         
-        cycleCount() {
-        
-            let count = this.research.count ? this.research.count : 1
-            
-            return Math.ceil(this.research.cycleCount / count)
-        },
+        cycleCount() { return this.research.cycleCount },
         
         time() { return this.research.remainingTime },
         
@@ -104,6 +126,32 @@ export default {
         
             if (this.research.remainingTime > 0) return 100 - 100 * (this.research.remainingTime / this.research.getTime())
             else return 0
+        },
+        
+        allows() {
+        
+            let ret = []
+            for (let id in this.game.bases) {
+                let base = this.game.bases[id]
+                if (base.type == 'research' && base.reqs && base.reqs.includes(this.research.id)) {
+                    ret.push(base.id)
+                }
+            }
+            
+            return ret
+        },
+        
+        effects() {
+        
+            let ret = []
+            for (let id in this.game.bases) {
+                let base = this.game.bases[id]
+                if (base.type != 'research' && base.type != 'production' && base.reqs && base.reqs.includes(this.research.id)) {
+                    ret.push(base.id)
+                }
+            }
+            
+            return ret
         },
     },
     

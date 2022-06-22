@@ -37,7 +37,7 @@
                             </div>
                             <div v-if="storages" class="col">
                                 <div class="row align-items-center justify-content-end">
-                                    <ItemCardStorage v-for="storage in storages" :key="storage.id" :storage="storage" :game="game" />
+                                    <ItemCardStorage v-for="storage in storages" :key="storage.id" :storage="storage" :item="item" :game="game" />
                                 </div>
                             </div>
                         </div>
