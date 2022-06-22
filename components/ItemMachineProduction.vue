@@ -1,5 +1,5 @@
 <template>
-    <div v-if="unlocked" class="col-12">
+    <div class="col-12">
         <div class="card card-body py-1 pe-1 ps-2">
             <div class="row align-items-center">
                 <div class="col">
@@ -96,8 +96,6 @@ export default {
     props: [ 'production', 'item', 'game' ],
     
     computed: {
-        
-        unlocked() { return this.production.isUnlocked() },
         
         machineAvailableCount() { return this.game.bases[this.production.machineId].getAvailableCount() },
         
