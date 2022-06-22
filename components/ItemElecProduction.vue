@@ -81,7 +81,7 @@ export default {
     
         assign() {
             
-            if (machineAvailableCount >= 1) {
+            if (this.machineAvailableCount >= 1) {
             
                 this.generator.used += 1
             }

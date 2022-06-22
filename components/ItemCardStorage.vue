@@ -1,7 +1,7 @@
 <template>
     <div v-if="unlocked" class="col-4">
-        <div class="card card-body py-1 px-1">
-            <div class="subtitle">Storage +{{ storageUpgrade }}</div>
+        <div class="subtitle">Storage +{{ storageUpgrade }}</div>
+        <div class="card card-body p-1">
             <div class="row gx-2 align-items-center">
                 <div class="col-auto">
                     <img :src="require(`~/assets/items/${storage.id}.png`)" width="18px" height="18px" :title="$t('name_' + storage.id)" :alt="$t('name_' + storage.id)" />

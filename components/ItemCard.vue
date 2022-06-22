@@ -21,19 +21,19 @@
                         <div class="row gx-4 align-items-end">
                             <div class="col-auto">
                                 <div class="subtitle">Count</div>
-                                <span :class="{ 'text-muted opacity-25':count == 0, 'text-danger':count >= max }"><FormatNumber :value="count" /></span>
+                                <span :class="{ 'text-muted opacity-25':count == 0, 'text-danger':count >= max }" style="line-height:30px;"><FormatNumber :value="count" /></span>
                             </div>
                             <div v-if="max" class="col-auto">
                                 <div class="subtitle">Storage</div>
-                                <span><FormatNumber :value="max" /></span>
+                                <span style="line-height:30px;"><FormatNumber :value="max" /></span>
                             </div>
                             <div v-if="used != null" class="col-auto">
                                 <div class="subtitle">Used</div>
-                                <span :class="{ 'text-muted opacity-25':used == 0 }"><FormatNumber :value="used" /></span>
+                                <span :class="{ 'text-muted opacity-25':used == 0 }" style="line-height:30px;"><FormatNumber :value="used" /></span>
                             </div>
                             <div v-if="unused != null" class="col-auto">
                                 <div class="subtitle">Unused</div>
-                                <span :class="{ 'text-muted opacity-25':unused == 0, 'text-success':unused > 0 }"><FormatNumber :value="unused" /></span>
+                                <span :class="{ 'text-muted opacity-25':unused == 0, 'text-success':unused > 0 }" style="line-height:30px;"><FormatNumber :value="unused" /></span>
                             </div>
                             <div v-if="storages" class="col">
                                 <div class="row align-items-center justify-content-end">
